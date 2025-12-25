@@ -9,4 +9,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   site: 'https://arkaniahost.xyz',
+  base: '/arkaniahost/',
 });

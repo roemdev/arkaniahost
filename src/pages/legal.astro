@@ -1,0 +1,128 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import {
+  Scale, Shield, Activity, FileText, ArrowRight,
+  Lock, Gavel, Server
+} from "@lucide/astro";
+
+// --- DATOS ---
+
+const legalDocs = [
+  {
+    title: "Términos de Servicio",
+    subtitle: "Reglas del Juego",
+    desc: "Lo que puedes y no puedes hacer en nuestra infraestructura. Uso aceptable, pagos y cancelaciones.",
+    icon: Scale,
+    color: "text-fuchsia-400",
+    border: "group-hover:border-fuchsia-500/50",
+    bgHover: "group-hover:bg-fuchsia-500/5",
+    link: "/legal/terms"
+  },
+  {
+    title: "Política de Privacidad",
+    subtitle: "Tus Datos",
+    desc: "Cómo recopilamos, protegemos y (no) compartimos tu información. Transparencia total.",
+    icon: Lock,
+    color: "text-cyan-400",
+    border: "group-hover:border-cyan-500/50",
+    bgHover: "group-hover:bg-cyan-500/5",
+    link: "/legal/privacy"
+  },
+  {
+    title: "Uptime SLA",
+    subtitle: "Garantía de Servicio",
+    desc: "Nuestro compromiso de disponibilidad. Qué pasa si el servidor se cae y cómo te compensamos.",
+    icon: Activity,
+    color: "text-green-400",
+    border: "group-hover:border-green-500/50",
+    bgHover: "group-hover:bg-green-500/5",
+    link: "/legal/sla"
+  }
+];
+---
+
+<Layout title="Centro Legal | ArkaniaHost">
+  <Navbar />
+
+  <!-- HERO HEADER -->
+  <section class="relative pt-32 pb-20 overflow-hidden">
+    <div class="absolute inset-0 bg-slate-950">
+      <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-cyan-900/10 rounded-full blur-[100px] pointer-events-none"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 mb-6">
+        <Gavel size={16} class="text-slate-400" />
+        <span class="text-slate-300 font-mono text-xs uppercase tracking-widest">Documentación Oficial</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-6">
+        Marco <span class="text-cyan-500 italic text-shadow-neon-cyan">Legal</span>
+      </h1>
+      
+      <p class="max-w-2xl mx-auto text-lg text-slate-400 font-light leading-relaxed">
+        Sin letra pequeña ilegible. Aquí encontrarás todos los contratos y garantías que rigen nuestra relación contigo.
+      </p>
+    </div>
+  </section>
+
+  <!-- INDEXER GRID -->
+  <section class="py-20 bg-slate-950 border-t border-white/5 relative">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-8">
+        {legalDocs.map((doc) => (
+          <a href={doc.link} class={`group relative bg-slate-900/50 border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${doc.border} ${doc.bgHover}`}>
+            <!-- Icono Flotante -->
+            <div class="mb-6 inline-block p-4 rounded-xl bg-slate-950 border border-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300">
+              <doc.icon size={32} class={doc.color} />
+            </div>
+
+            <!-- Contenido -->
+            <div class="space-y-4">
+              <div>
+                <span class={`font-mono text-[10px] uppercase tracking-widest font-bold block mb-1 ${doc.color}`}>
+                  {doc.subtitle}
+                </span>
+                <h2 class="text-2xl font-black text-white italic tracking-tight group-hover:underline decoration-2 underline-offset-4 decoration-slate-700">
+                  {doc.title}
+                </h2>
+              </div>
+              
+              <p class="text-slate-400 text-sm leading-relaxed font-light">
+                {doc.desc}
+              </p>
+            </div>
+
+            <!-- Flecha de acción -->
+            <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
+              Leer Documento <ArrowRight size={14} class="group-hover:translate-x-1 transition-transform" />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO BLOCK -->
+  <section class="py-20 bg-slate-900/30 border-y border-white/5">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="flex items-center justify-center gap-3 mb-6 text-yellow-500">
+        <Server size={24} />
+      </div>
+      <h3 class="text-2xl font-bold text-white uppercase tracking-tight mb-4">
+        ¿Tienes dudas sobre el cumplimiento?
+      </h3>
+      <p class="text-slate-400 text-sm mb-8 leading-relaxed max-w-xl mx-auto">
+        Si encuentras alguna actividad en nuestros servidores que viole estos términos (phishing, ataques DDoS, contenido ilegal), repórtalo inmediatamente.
+      </p>
+      <a href="mailto:abuse@arkaniahost.xyz" class="inline-flex items-center gap-2 px-6 py-3 bg-red-500/10 text-red-400 border border-red-500/20 rounded hover:bg-red-500 hover:text-white transition-all font-mono text-xs uppercase tracking-widest font-bold">
+        <Shield size={14} /> Reportar Abuso
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

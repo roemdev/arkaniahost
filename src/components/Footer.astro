@@ -1,0 +1,121 @@
+---
+import { 
+  Terminal, Home, Users, LifeBuoy, FileText, 
+  CreditCard, ExternalLink, Disc, Twitter, Github
+} from "@lucide/astro";
+---
+
+<footer
+  class="bg-black border-t border-white/10 pt-20 pb-10 overflow-hidden relative"
+>
+  <!-- Decoración de fondo sutil -->
+  <div class="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
+  <div
+    class="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-fuchsia-500/50 to-transparent"
+  >
+  </div>
+
+  <div
+    class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12 mb-20 relative z-10"
+  >
+    <!-- COLUMNA 1: BRAND -->
+    <div class="col-span-2">
+      <a href="/" class="flex items-center gap-2 mb-6 group w-fit">
+        <div
+          class="p-2 bg-fuchsia-500/10 rounded-lg border border-fuchsia-500/20 group-hover:border-fuchsia-500/50 transition-all"
+        >
+          <Terminal class="h-6 w-6 text-fuchsia-500" />
+        </div>
+        <span class="font-black text-2xl tracking-tighter text-white uppercase"
+          >Arkania<span class="text-fuchsia-500">Host</span></span
+        >
+      </a>
+      <p class="text-slate-500 max-w-sm font-light text-sm italic leading-relaxed mb-8">
+        Buscamos empoderar a la nueva generación de creadores en LATAM. Hardware
+        de grado empresarial accesible para todos.
+      </p>
+      
+      <!-- Redes Sociales -->
+      <div class="flex gap-4">
+        <a href="#" aria-label="Twitter" class="p-2 bg-slate-900 rounded border border-white/5 hover:border-fuchsia-500/50 hover:text-fuchsia-400 text-slate-500 transition-all">
+          <Twitter size={18} />
+        </a>
+        <a href="#" aria-label="Github" class="p-2 bg-slate-900 rounded border border-white/5 hover:border-white/30 hover:text-white text-slate-500 transition-all">
+          <Github size={18} />
+        </a>
+        <a href="https://discord.gg/tu-comunidad" aria-label="Discord" target="_blank" class="p-2 bg-slate-900 rounded border border-white/5 hover:border-[#5865F2]/50 hover:text-[#5865F2] text-slate-500 transition-all">
+          <Disc size={18} />
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMNA 2: EXPLORAR -->
+    <div>
+      <h4
+        class="text-white font-bold mb-6 uppercase text-xs tracking-widest italic flex items-center gap-2"
+      >
+        <span class="w-1 h-1 bg-fuchsia-500 rounded-full"></span> Explorar
+      </h4>
+      <ul
+        class="space-y-3 text-slate-500 text-xs uppercase font-mono tracking-widest"
+      >
+        <li>
+          <a href="/" class="flex items-center gap-2 hover:text-fuchsia-400 transition-colors group">
+            <Home size={14} class="group-hover:translate-x-1 transition-transform" /> Inicio
+          </a>
+        </li>
+        <li>
+          <a href="/about" class="flex items-center gap-2 hover:text-fuchsia-400 transition-colors group">
+            <Users size={14} class="group-hover:translate-x-1 transition-transform" /> Nosotros
+          </a>
+        </li>
+        <li>
+          <a href="/help" class="flex items-center gap-2 hover:text-fuchsia-400 transition-colors group">
+             <LifeBuoy size={14} class="group-hover:translate-x-1 transition-transform" /> Soporte
+          </a>
+        </li>
+        <li>
+          <a href="https://status.arkaniahost.xyz" target="_blank" class="flex items-center gap-2 hover:text-green-400 transition-colors group">
+            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]"></div> Estado del Sistema
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- COLUMNA 3: ACCESO & LEGAL -->
+    <div>
+      <h4
+        class="text-white font-bold mb-6 uppercase text-xs tracking-widest italic flex items-center gap-2"
+      >
+         <span class="w-1 h-1 bg-cyan-500 rounded-full"></span> Acceso
+      </h4>
+      <ul
+        class="space-y-3 text-slate-500 text-xs uppercase font-mono tracking-widest"
+      >
+        <li>
+          <a href="https://billing.arkaniahost.xyz" target="_blank" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group">
+            <CreditCard size={14} class="group-hover:translate-x-1 transition-transform" /> Facturación
+          </a>
+        </li>
+        <li>
+          <a href="https://panel.arkaniahost.xyz" target="_blank" class="flex items-center gap-2 hover:text-cyan-400 transition-colors group">
+            <ExternalLink size={14} class="group-hover:translate-x-1 transition-transform" /> Panel Control
+          </a>
+        </li>
+        
+        <!-- Separador sutil -->
+        <li class="pt-4 mt-4 border-t border-white/5">
+          <a href="/legal" class="flex items-center gap-2 hover:text-slate-300 transition-colors">
+            <FileText size={14} /> Términos & Privacidad
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="text-center text-slate-800 text-[10px] font-mono uppercase tracking-[0.5em] border-t border-white/5 pt-8"
+  >
+    &copy; {new Date().getFullYear()} ArkaniaHost // Protocolo Latam Activo
+  </div>
+</footer>

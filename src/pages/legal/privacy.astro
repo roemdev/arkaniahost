@@ -1,0 +1,116 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { Lock, Eye, Shield, Database, Cookie, UserX } from "@lucide/astro";
+
+const sections = [
+  {
+    icon: Database,
+    title: "1. Datos que Recopilamos",
+    content: "Para operar el servicio, necesitamos lo básico: \n\n• **Cuenta:** Tu correo electrónico, nombre de usuario y contraseña (hasheada).\n• **Técnicos:** Dirección IP al iniciar sesión y logs de actividad del servidor (para seguridad).\n• **Pagos:** Si compras algo, nuestro procesador de pagos maneja los datos financieros; nosotros solo recibimos la confirmación."
+  },
+  {
+    icon: Eye,
+    title: "2. Uso de la Información",
+    content: "No somos una empresa de publicidad. Usamos tus datos exclusivamente para:\n\n• Proveer y mantener tu servidor activo.\n• Notificarte sobre mantenimiento o problemas críticos.\n• Detectar y prevenir fraudes o abusos (como ataques DDoS salientes).\n• Mejorar el rendimiento de nuestros nodos basándonos en métricas de uso agregado."
+  },
+  {
+    icon: UserX,
+    title: "3. Cero Venta de Datos",
+    content: "Esta es nuestra regla de oro: **Nunca vendemos, alquilamos ni compartimos tu información personal** con terceros para fines comerciales o de marketing. Tus datos son tuyos. Solo compartiríamos información si una orden judicial válida y competente nos obligara legalmente a hacerlo."
+  },
+  {
+    icon: Cookie,
+    title: "4. Cookies y Rastreo",
+    content: "Odiamos los banners de cookies invasivos tanto como tú. Solo utilizamos cookies **técnicas y esenciales** para mantener tu sesión iniciada en el panel de control y en el área de clientes. No utilizamos rastreadores de terceros que te persigan por internet."
+  },
+  {
+    icon: Shield,
+    title: "5. Seguridad de Infraestructura",
+    content: "Tomamos la seguridad en serio. Utilizamos cifrado SSL/TLS para todas las comunicaciones. Las contraseñas se almacenan con hashing fuerte (nunca en texto plano). Nuestros servidores están protegidos por firewalls y sistemas de mitigación de intrusiones para resguardar tu información contra accesos no autorizados."
+  },
+  {
+    icon: Lock,
+    title: "6. Tus Derechos (GDPR / ARCO)",
+    content: "Tienes control total. En cualquier momento puedes:\n\n• Solicitar una copia de los datos que tenemos sobre ti.\n• Corregir información inexacta.\n• **Derecho al Olvido:** Solicitar la eliminación total de tu cuenta y todos tus datos asociados, siempre que no haya disputas legales o de pago pendientes."
+  }
+];
+---
+
+<Layout title="Política de Privacidad | ArkaniaHost">
+  <Navbar />
+
+  <!-- HEADER -->
+  <section class="relative pt-32 pb-16 bg-slate-950 overflow-hidden">
+    <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+    <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 mb-6">
+        <Lock size={14} class="text-cyan-400" />
+        <span class="text-cyan-300 font-mono text-xs uppercase tracking-widest">Protección de Datos</span>
+      </div>
+      
+      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-none uppercase">
+        Política de <br />
+        <span class="text-fuchsia-500 italic text-shadow-neon-fuchsia">Privacidad</span>
+      </h1>
+
+      <p class="text-slate-400 text-lg font-light leading-relaxed">
+        Última actualización: Diciembre 2025. <br class="hidden md:block"/>
+        Transparencia total sobre cómo manejamos (y protegemos) tu información.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-20 bg-slate-950 border-t border-white/5 relative">
+    <div class="max-w-4xl mx-auto px-4">
+      
+      <div class="space-y-6">
+        {sections.map((section, index) => (
+          <div class="group relative bg-slate-900/30 border border-white/5 rounded-2xl p-8 hover:bg-slate-900/50 transition-colors overflow-hidden">
+            <!-- Número de fondo decorativo -->
+            <span class="absolute -top-6 -right-4 text-9xl font-black text-white/[0.02] group-hover:text-cyan-500/[0.05] transition-colors select-none pointer-events-none z-0">
+              {index + 1}
+            </span>
+
+            <div class="relative z-10 flex flex-col md:flex-row gap-6 items-start">
+              <div class="shrink-0 relative">
+                <div class="absolute inset-0 bg-slate-950 rounded-lg blur-sm -z-10"></div>
+                <div class="w-12 h-12 rounded-lg bg-slate-800 border border-white/10 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform relative z-10">
+                  <section.icon size={24} />
+                </div>
+              </div>
+              
+              <div class="flex-1">
+                <h2 class="text-xl font-bold text-white uppercase tracking-wide mb-4 flex items-center gap-3">
+                  {section.title}
+                </h2>
+                <div class="text-slate-400 leading-relaxed font-light text-sm md:text-base whitespace-pre-line">
+                  {section.content}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- FOOTER NOTE -->
+       <br>
+      <div class="mt-24 p-6 bg-cyan-500/5 border border-cyan-500/20 rounded-xl flex gap-4 items-start relative z-10">
+        <Shield class="text-cyan-500 shrink-0 mt-1" size={20} />
+        <div>
+          <h3 class="text-cyan-500 font-bold uppercase text-xs tracking-widest mb-1">Solicitud de Datos</h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            Para ejercer tus derechos de acceso, rectificación o eliminación (Derecho al Olvido), envía un correo directamente a <a href="mailto:privacy@arkaniahost.xyz" class="text-cyan-400 hover:underline">privacy@arkaniahost.xyz</a> desde la dirección de correo asociada a tu cuenta.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

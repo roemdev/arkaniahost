@@ -1,0 +1,75 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const { 
+  title, 
+  description = "Hosting de Game Servers y Bots Discord gratuito para LATAM. Alto rendimiento, NVMe y protección DDoS incluida.",
+  image = "/og-image.jpg" // Asegúrate de subir una imagen llamada 'og-image.jpg' a tu carpeta 'public'
+} = Astro.props;
+
+// Resuelve la URL completa para las imágenes sociales
+const imageURL = new URL(image, Astro.url);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Básico -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook / Discord (CRÍTICO para Gaming) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageURL} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={imageURL} />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-slate-950 text-slate-200 font-sans selection:bg-fuchsia-500 selection:text-white overflow-x-hidden"
+  >
+    <slot />
+  </body>
+</html>
+
+<!--
+
+### Pasos finales antes de desplegar:
+
+1.  **Crea la imagen social:** Diseña una imagen de **1200x630 píxeles** (puede ser tu logo sobre un fondo oscuro o neon) y guárdala como `og-image.jpg` dentro de la carpeta `public/` de tu proyecto.
+2.  **Configura tu sitio:** En tu archivo `astro.config.mjs`, asegúrate de tener configurado tu dominio (site) para que las URLs canónicas funcionen bien:
+    ```javascript
+    export default defineConfig({
+      site: 'https://tudominio.com',
+      // ...
+    });
+
+-->

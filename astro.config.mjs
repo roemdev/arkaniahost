@@ -8,6 +8,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  site: 'https://arkaniahost.xyz',
+  site: 'https://usuario.github.io',
   base: '/arkaniahost/',
 });

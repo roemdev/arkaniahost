@@ -8,6 +8,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()]
   },
-  site: 'https://roemdev.github.io',
-  base: '/arkaniahost',
+  site: 'https://arkaniahost.xyz',
+  base: '/',
 });

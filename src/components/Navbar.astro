@@ -7,7 +7,7 @@ import {
 
 <nav
     id="navbar"
-    class="fixed w-full z-50 transition-all duration-500 bg-transparent py-4 border-b border-transparent"
+    class="relative w-full z-50 transition-all duration-300 bg-slate-950/50 py-4 border-b border-white/10"
 >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
@@ -76,7 +76,7 @@ import {
 
     <div
         id="mobile-menu"
-        class="hidden absolute top-full left-0 w-full bg-slate-950/95 backdrop-blur-xl border-b border-white/10 p-4 space-y-2 shadow-2xl"
+        class="hidden absolute top-full left-0 w-full bg-slate-950 border-b border-white/10 p-4 space-y-2 shadow-2xl z-50"
     >
         <a href="/" class="flex items-center gap-3 text-slate-300 py-3 px-2 hover:bg-white/5 rounded-lg transition-colors">
             <Home size={18} class="text-fuchsia-500" /> Inicio
@@ -107,39 +107,14 @@ import {
 </nav>
 
 <script>
-    // Navbar Scroll Effect
+    // Se eliminó la lógica de Scroll (fixed/sticky) para que el nav permanezca arriba
     const navbar = document.getElementById("navbar");
-    
-    const updateNavbar = () => {
-        if (window.scrollY > 20) {
-            navbar?.classList.add(
-                "bg-slate-950/80",
-                "backdrop-blur-xl",
-                "py-2",
-                "border-white/10" // Color del borde al hacer scroll
-            );
-            navbar?.classList.remove("bg-transparent", "py-4", "border-transparent");
-        } else {
-            navbar?.classList.remove(
-                "bg-slate-950/80",
-                "backdrop-blur-xl",
-                "py-2",
-                "border-white/10"
-            );
-            navbar?.classList.add("bg-transparent", "py-4", "border-transparent");
-        }
-    };
-
-    window.addEventListener("scroll", updateNavbar);
-    // Ejecutar al inicio por si se recarga la página ya scrolleada
-    updateNavbar();
-
-    // Mobile Menu
     const menuBtn = document.getElementById("mobile-menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
     const menuIcon = document.querySelector(".menu-icon");
     const closeIcon = document.querySelector(".close-icon");
 
+    // Lógica mejorada para el menú móvil
     menuBtn?.addEventListener("click", () => {
         const isHidden = mobileMenu?.classList.contains("hidden");
         
@@ -147,16 +122,20 @@ import {
             mobileMenu?.classList.remove("hidden");
             menuIcon?.classList.add("hidden");
             closeIcon?.classList.remove("hidden");
-            // Cambiar fondo del nav cuando se abre el menú
             navbar?.classList.add("bg-slate-950"); 
         } else {
             mobileMenu?.classList.add("hidden");
             menuIcon?.classList.remove("hidden");
             closeIcon?.classList.add("hidden");
-            // Restaurar fondo si estamos arriba del todo
-            if (window.scrollY <= 20) {
-                navbar?.classList.remove("bg-slate-950");
-            }
+        }
+    });
+
+    // Cerrar menú móvil si se redimensiona a pantalla grande
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768 && !mobileMenu?.classList.contains("hidden")) {
+            mobileMenu?.classList.add("hidden");
+            menuIcon?.classList.remove("hidden");
+            closeIcon?.classList.add("hidden");
         }
     });
 </script>

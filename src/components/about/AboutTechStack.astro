@@ -1,0 +1,91 @@
+---
+import { 
+  CreditCard, 
+  Zap, 
+  Shield, 
+  LayoutDashboard, 
+  Activity, 
+  LifeBuoy, 
+  FolderKey, 
+  Globe2 
+} from "@lucide/astro";
+
+const arsenal = [
+  {
+    icon: CreditCard,
+    title: "Pagos Blindados",
+    description: "Procesamos todo vía Stripe y PayPal. Aceptamos Tarjetas, Google Pay y Apple Pay con seguridad bancaria."
+  },
+  {
+    icon: Zap,
+    title: "Setup Inmediato",
+    description: "Sin esperas manuales. Tu servidor se instala y arranca automáticamente segundos después de confirmar el pago."
+  },
+  {
+    icon: Shield,
+    title: "Backups Totales",
+    description: "Duerme tranquilo. Realizamos copias de seguridad automáticas y te permitimos crear puntos de restauración manuales."
+  },
+  {
+    icon: LayoutDashboard,
+    title: "Control Absoluto",
+    description: "Panel Pterodactyl intuitivo. Instala versiones, gestiona mods y edita configuraciones sin tocar código complejo."
+  },
+  {
+    icon: Activity,
+    title: "Estabilidad de Red",
+    description: "Monitoreo constante y redundancia de hardware para asegurar que tu comunidad juegue sin interrupciones."
+  },
+  {
+    icon: LifeBuoy,
+    title: "Soporte Multicanal",
+    description: "No estás solo. Resolvemos tus dudas técnicas vía Discord, sistema de Tickets o Correo Electrónico."
+  },
+  {
+    icon: FolderKey,
+    title: "Acceso SFTP",
+    description: "Libertad total sobre tus archivos. Sube tus propios mundos, plugins o configuraciones vía FileZilla."
+  },
+  {
+    icon: Globe2,
+    title: "Subdominio Gratis",
+    description: "Olvídate de las IPs numéricas. Crea una dirección personalizada (ej: tu-server.arkania.host) al instante."
+  }
+];
+---
+
+<section class="py-24 relative border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <div class="text-center mb-16">
+      <h2 class="text-2xl md:text-4xl font-black text-white mb-6 tracking-tight">
+        CARACTERÍSTICAS <span class="text-gradient">BASE</span>
+      </h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+        Todos los servidores en ArkaniaHost incluyen estas funcionalidades esenciales para garantizar el mejor rendimiento y experiencia de usuario. Sin costos ocultos ni limitaciones.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      {arsenal.map((item) => (
+        <div class="card-arkania p-5 group hover:bg-surface/80 transition-all duration-300">
+          
+          <div class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center mb-4 text-brand-cyan group-hover:text-white group-hover:bg-brand-magenta transition-colors duration-300">
+            <item.icon size={20} />
+          </div>
+
+          <h3 class="text-base font-bold text-white mb-2 uppercase tracking-wide">
+            {item.title}
+          </h3>
+          
+          <p class="text-slate-400 text-sm leading-snug">
+            {item.description}
+          </p>
+
+        </div>
+      ))}
+      
+    </div>
+  </div>
+</section>

@@ -8,25 +8,30 @@ import {
 const pathname = Astro.url.pathname;
 
 const helpLinks = [
-  { icon: Book, label: "Guías", href: "/guias" },
-  { icon: HelpCircle, label: "FAQ", href: "/#faq" }, 
-  { icon: Headphones, label: "Soporte", href: "/soporte" },
-  { icon: Activity, label: "Estado", href: "/estado" },
-  { isDiscord: true, label: "Discord", href: "https://discord.gg/arkaniahost" },
+  { icon: Book, label: "Guías", href: "https://docs.arkaniahost.xyz" },
+  { icon: HelpCircle, label: "FAQ", href: "/faq" }, 
+  { icon: Headphones, label: "Soporte", href: "/help" },
+  { icon: Activity, label: "Estado", href: "https://status.arkaniahost.xyz" },
+  { isDiscord: true, label: "Discord", href: "https://discord.arkaniahost.xyz" },
 ];
 
 // Función simple para verificar si un link está activo
 const isActive = (href: string) => {
   // Caso especial para Inicio
   if (href === '/') return pathname === '/';
-  // Ignoramos anclas
-  if (href.startsWith('/#') || href.startsWith('#')) return false;
-  // Para subpáginas (/soporte, /guias)
-  return pathname.startsWith(href);
+  // Ignoramos anclas y enlaces externos
+  if (href.startsWith('http') || href.startsWith('#')) return false;
+  
+  // Normalización para evitar errores con trailing slashes (ej: /about vs /about/)
+  const currentPath = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+  const targetPath = href.endsWith('/') && href.length > 1 ? href.slice(0, -1) : href;
+
+  return currentPath === targetPath || currentPath.startsWith(targetPath + '/');
 };
 
-// Verificamos si estamos en inicio para pintar el botón principal
-const isHomeActive = pathname === '/';
+// Verificaciones específicas para los enlaces principales
+const isHomeActive = isActive('/');
+const isAboutActive = isActive('/about'); // <--- NUEVA VARIABLE
 ---
 
 <div class="fixed top-0 left-0 w-full z-50 px-4 py-4 pointer-events-none">
@@ -54,10 +59,10 @@ const isHomeActive = pathname === '/';
           </a>
 
           <a 
-            href="/#features" 
-            class="text-slate-200 hover:text-brand-magenta transition-colors"
+            href="/about" 
+            class={`transition-colors ${isAboutActive ? 'text-brand-magenta' : 'text-slate-200 hover:text-brand-magenta'}`}
           >
-            Características
+            Nosotros
           </a>
           
           <div class="relative group h-[58px] flex items-center">
@@ -69,7 +74,6 @@ const isHomeActive = pathname === '/';
               <div class="w-48 bg-surface/90 backdrop-blur-xl border border-border-subtle rounded-brand p-2 shadow-2xl">
                 {helpLinks.map((link) => {
                   const IconComponent = link.icon;
-                  // Verificación individual para cada sub-link
                   const isLinkActive = isActive(link.href);
                   
                   return (

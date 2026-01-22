@@ -2,231 +2,27 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import {
-  Terminal, Shield, Mic2, Server, Users, 
-  ShoppingCart, Globe, Clock, Target, Rocket,
-  Lock
-} from "@lucide/astro";
-
-// --- DATOS ---
-
-// Stats en CERO
-const stats = [
-  { value: "0", label: "Servidores Activos", icon: Server },
-  { value: "0", label: "Usuarios Totales", icon: Users },
-  { value: "0", label: "Miembros Discord", icon: Globe },
-  { value: "0", label: "Servicios Vendidos", icon: ShoppingCart },
-];
-
-// Timeline Vertical (Proyección)
-const projection = [
-  {
-    q: "Q1 - 2026",
-    status: "EN PROCESO",
-    title: "Lanzamiento Oficial",
-    desc: "Apertura pública de ArkaniaHost. Integración final de pasarelas de pago y despliegue del panel de control estable.",
-    color: "text-cyan-400",
-    border: "border-cyan-500",
-    bg: "bg-cyan-500/10",
-    icon: Rocket
-  },
-  {
-    q: "Q2 - 2026",
-    status: "PENDIENTE",
-    title: "Expansión de Infraestructura",
-    desc: "Inclusión de un tercer nodo para mejorar la redundancia y reducir latencia en el cono sur.",
-    color: "text-slate-500",
-    border: "border-slate-700",
-    bg: "bg-slate-900",
-    icon: Server
-  },
-  {
-    q: "Q3 - 2026",
-    status: "PLANIFICADO",
-    title: "Ecosistema Móvil",
-    desc: "Desarrollo de PWA para control de servidores desde el móvil y notificaciones push de estado en tiempo real.",
-    color: "text-slate-600",
-    border: "border-slate-800",
-    bg: "bg-slate-950",
-    icon: Lock
-  },
-  {
-    q: "Q4 - 2026",
-    status: "FUTURO",
-    title: "Arkania Partners",
-    desc: "Lanzamiento del programa de afiliados y marketplace de recursos comunitarios para desarrolladores.",
-    color: "text-slate-600",
-    border: "border-slate-800",
-    bg: "bg-slate-950",
-    icon: Target
-  }
-];
-
-// Equipo (Jedoth, RROWNER, DMENA)
-const team = [
-  {
-    name: "Jedoth",
-    role: "The Architect",
-    desc: "SysAdmin & FullStack. El núcleo lógico. Si el código no compila, nadie duerme.",
-    icon: Terminal,
-    colorClass: "text-fuchsia-400",
-    borderClass: "border-fuchsia-500/20 group-hover:border-fuchsia-500/50",
-    gradient: "from-fuchsia-600 to-purple-600",
-    badge: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30"
-  },
-  {
-    name: "RROWNER",
-    role: "The Strategist",
-    desc: "Operations & Vision. Manteniendo el rumbo firme y la infraestructura bajo control.",
-    icon: Shield,
-    colorClass: "text-fuchsia-400",
-    borderClass: "border-fuchsia-500/20 group-hover:border-fuchsia-500/50",
-    gradient: "from-fuchsia-600 to-purple-600",
-    badge: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30"
-  },
-  {
-    name: "DMENA",
-    role: "The Voice",
-    desc: "Growth & Marketing. El puente entre la tecnología y las personas. Gestión de comunidad.",
-    icon: Mic2,
-    colorClass: "text-fuchsia-400",
-    borderClass: "border-fuchsia-500/20 group-hover:border-fuchsia-500/50",
-    gradient: "from-fuchsia-600 to-purple-600",
-    badge: "bg-fuchsia-500/10 text-fuchsia-300 border-fuchsia-500/30"
-  }
-];
+import AboutHero from "../components/about/AboutHero.astro";
+import AboutStory from "../components/about/AboutStory.astro";
+import AboutValues from "../components/about/AboutValues.astro";
+import AboutTechStack from "../components/about/AboutTechStack.astro";
+import AboutTeam from "../components/about/AboutTeam.astro";
+import AboutRoadmap from "../components/about/AboutRoadmap.astro";
+import AboutCTA from "../components/about/AboutCTA.astro";
 ---
 
-<Layout title="Nosotros | ArkaniaHost">
+<Layout title="Sobre Nosotros | ArkaniaHost">
   <Navbar />
   
-  <section class="relative pt-32 pb-20 overflow-hidden">
-    <div class="absolute inset-0 bg-slate-950">
-      <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
-      <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-fuchsia-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-    </div>
-
-    <div class="relative z-10 max-w-4xl mx-auto px-4 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-slate-900 mb-8">
-        <Clock size={14} class="text-slate-400" />
-        <span class="text-slate-300 font-mono text-[12px] uppercase tracking-widest">Est. Diciembre 2025</span>
-      </div>
-
-      <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter mb-8 leading-none uppercase">
-        El Renacer del <br />
-        <span class="text-cyan-500 italic text-shadow-neon-cyan">Hosting Latino</span>
-      </h1>
-
-      <div class="space-y-6 text-lg md:text-xl text-slate-400 font-light leading-relaxed">
-        <p>
-          <strong class="text-white">ArkaniaHost</strong> nació este mes, en los últimos días de 2025. No nacimos en una sala de juntas, sino en Discord, entre código y partidas.
-        </p>
-        <p>
-          Nuestra misión es simple pero radical: <span class="text-white underline decoration-fuchsia-500 decoration-2 underline-offset-4">Democratizar el alto rendimiento.</span> Creemos que cualquier desarrollador o gamer en LATAM merece acceso a infraestructura de nivel empresarial sin vender un riñón.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-12 border-y border-white/5 bg-slate-900/30">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-        {stats.map((s) => (
-          <div class="text-center group">
-            <div class="flex justify-center mb-4">
-              <div class="p-3 bg-slate-950 rounded-lg border border-white/5 group-hover:border-cyan-500/30 transition-colors">
-                <s.icon size={24} class="text-slate-500 group-hover:text-cyan-400 transition-colors" />
-              </div>
-            </div>
-            <div class="text-4xl font-black text-white mb-1 font-mono">{s.value}</div>
-            <div class="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-bold">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section class="py-24 bg-slate-950 relative overflow-hidden">
-    <div class="max-w-4xl mx-auto px-4 relative z-10">
-      <div class="text-center mb-20">
-        <h2 class="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter uppercase">
-          Proyección <span class="text-cyan-500 italic text-shadow-neon-cyan">anual</span>
-        </h2>
-        <p class="text-slate-500 font-mono text-xs uppercase tracking-widest">Roadmap 2026</p>
-      </div>
-
-      <div class="relative pl-8 md:pl-0">
-        <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500 via-slate-800 to-slate-900 md:-translate-x-1/2"></div>
-
-        <div class="space-y-16 md:space-y-0">
-          {projection.map((item, index) => (
-            <div class={`relative flex items-center justify-between md:justify-center w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''} md:mb-12`}>
-              
-              <div class="w-full md:w-[40%] pl-8 md:pl-0">
-                 <div class={`p-6 rounded-2xl border ${item.border} ${item.bg} relative group transition-transform hover:-translate-y-1 shadow-xl`}>
-                    <div class="flex justify-between items-start mb-4">
-                      <span class={`font-mono text-[10px] font-bold px-2 py-1 rounded bg-black/30 border border-white/5 ${item.color}`}>
-                        {item.q}
-                      </span>
-                      <item.icon size={16} class={item.color} />
-                    </div>
-                    <h3 class={`text-xl font-bold text-white uppercase italic mb-2 ${index === 0 ? 'animate-pulse' : ''}`}>{item.title}</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
-                    
-                    <div class="mt-4 pt-4 border-t border-white/5">
-                      <span class={`text-[10px] uppercase tracking-widest font-bold ${item.color}`}>
-                        Status: {item.status}
-                      </span>
-                    </div>
-                 </div>
-              </div>
-
-              <div class="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-slate-950 border-2 border-slate-700 md:-translate-x-1/2 z-10 flex items-center justify-center translate-x-[-7px] md:translate-x-[-50%]">
-                <div class={`w-1.5 h-1.5 rounded-full ${index === 0 ? 'bg-cyan-400 animate-ping' : 'bg-slate-600'}`}></div>
-              </div>
-
-              <div class="hidden md:block w-[40%]"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="py-24 bg-slate-900/30 border-t border-white/5">
-     <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter uppercase">
-              The <span class="text-cyan-500 italic text-shadow-neon-cyan">crew</span>
-            </h2>
-            <p class="text-slate-500 font-mono text-sm uppercase tracking-[0.3em]">Operadores del Sistema</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {team.map((member) => (
-                <div class={`group relative bg-slate-950 border ${member.borderClass} rounded-2xl p-6 hover:bg-slate-900 transition-all duration-300 hover:-translate-y-2 overflow-hidden shadow-lg`}>
-                    <div class={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${member.gradient} opacity-70`}></div>
-                    
-                    <div class="relative z-10 flex flex-col items-center text-center">
-                        <div class={`p-4 rounded-full border mb-6 transition-transform group-hover:scale-110 ${member.badge}`}>
-                           <member.icon size={28} />
-                        </div>
-                        
-                        <h3 class="text-2xl font-black text-white italic tracking-tight mb-2">{member.name}</h3>
-                        
-                        <div class={`inline-block px-3 py-1 mb-6 rounded-md border text-[10px] font-mono uppercase tracking-widest font-bold ${member.badge}`}>
-                           {member.role}
-                        </div>
-
-                        <p class="text-slate-400 text-sm leading-relaxed font-light border-t border-white/5 pt-6 w-full">
-                            {member.desc}
-                        </p>
-                    </div>
-                </div>
-            ))}
-        </div>
-     </div>
-  </section>
+  <main>
+    <AboutHero />
+    <AboutStory />
+    <AboutValues />
+    <AboutTechStack />
+    <AboutTeam />
+    <AboutRoadmap />
+    <AboutCTA />
+  </main>
 
   <Footer />
 </Layout>

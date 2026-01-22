@@ -1,0 +1,94 @@
+---
+import { Flag, Server, BarChart3, Telescope } from "@lucide/astro";
+
+const roadmap = [
+  {
+    quarter: "Q1",
+    status: "active", // Fase actual
+    title: "Fundación & Legal",
+    description: "Despliegue de plataformas, renovación de branding y oficialización legal de la empresa.",
+    icon: Flag
+  },
+  {
+    quarter: "Q2",
+    title: "Expansión de Infraestructura",
+    description: "Integración de nuevos nodos de alto rendimiento para aumentar la capacidad de la red.",
+    icon: Server
+  },
+  {
+    quarter: "Q3",
+    title: "Optimización & Feedback",
+    description: "Evaluación de métricas de rendimiento del Q2 y ajustes finos basados en la estabilidad.",
+    icon: BarChart3
+  },
+  {
+    quarter: "Q4",
+    title: "Proyección 2027",
+    description: "Análisis integral del año y planificación estratégica para la siguiente etapa de ArkaniaHost.",
+    icon: Telescope
+  }
+];
+---
+
+<section class="py-24 relative border-b border-white/5 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    
+    <div class="text-center mb-20">
+      <h2 class="text-3xl md:text-4xl font-black text-white">
+        ROADMAP <span class="text-gradient">2026</span>
+      </h2>
+      <p class="text-slate-400 mt-4 text-lg">
+        Nuestra hoja de ruta para este año.
+      </p>
+    </div>
+
+    <div class="relative">
+      
+      <div class="hidden md:block absolute top-8 left-0 right-0 h-[2px] bg-white/10 w-full z-0"></div>
+      
+      <div class="md:hidden absolute top-0 bottom-0 left-8 w-[2px] bg-white/10 z-0"></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-4">
+        
+        {roadmap.map((item, index) => (
+          <div class="relative group flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-0 z-10">
+            
+            <div class="relative shrink-0 md:mb-6">
+              {item.status === 'active' && (
+                <div class="absolute inset-0 bg-brand-cyan blur-xl opacity-40 rounded-full animate-pulse"></div>
+              )}
+              
+              <div class={`w-16 h-16 rounded-full border flex items-center justify-center bg-background transition-colors duration-300
+                ${item.status === 'active' 
+                  ? 'border-brand-cyan text-brand-cyan shadow-[0_0_20px_rgba(6,182,212,0.4)]' 
+                  : 'border-white/10 text-slate-500 group-hover:border-white/30 group-hover:text-slate-300'
+                }`}
+              >
+                <item.icon size={24} />
+              </div>
+            </div>
+
+            <div class="text-left md:text-center pt-2 md:pt-0">
+              <span class={`text-xs font-black uppercase tracking-widest mb-2 block
+                ${item.status === 'active' ? 'text-brand-cyan' : 'text-slate-500 group-hover:text-brand-magenta transition-colors'}`}
+              >
+                {item.quarter}
+              </span>
+
+              <h3 class={`text-lg font-bold text-white mb-3 leading-tight ${item.status === 'active' ? 'text-white' : 'opacity-80 group-hover:opacity-100'}`}>
+                {item.title}
+              </h3>
+              
+              <p class="text-slate-400 text-sm leading-relaxed md:px-2">
+                {item.description}
+              </p>
+            </div>
+
+          </div>
+        ))}
+
+      </div>
+
+    </div>
+  </div>
+</section>

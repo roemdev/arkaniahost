@@ -1,0 +1,108 @@
+---
+import { Crown, Code2, Scale } from "@lucide/astro";
+
+const SocialIcons: Record<string, string> = {
+  github: `<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>`,
+  twitter: `<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><title>X</title><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg>`
+};
+
+const team = [
+  {
+    name: "RROWNER",
+    role: "CEO & FOUNDER",
+    description: "Visión estratégica y rumbo del proyecto.",
+    icon: Crown,
+    // Magenta
+    color: "text-brand-magenta",
+    gradient: "from-brand-magenta/20",
+    shadow: "group-hover:drop-shadow-[0_0_20px_rgba(217,70,239,0.5)]",
+    socials: [
+      { type: "github", url: "#" },
+      { type: "twitter", url: "#" }
+    ]
+  },
+  {
+    name: "DMENA",
+    role: "COO & OPERATIONS",
+    description: "Orden, legalidad y gestión administrativa.",
+    icon: Scale,
+    // Violeta
+    color: "text-violet-400",
+    gradient: "from-violet-500/20",
+    shadow: "group-hover:drop-shadow-[0_0_20px_rgba(167,139,250,0.5)]",
+    socials: [
+      { type: "twitter", url: "#" }
+    ]
+  },
+  {
+    name: "emivir.dev",
+    role: "CTO & LEAD DEV",
+    description: "Arquitectura, código y estabilidad.",
+    icon: Code2,
+    // Cyan
+    color: "text-brand-cyan",
+    gradient: "from-brand-cyan/20",
+    shadow: "group-hover:drop-shadow-[0_0_20px_rgba(6,182,212,0.5)]",
+    socials: [
+      { type: "github", url: "#" },
+      { type: "twitter", url: "#" }
+    ]
+  }
+];
+---
+
+<section class="py-24 relative border-b border-white/5 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    
+    <div class="text-center mb-20">
+      <h2 class="text-3xl md:text-4xl font-black text-white">
+        MENTES <span class="text-gradient">MAESTRAS</span>
+      </h2>
+      <p class="text-slate-400 mt-4 text-lg">
+        El núcleo operativo detrás de Arkania.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5 border-t border-b border-white/5">
+      
+      {team.map((member) => (
+        <div class="group relative py-16 px-6 flex flex-col items-center text-center transition-all duration-500">
+          
+          <div class={`absolute inset-0 bg-gradient-to-t ${member.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+          
+          <div class={`absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ${member.color.replace('text-', 'bg-')}`}></div>
+
+          <div class="relative z-10 flex flex-col items-center w-full">
+            
+            <div class={`mb-10 transition-transform duration-500 group-hover:-translate-y-2 ${member.color} ${member.shadow}`}>
+              <member.icon size={64} stroke-width={1} />
+            </div>
+
+            <h3 class="text-2xl font-black text-white mb-2 uppercase tracking-wide group-hover:text-white transition-colors">
+              {member.name}
+            </h3>
+            
+            <span class={`text-xs font-bold tracking-[0.2em] mb-6 opacity-70 group-hover:opacity-100 transition-opacity ${member.color}`}>
+              {member.role}
+            </span>
+            
+            <p class="text-slate-400 text-sm leading-relaxed max-w-xs mb-8 opacity-60 group-hover:opacity-100 transition-opacity duration-300">
+              {member.description}
+            </p>
+
+            <div class="flex gap-6 opacity-40 group-hover:opacity-100 transition-opacity duration-500 translate-y-4 group-hover:translate-y-0">
+               {member.socials?.map((social) => (
+                <a href={social.url} target="_blank" rel="noopener noreferrer" class="text-white hover:scale-110 transition-transform">
+                  <div class="w-5 h-5" set:html={SocialIcons[social.type]} />
+                </a>
+              ))}
+            </div>
+
+          </div>
+
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+import { ArrowRight, MessageCircle } from "@lucide/astro";
+---
+
+<section class="relative py-32 px-6 overflow-hidden">
+  
+  <div class="absolute inset-0 bg-background">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-cyan-dark/20 blur-[100px] rounded-full pointer-events-none"></div>
+    <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto text-center">
+    
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
+      ¿LISTO PARA TOMAR EL <span class="text-gradient">CONTROL?</span>
+    </h2>
+
+    <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+      La infraestructura ya está montada y los nodos activos. <br class="hidden md:block"/>
+      Crea tu cuenta ahora y despliega tu servidor en segundos.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      
+      <a href="https://panel.arkaniahost.com" class="btn-primary group">
+        Crear Servidor
+        <ArrowRight size={18} class="group-hover:translate-x-1 transition-transform" />
+      </a>
+
+      <a href="https://discord.gg/arkania" target="_blank" class="px-6 py-2 rounded-full font-bold text-white border border-white/10 hover:bg-white/5 hover:border-brand-magenta/50 hover:text-white transition-all duration-300 flex items-center gap-2">
+        <MessageCircle size={18} />
+        Unirse a Discord
+      </a>
+
+    </div>
+
+    <p class="mt-8 text-sm text-slate-500 font-mono">
+      Sin tarjetas de crédito • Cancelación en cualquier momento
+    </p>
+
+  </div>
+</section>

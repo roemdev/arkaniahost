@@ -1,0 +1,56 @@
+---
+import { LayoutDashboard, Shield, Headphones } from "@lucide/astro";
+
+const pillars = [
+  {
+    icon: LayoutDashboard,
+    title: "GESTIÓN PROFESIONAL",
+    description: "Control total con Pterodactyl. Instala mods, plugins y versiones con un solo click desde nuestra interfaz intuitiva.",
+  },
+  {
+    icon: Shield,
+    title: "ESTABILIDAD REAL",
+    description: "Nodos optimizados con un 99% de Uptime. Tu comunidad siempre en línea, sin caídas inesperadas ni lag excesivo.",
+  },
+  {
+    icon: Headphones,
+    title: "SOPORTE CERCANO",
+    description: "Estamos contigo en Discord. Te ayudamos personalmente con la configuración o migramos tu servidor gratis.",
+  }
+];
+---
+
+<section class="py-24 relative bg-background border-b border-white/5 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <div class="grid lg:grid-cols-3 gap-16 lg:gap-12">
+      {pillars.map((item) => (
+        <div class="group relative flex flex-col items-start transition-all duration-500">
+          
+          <div class="flex items-center gap-4 mb-8 w-full">
+            <div class="relative shrink-0">
+              <div class="absolute inset-0 bg-brand-cyan blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500 rounded-full"></div>
+              
+              <div class="relative z-10 text-brand-cyan">
+                <item.icon size={36} />
+              </div>
+            </div>
+            
+            <h3 class="text-xl font-black uppercase tracking-tighter shrink-0 text-brand-white">
+              {item.title}
+            </h3>
+
+            <div class="h-px flex-1 bg-white/10 transition-colors duration-500 group-hover:bg-brand-magenta/30"></div>
+          </div>
+
+          <div class="relative w-full">
+            <div class="absolute -left-4 top-0 bottom-0 w-[2px] bg-white/5 transition-all duration-700 group-hover:bg-brand-magenta shadow-[0_0_15px_rgba(217,70,239,0.4)]"></div>
+            
+            <p class="text-slate-400 text-lg leading-relaxed font-light pl-4 group-hover:text-slate-200 transition-colors duration-500">
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

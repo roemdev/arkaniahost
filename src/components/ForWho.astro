@@ -1,0 +1,112 @@
+---
+import { Users, Zap, ShieldAlert, Cpu, HardDrive, Unplug } from "@lucide/astro";
+---
+
+<section id="philosophy" class="py-32 relative bg-background border-b border-white/5 overflow-hidden">
+  <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    
+    <div class="grid lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-4 space-y-16">
+        <div class="group">
+          <div class="flex items-center gap-4 mb-4">
+             <div class="relative p-3 bg-surface border border-white/10 rounded-lg group-hover:border-brand-magenta/50 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]">
+                <div class="absolute inset-0 bg-brand-magenta blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg"></div>
+                
+                <Cpu size={24} class="relative z-10 text-brand-magenta" />
+             </div>
+             <div class="h-px w-full bg-gradient-to-r from-white/20 to-transparent"></div>
+          </div>
+          <h4 class="text-xl font-black text-white uppercase mb-3 tracking-tight">Recursos Raw</h4>
+          <p class="text-slate-500 text-sm leading-relaxed font-light">
+            Cero overselling. Tu instancia tiene prioridad real sobre el hardware. Si pagas por 8GB, tienes 8GB dedicados exclusivamente a tu servidor.
+          </p>
+        </div>
+
+        <div class="group">
+          <div class="flex items-center gap-4 mb-4">
+             <div class="relative p-3 bg-surface border border-white/10 rounded-lg group-hover:border-brand-magenta/50 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]">
+                <div class="absolute inset-0 bg-brand-magenta blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg"></div>
+                
+                <HardDrive size={24} class="relative z-10 text-brand-magenta" />
+             </div>
+             <div class="h-px w-full bg-gradient-to-r from-white/20 to-transparent"></div>
+          </div>
+          <h4 class="text-xl font-black text-white uppercase mb-3 tracking-tight">Cero Bloqueos</h4>
+          <p class="text-slate-500 text-sm leading-relaxed font-light">
+            Acceso total a archivos y configuración (SFTP). Libertad completa para instalar modpacks, plugins o versiones específicas sin restricciones.
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 flex flex-col items-center justify-center relative py-12">
+        <div class="absolute inset-0 bg-brand-cyan blur-[120px] opacity-10 pointer-events-none"></div>
+        
+        <div class="relative group cursor-default z-10">
+          <div class="absolute inset-0 bg-brand-cyan blur-[50px] opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-full scale-125"></div>
+          
+          <div class="relative w-40 h-40 bg-surface border-2 border-white/10 rounded-full flex flex-col items-center justify-center group-hover:border-brand-cyan transition-colors duration-500 shadow-2xl">
+            <Users size={60} class="text-brand-cyan mb-2 relative z-10" />
+            <span class="text-[10px] font-mono font-bold text-slate-500 tracking-[0.3em] uppercase relative z-10">Private_Node</span>
+          </div>
+
+          <div class="absolute -inset-8 border border-white/5 rounded-full animate-[spin_20s_linear_infinite] pointer-events-none"></div>
+          <div class="absolute -inset-16 border border-white/5 rounded-full animate-[spin_15s_linear_reverse_infinite] pointer-events-none"></div>
+        </div>
+
+        <div class="mt-12 text-center relative z-10">
+            <h3 class="font-black text-3xl uppercase tracking-tighter text-white">
+              DISEÑADO PARA <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-magenta">AMIGOS</span>
+            </h3>
+            
+            <div class="flex items-center justify-center gap-2 mt-4">
+                <div class="h-px w-8 bg-brand-cyan"></div>
+                <span class="text-[10px] font-mono text-slate-600 uppercase tracking-widest font-bold">TU GRUPO ES NUESTRA PRIORIDAD</span>
+                <div class="h-px w-8 bg-brand-cyan"></div>
+            </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4 space-y-16">
+        <div class="group lg:text-right">
+          <div class="flex flex-row-reverse items-center gap-4 mb-4">
+             <div class="relative p-3 bg-surface border border-white/10 rounded-lg group-hover:border-brand-magenta/50 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]">
+                <div class="absolute inset-0 bg-brand-magenta blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg"></div>
+                
+                <Zap size={24} class="relative z-10 text-brand-magenta" />
+             </div>
+             <div class="h-px w-full bg-gradient-to-l from-white/20 to-transparent"></div>
+          </div>
+          <h4 class="text-xl font-black text-white uppercase mb-3 tracking-tight">Slots Infinitos</h4>
+          <p class="text-slate-500 text-sm leading-relaxed font-light">
+            Sin límites artificiales de jugadores. La capacidad de tu servidor depende únicamente de los recursos de hardware contratados.
+          </p>
+        </div>
+
+        <div class="group lg:text-right">
+          <div class="flex flex-row-reverse items-center gap-4 mb-4">
+             <div class="relative p-3 bg-surface border border-white/10 rounded-lg group-hover:border-brand-magenta/50 transition-all duration-500 group-hover:shadow-[0_0_20px_rgba(217,70,239,0.4)]">
+                <div class="absolute inset-0 bg-brand-magenta blur-md opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg"></div>
+                
+                <Unplug size={24} class="relative z-10 text-brand-magenta" />
+             </div>
+             <div class="h-px w-full bg-gradient-to-l from-white/20 to-transparent"></div>
+          </div>
+          <h4 class="text-xl font-black text-white uppercase mb-3 tracking-tight">Baja Latencia</h4>
+          <p class="text-slate-500 text-sm leading-relaxed font-light">
+            Infraestructura optimizada para la región. Rutas de red directas que garantizan una conexión estable y tiempos de respuesta mínimos.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-24 max-w-3xl mx-auto text-center border-t border-white/10 pt-12">
+        <p class="text-slate-400 font-light text-lg italic">
+            "Arkania es la infraestructura técnica donde tú y tu grupo tienen <span class="text-white font-bold underline decoration-brand-cyan underline-offset-4">prioridad absoluta</span>. Rendimiento puro, sin rellenos innecesarios."
+        </p>
+    </div>
+  </div>
+</section>

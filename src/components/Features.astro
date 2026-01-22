@@ -1,0 +1,83 @@
+---
+import { Cpu, Shield, Zap, Globe, Clock, MessageSquare } from "@lucide/astro";
+
+const features = [
+  {
+    icon: Globe,
+    title: "LATENCIA LOCAL (RD)",
+    description: "Nodo en Santiago (DO-STI). Ping inferior a 20ms para que juegues como si estuvieras en LAN.",
+  },
+  {
+    icon: Zap,
+    title: "ACTIVACIÓN INSTANTÁNEA",
+    description: "Despliegue automático. Tu servidor de Minecraft está listo segundos después de confirmar el pago.",
+  },
+  {
+    icon: Shield,
+    title: "BACKUPS AUTO Y MANUALES",
+    description: "Sistema de copias de seguridad automáticas diarias y manuales. Nunca pierdas el progreso de tu mundo.",
+  },
+  {
+    icon: Cpu,
+    title: "PANEL PTERODACTYL",
+    description: "Gestión profesional en web. Cambia versiones, edita archivos y controla la consola fácilmente.",
+  },
+  {
+    icon: Clock,
+    title: "99% SLA UPTIME",
+    description: "Redundancia de red y hardware monitoreado 24/7 para asegurar la disponibilidad de tu servidor.",
+  },
+  {
+    icon: MessageSquare,
+    title: "SOPORTE HUMANO",
+    description: "Ayuda real por Discord. Resolvemos dudas de configuración y plugins sin respuestas automáticas.",
+  }
+];
+---
+
+<section id="features" class="py-24 relative bg-background border-b border-white/5">
+  <div class="absolute inset-0 bg-grid-pattern opacity-5 pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    
+    <div class="mb-16 text-center">
+      <h2 class="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">
+        ARSENAL <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-magenta">TÉCNICO</span>
+      </h2>
+      <p class="mt-4 text-slate-400 text-base md:text-lg font-light max-w-2xl mx-auto">
+        El conjunto de herramientas esenciales para mantener tu servidor seguro, rápido y bajo tu control total, sin complicaciones innecesarias.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {features.map((item) => (
+        <div class="group relative bg-surface border border-white/5 p-8 transition-colors duration-300 hover:border-brand-magenta/40">
+          
+          <div class="absolute inset-0 bg-gradient-to-br from-brand-magenta/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+          <div class="relative z-10 mb-6 flex items-start justify-between">
+            <div class="p-3 bg-white/5 rounded-lg text-brand-cyan border border-transparent group-hover:text-brand-magenta group-hover:border-brand-magenta/30 transition-all duration-300">
+              <item.icon size={28} />
+            </div>
+            
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+               <div class="h-1 w-1 bg-brand-magenta rounded-full"></div>
+            </div>
+          </div>
+
+          <div class="relative z-10">
+            <h3 class="text-lg font-black text-white uppercase tracking-tight mb-3 group-hover:text-brand-cyan transition-colors duration-300">
+              {item.title}
+            </h3>
+            <p class="text-slate-400 text-sm leading-relaxed font-light group-hover:text-slate-300 transition-colors">
+              {item.description}
+            </p>
+          </div>
+
+          <div class="absolute bottom-0 left-0 h-[2px] w-0 bg-brand-magenta group-hover:w-full transition-all duration-500 ease-out"></div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

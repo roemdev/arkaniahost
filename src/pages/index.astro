@@ -1,316 +1,37 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import WhatYouGet from "../components/WhatYouGet.astro";
+import ForWho from "../components/ForWho.astro";
+import Features from "../components/Features.astro";
+import PingTester from "../components/PingTester.astro";
+import Pricing from "../components/Pricing.astro";
+import FAQ from "../components/FAQ.astro";
 import Footer from "../components/Footer.astro";
-import {
-  Zap, Check, X, Server, Shield, Cpu, Database, Ghost,
-  ShieldAlert, AlertTriangle, ChevronDown
-} from "@lucide/astro";
 
-// --- DATOS ---
-
-const faqs = [
-  {
-    q: "¿Por qué es gratis? ¿Venden mis datos?",
-    a: "No. Es un modelo 'Freemium'. El 90% de los usuarios usa gratis y consume pocos recursos. El 10% crece, necesita potencia seria y paga. Ese 10% financia al resto. Es matemáticas, no caridad.",
-  },
-  {
-    q: "¿El servidor gratis está prendido 24/7?",
-    a: "Para Bots de Discord: SÍ. Para Minecraft: Tenemos un sistema de 'hibernación'. Si nadie entra en 1 hora, se apaga para ahorrar energía. Lo prendes en segundos desde el panel. Los planes de pago son 24/7 real.",
-  },
-  {
-    q: "¿Qué pasa si me atacan (DDoS)?",
-    a: "Tenemos protección básica. Si recibes un ataque masivo que pone en riesgo el nodo, tu servidor será mitigado. No podemos ofrecer protección premium de capa 7 en el plan gratis, pero hacemos lo mejor posible.",
-  },
-];
-
-const features = [
-  { value: "NVMe", label: "Almacenamiento SSD" },
-  { value: "Xeon", label: "Procesadores Intel" },
-  { value: "1Gbps", label: "Red redundante" },
-  { value: "LATAM", label: "Nodos Santiago/PY" },
-];
-
-// Se definen las clases de color explícitamente para que Tailwind las detecte al compilar
-const cards = [
-  { icon: Ghost, t: "Sin SPAM", d: "Cero correos basura.", colorClass: "text-fuchsia-400", borderClass: "group-hover:border-fuchsia-500/50" },
-  { icon: ShieldAlert, t: "Layer 7", d: "Mitigación básica.", colorClass: "text-cyan-400", borderClass: "group-hover:border-cyan-500/50" },
-  { icon: Zap, t: "Auto-Setup", d: "Listo en 10s.", colorClass: "text-yellow-400", borderClass: "group-hover:border-yellow-500/50" },
-  { icon: Server, t: "NVMe Gen4", d: "Velocidad pura.", colorClass: "text-green-400", borderClass: "group-hover:border-green-500/50" },
-];
-
-// Datos para reducir HTML repetitivo en la sección de planes
-const freePlanFeatures = {
-  bots: ["512MB RAM", "1GB NVMe", "Node.js, Python, Java"],
-  mc: ["2GB RAM", "10GB NVMe", "1 vCore Compartido"]
-};
-
-const premiumPlanFeatures = {
-  bots: ["1 - 2 GB RAM", "2 vCores Ryzen 9", "1 DB & Backup incluido"],
-  mc: ["4 - 8 GB RAM DDR5", "3 vCores Ryzen 9", "Almacenamiento Ilimitado"]
-};
+// Nota: He dejado Navbar, Hero, FAQ y Footer importados. 
+// Deberás crear Features.astro y Pricing.astro basándote en lo que hablamos.
 ---
 
-<Layout title="ArkaniaHost | Hosting Gratuito">
+<Layout title="ArkaniaHost | Tu servidor de amigos">
   <Navbar />
   
-  <!-- HERO SECTION -->
-  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0 bg-slate-950">
-      <div class="absolute inset-0 bg-grid-pattern opacity-30"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-fuchsia-600/10 rounded-full blur-[120px] pointer-events-none"></div>
-    </div>
+  <main>
+    <Hero />
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-fuchsia-500/30 bg-fuchsia-500/5 mb-8 animate-bounce">
-        <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-fuchsia-500"></span>
-        </span>
-        <span class="text-fuchsia-400 font-mono text-[14px] uppercase tracking-[0.2em] font-bold">Nuevos nodos en Santiago</span>
-      </div>
+    <WhatYouGet />
 
-      <h1 class="text-6xl md:text-9xl font-black text-white tracking-tighter mb-6 leading-none">
-        GAME <span class="text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-500 to-cyan-500 glitch-hover">HOSTING</span><br />PARA LATAM.
-      </h1>
+    <ForWho />
+    
+    <Features />
 
-      <p class="mt-6 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-light leading-relaxed">
-        Servidores gratuitos con hardware premium. Minecraft y Bots sin letra pequeña.
-        <span class="text-white font-semibold underline decoration-fuchsia-500">LATAM es nuestra prioridad.</span>
-      </p>
-
-      <div class="mt-12 flex flex-col sm:flex-row gap-6 justify-center items-center">
-        <!-- BOTÓN MODIFICADO: AHORA ES UN LINK A #PLANES -->
-        <a href="#planes" class="group px-10 py-5 bg-fuchsia-600 text-white font-black text-lg rounded-sm transition-all hover:scale-105 shadow-[0_0_30px_rgba(217,70,239,0.4)] relative overflow-hidden inline-flex items-center justify-center">
-          <span class="relative z-10 flex items-center gap-3 uppercase">
-            <Zap class="fill-current" /> Crear mi servidor
-          </span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FILOSOFIA SECTION -->
-  <section id="filosofia" class="py-32 bg-slate-900/50 relative">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="grid lg:grid-cols-2 gap-20 items-center">
-        <div>
-          <h2 class="text-4xl md:text-6xl font-black text-white mb-8 tracking-tighter uppercase">
-            Crecemos <span class="text-cyan-500 italic text-shadow-neon-cyan">contigo.</span>
-          </h2>
-          <div class="space-y-6 text-slate-400 text-lg font-light">
-            <p>La mayoría de los hostings te dan un "trial" de 7 días y luego te piden la tarjeta. O te dan algo gratis que se apaga cada 10 minutos.</p>
-            <p>En <span class="text-white font-semibold underline decoration-fuchsia-500">ArkaniaHost</span>, el plan gratis es eterno. Limitado, sí, pero funcional. Queremos que empieces tu comunidad de Minecraft o tu bot de Discord sin pagar un peso.</p>
-            <div class="p-6 bg-slate-950 border border-fuchsia-500/30 rounded-lg shadow-2xl">
-              <p class="text-white font-medium italic">"Si tu proyecto escala, escalas con nosotros. Mientras tanto, disfruta del mejor hardware gratis de la región."</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 uppercase font-mono">
-          {cards.map((card) => (
-            <div class={`p-6 glass-card group border border-transparent ${card.borderClass} transition-all`}>
-              <card.icon class={`mb-4 ${card.colorClass} group-hover:scale-110 transition-transform`} />
-              <h3 class="text-white font-bold text-sm mb-1">{card.t}</h3>
-              <p class="text-[10px] text-slate-500 tracking-wider">{card.d}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PLANES SECTION -->
-  <section id="planes" class="py-24 bg-slate-950 relative overflow-hidden">
-    <div class="absolute inset-0 pointer-events-none">
-      <div class="absolute top-0 left-1/4 w-96 h-96 bg-fuchsia-600/10 rounded-full blur-[120px]"></div>
-      <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]"></div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
-      <div class="text-center mb-20">
-        <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter uppercase">
-          Protocolos de <span class="text-cyan-500 italic text-shadow-neon-cyan">Despliegue</span>
-        </h2>
-        <p class="text-slate-500 font-mono text-sm uppercase tracking-[0.3em]">Elige tu nivel de acceso</p>
-      </div>
-
-      <div class="grid lg:grid-cols-3 gap-8 items-stretch">
-        <!-- CARD 1: GRATUITO -->
-        <div class="group relative bg-slate-900/50 border border-white/5 rounded-3xl p-8 hover:border-white/20 transition-all duration-300 hover:-translate-y-2 overflow-hidden flex flex-col justify-between">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-slate-800 to-slate-600 opacity-50"></div>
-          <div>
-            <div class="mb-4">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/50 border border-slate-700 mb-6">
-                <span class="w-2 h-2 rounded-full bg-slate-400"></span>
-                <span class="text-xs font-mono text-slate-300 uppercase tracking-widest">Acceso Inicial</span>
-              </div>
-              <h3 class="text-4xl font-black text-white italic tracking-tight">Gratuito</h3>
-              <p class="text-slate-500 mt-2 text-sm font-light">Para empezar sin excusas.</p>
-            </div>
-
-            <div class="space-y-8">
-              <div class="bg-slate-950/50 p-4 rounded-xl border border-white/5">
-                <div class="flex items-center gap-2 mb-3">
-                  <Cpu size={18} class="text-slate-400" /><span class="font-bold text-slate-200 uppercase text-xs tracking-wider">Bots & Apps</span>
-                </div>
-                <ul class="space-y-2 text-sm text-slate-400">
-                  {freePlanFeatures.bots.map(f => <li class="flex items-center gap-2"><Check size={14} class="text-green-500" /> {f}</li>)}
-                </ul>
-              </div>
-              <div class="bg-slate-950/50 p-4 rounded-xl border border-white/5">
-                <div class="flex items-center gap-2 mb-3">
-                  <Zap size={18} class="text-slate-400" /><span class="font-bold text-slate-200 uppercase text-xs tracking-wider">Minecraft</span>
-                </div>
-                <ul class="space-y-2 text-sm text-slate-400">
-                  {freePlanFeatures.mc.map(f => <li class="flex items-center gap-2"><Check size={14} class="text-green-500" /> {f}</li>)}
-                </ul>
-              </div>
-            </div>
-          </div>
-          <!-- BOTÓN MODIFICADO: AHORA ES UN LINK (placeholder #) -->
-          <a href="#" class="block w-full mt-8 py-4 border border-white/10 text-white font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-white hover:text-black transition-all text-center">Comenzar Gratis</a>
-        </div>
-
-        <!-- CARD 2: PREMIUM -->
-        <div class="group relative bg-slate-900/80 border border-fuchsia-500/30 rounded-3xl p-8 transform scale-105 shadow-[0_0_50px_rgba(217,70,239,0.15)] z-10 flex flex-col justify-between">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-fuchsia-600 to-purple-600 text-white px-6 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg border border-white/20">Recomendado</div>
-          <div>
-            <div class="mb-4">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-500/10 border border-fuchsia-500/30 mb-6">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-fuchsia-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-fuchsia-500"></span>
-                </span>
-                <span class="text-xs font-mono text-fuchsia-300 uppercase tracking-widest">Alto Rendimiento</span>
-              </div>
-              <h3 class="text-4xl font-black text-white italic tracking-tight">Premium</h3>
-              <p class="text-fuchsia-200/60 mt-2 text-sm font-light">Potencia seria para proyectos serios.</p>
-            </div>
-
-            <div class="space-y-6">
-              <div class="bg-gradient-to-br from-fuchsia-900/20 to-slate-900/50 p-4 rounded-xl border border-fuchsia-500/20">
-                <div class="flex items-center gap-2 mb-3">
-                  <Database size={18} class="text-fuchsia-400" /><span class="font-bold text-fuchsia-100 uppercase text-xs tracking-wider">Bots Pro</span>
-                </div>
-                <ul class="space-y-2 text-sm text-slate-300">
-                  {premiumPlanFeatures.bots.map(f => <li class="flex items-center gap-2"><Check size={14} class="text-fuchsia-400" /> {f}</li>)}
-                </ul>
-              </div>
-              <div class="bg-gradient-to-br from-fuchsia-900/20 to-slate-900/50 p-4 rounded-xl border border-fuchsia-500/20">
-                <div class="flex items-center gap-2 mb-3">
-                  <Zap size={18} class="text-fuchsia-400" /><span class="font-bold text-fuchsia-100 uppercase text-xs tracking-wider">Minecraft Pro</span>
-                </div>
-                <ul class="space-y-2 text-sm text-slate-300">
-                  {premiumPlanFeatures.mc.map(f => <li class="flex items-center gap-2"><Check size={14} class="text-fuchsia-400" /> {f}</li>)}
-                </ul>
-              </div>
-              <div class="flex items-center justify-center gap-2 text-xs font-mono text-fuchsia-300/80 pt-2">
-                <Shield size={12} /> Soporte Prioritario 24/7
-              </div>
-            </div>
-          </div>
-          <!-- BOTÓN MODIFICADO: AHORA ES UN LINK (placeholder #) -->
-          <a href="#" class="block w-full mt-8 py-4 bg-fuchsia-600 text-white font-black uppercase tracking-widest text-xs rounded-lg shadow-lg shadow-fuchsia-900/50 hover:bg-fuchsia-500 hover:scale-[1.02] transition-all text-center">Mejorar Ahora</a>
-        </div>
-
-        <!-- CARD 3: CUSTOM -->
-        <div class="group relative bg-slate-900/50 border border-cyan-500/20 rounded-3xl p-8 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 overflow-hidden flex flex-col justify-between">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-900 to-cyan-500 opacity-50"></div>
-          <div class="mb-4">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-900/20 border border-cyan-500/20 mb-6">
-              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-              <span class="text-xs font-mono text-cyan-300 uppercase tracking-widest">Enterprise</span>
-            </div>
-            <h3 class="text-4xl font-black text-white italic tracking-tight">Custom</h3>
-            <p class="text-slate-500 mt-2 text-sm font-light">Infraestructura a medida.</p>
-          </div>
-
-          <div class="flex flex-col h-[340px] justify-between">
-            <div class="space-y-6">
-              <p class="text-slate-300 leading-relaxed text-sm">Diseñado para Networks grandes, comunidades masivas o proyectos que requieren recursos dedicados.</p>
-              <ul class="space-y-1 text-sm text-slate-400">
-                <li class="flex items-center gap-3 p-3 bg-slate-950/30 rounded-lg border border-white/5">
-                  <Server size={18} class="text-cyan-500 shrink-0" /><span>Nodos Dedicados Completos</span>
-                </li>
-                <li class="flex items-center gap-3 p-3 bg-slate-950/30 rounded-lg border border-white/5">
-                  <Shield size={18} class="text-cyan-500 shrink-0" /><span>Protección DDoS Layer 7 Pro</span>
-                </li>
-                <li class="flex items-center gap-3 p-3 bg-slate-950/30 rounded-lg border border-white/5">
-                  <Zap size={18} class="text-cyan-500 shrink-0" /><span>IP Dedicada Incluida</span>
-                </li>
-              </ul>
-            </div>
-            <div class="bg-cyan-950/30 p-4 rounded-xl border border-cyan-500/20 text-center">
-              <span class="block text-xs text-cyan-400 uppercase tracking-widest mb-1">Precio variable</span>
-              <span class="text-white font-bold text-sm">Según capacidad elegida</span>
-            </div>
-          </div>
-          <!-- BOTÓN MODIFICADO: AHORA ES UN LINK (placeholder #) -->
-          <a href="#" class="block w-full mt-8 py-4 border border-cyan-500/30 text-cyan-400 font-bold uppercase tracking-widest text-xs rounded-lg hover:bg-cyan-500 hover:text-slate-950 transition-all text-center">ARMARLO A MEDIDA</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES & FAQ SECTION -->
-  <section class="py-20 border-y border-white/5">
-    <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 lg:grid-cols-4 gap-12">
-      {features.map((f) => (
-        <div class="text-center">
-          <div class="text-3xl font-black text-white mb-2 tracking-tighter italic">{f.value}</div>
-          <div class="text-slate-500 font-mono text-[10px] uppercase tracking-widest">{f.label}</div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <section id="faq" class="py-32 max-w-4xl mx-auto px-4">
-    <div class="flex items-center gap-4 mb-16">
-      <div class="h-px bg-white/10 flex-1"></div>
-      <div class="flex items-center gap-2 text-yellow-500">
-        <AlertTriangle size={20} />
-        <span class="font-mono text-xs uppercase tracking-[0.4em] font-bold italic">Honestidad Radical</span>
-      </div>
-      <div class="h-px bg-white/10 flex-1"></div>
-    </div>
-
-    <div class="space-y-2">
-      {faqs.map((faq) => (
-        <div class="faq-item group">
-          <button class="faq-button w-full py-6 flex justify-between items-center text-left focus:outline-none transition-all hover:px-4" aria-expanded="false">
-            <span class="text-xl font-bold text-slate-300 group-hover:text-fuchsia-400 transition-colors uppercase tracking-tight italic">{faq.q}</span>
-            <ChevronDown class="faq-icon text-slate-600 transition-transform duration-500" />
-          </button>
-          <div class="faq-answer max-h-0 overflow-hidden transition-all duration-500 opacity-0 bg-slate-900/30">
-            <p class="text-slate-400 leading-relaxed font-light text-lg p-6 border-l border-fuchsia-500/50 italic">{faq.a}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <script>
-    const faqButtons = document.querySelectorAll(".faq-button");
-    faqButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const answer = button.nextElementSibling;
-        const icon = button.querySelector(".faq-icon");
-        const isClosed = answer?.classList.contains("max-h-0");
-
-        // Toggle state
-        answer?.classList.toggle("max-h-0", !isClosed);
-        answer?.classList.toggle("opacity-0", !isClosed);
-        answer?.classList.toggle("max-h-96", isClosed);
-        answer?.classList.toggle("opacity-100", isClosed);
-        
-        // Icon and Aria updates
-        icon?.classList.toggle("rotate-180", isClosed);
-        icon?.classList.toggle("text-fuchsia-500", isClosed);
-        button.setAttribute("aria-expanded", isClosed ? "true" : "false");
-      });
-    });
-  </script>
+    <PingTester />
+    
+    <Pricing />
+    
+    <FAQ />
+  </main>
 
   <Footer />
 </Layout>

@@ -1,0 +1,58 @@
+---
+import { Zap, ChevronRight } from "@lucide/astro";
+---
+
+<section id="hero" class="relative pt-24 pb-12 lg:pt-32 lg:pb-20 overflow-hidden flex items-center">
+  <div class="absolute inset-0 z-0">
+    <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <div class="text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-cyan/20 bg-brand-cyan/5 mb-6">
+          <span class="text-brand-cyan font-bold text-[10px] uppercase tracking-widest">
+            Latencia mínima en <span class="text-white">República Dominicana</span>
+          </span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.95] mb-6">
+          EL HOSTING QUE <br />
+          <span class="text-gradient uppercase">Tus Amigos</span> MERECEN
+        </h1>
+
+        <p class="max-w-md text-slate-400 text-base md:text-lg mb-8">
+          Servidores de alto rendimiento con <span class="text-white font-bold italic">7 días gratis</span>. Juega sin lag desde Santiago o Miami.
+        </p>
+
+        <div class="flex items-center gap-6">
+          <a href="#pricing" class="btn-primary px-6 py-3 text-xs uppercase tracking-tighter">
+            <Zap size={16} class="fill-current" /> Empezar Ahora
+          </a>
+          
+          <a href="#planes" class="text-slate-400 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors flex items-center gap-1 group">
+            Ver Planes <ChevronRight size={14} class="group-hover:translate-x-1 transition-transform" />
+          </a>
+        </div>
+      </div>
+
+      <div class="relative group hidden lg:block">
+        <div class="absolute -inset-1 bg-gradient-to-r from-brand-cyan to-brand-magenta rounded-brand blur opacity-15 group-hover:opacity-30 transition duration-700"></div>
+        
+        <div class="relative bg-surface border border-white/5 rounded-brand overflow-hidden aspect-video shadow-2xl">
+          <img 
+            src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/redeemheroa/Redeem-Hero_Mobile_576x324.png" 
+            alt="Performance Arkania" 
+            class="w-full h-full object-cover opacity-80"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4">
+            <p class="text-[10px] font-black text-brand-cyan tracking-[0.3em] uppercase italic">Performance de Élite</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

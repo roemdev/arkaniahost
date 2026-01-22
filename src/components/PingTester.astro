@@ -1,0 +1,185 @@
+---
+import { RefreshCw } from "@lucide/astro";
+import 'flag-icons/css/flag-icons.min.css';
+
+const nodes = [
+  { 
+    id: 'do-sti', 
+    name: 'SANTIAGO, RD', 
+    code: 'DO-STI-01', 
+    host: 'do-sti-01.arkaniahost.xyz', 
+    flag: 'do' 
+  },
+  { 
+    id: 'us-abe', 
+    name: 'ALLENTOWN, US', 
+    code: 'US-ABE-01', 
+    host: 'us-abe-01.arkaniahost.xyz', 
+    flag: 'us' 
+  }
+];
+---
+
+<section id="network-status" class="py-24 relative bg-background border-b border-white/5">
+  
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    
+    <div class="flex flex-col md:flex-row items-end justify-between gap-6 mb-12 border-b border-white/10 pb-6">
+      <div>
+        <h2 class="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">
+          PRUEBA TU <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-magenta">PING</span>
+        </h2>
+        <p class="mt-2 text-slate-500 text-sm font-mono uppercase tracking-widest">
+           Conexión en tiempo real desde tu ubicación
+        </p>
+      </div>
+
+      <button id="refresh-ping" class="flex items-center gap-2 text-xs font-bold font-mono uppercase tracking-widest text-slate-500 hover:text-white transition-colors group">
+        [ <RefreshCw size={12} class="group-hover:rotate-180 transition-transform duration-700" /> ESCANEAR RED ]
+      </button>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="hidden md:grid grid-cols-12 gap-4 px-4 pb-4 text-[10px] font-mono font-bold text-slate-600 uppercase tracking-widest">
+         <div class="col-span-5">Ubicación / Nodo</div>
+         <div class="col-span-4">Identificador</div>
+         <div class="col-span-3 text-right">Latencia</div>
+      </div>
+
+      {nodes.map((node) => (
+        <div class="group relative grid md:grid-cols-12 gap-4 items-center py-6 px-4 border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+            
+            <div id={`status-line-${node.id}`} class="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-800 transition-colors duration-500"></div>
+
+            <div class="col-span-12 md:col-span-5 flex items-center gap-4">
+               <div class="w-10 h-8 flex items-center justify-center bg-white/5 rounded overflow-hidden border border-white/5 transition-all duration-300">
+                  <span class={`fi fi-${node.flag} text-2xl`}></span>
+               </div>
+               <span class="text-white font-bold uppercase tracking-tight">{node.name}</span>
+            </div>
+
+            <div class="col-span-12 md:col-span-4">
+               <span class="text-xs font-mono text-slate-500 tracking-widest">{node.code}</span>
+            </div>
+
+            <div class="col-span-12 md:col-span-3 flex items-center justify-end gap-4">
+               <div class="flex flex-col items-end">
+                  <span id={`ping-text-${node.id}`} class="text-xl font-mono font-bold text-slate-700 transition-colors">---</span>
+               </div>
+               
+               <div class="flex items-end gap-1 h-5 w-10">
+                  { [1,2,3,4].map(i => 
+                    <div id={`bar-${node.id}-${i}`} class="flex-1 rounded-sm bg-slate-800 transition-colors duration-300" style={`height: ${i * 25}%`}></div>
+                  ) }
+               </div>
+            </div>
+        </div>
+      ))}
+      
+      <div class="w-full h-px bg-white/5"></div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function probe(host: string): Promise<number> {
+    return new Promise((resolve, reject) => {
+      const start = Date.now();
+      const img = new Image();
+      const timeout = setTimeout(() => reject("timeout"), 3000);
+
+      img.onload = () => { clearTimeout(timeout); resolve(Date.now() - start); };
+      img.onerror = () => { clearTimeout(timeout); resolve(Date.now() - start); };
+      
+      img.src = `https://${host}/favicon.ico?t=${start}`; 
+    });
+  }
+
+  async function getLowestPing(host: string) {
+    await probe(host).catch(() => {}); 
+    
+    const results: number[] = [];
+    
+    for(let i=0; i<3; i++) {
+        try { 
+            const res = await probe(host); 
+            results.push(res);
+        } catch (e) { 
+            results.push(999); 
+        }
+    }
+    return Math.min(...results);
+  }
+
+  function updateUI(id: string, ping: number) {
+    const text = document.getElementById(`ping-text-${id}`);
+    const line = document.getElementById(`status-line-${id}`);
+    
+    const cGreen = "#22c55e";  
+    const cYellow = "#eab308"; 
+    const cRed = "#ef4444";    
+
+    if (!text || !line) return;
+
+    if (ping >= 999) {
+      text.innerText = "OFF";
+      text.style.color = cRed;
+      line.style.backgroundColor = cRed;
+      return;
+    }
+
+    let color = cGreen;
+    let bars = 4;
+
+    if (ping < 60) {
+        color = cGreen;
+        bars = 4;
+    } else if (ping < 120) {
+        color = cYellow;
+        bars = 3;
+    } else if (ping < 200) {
+        color = "#f97316"; 
+        bars = 2;
+    } else {
+        color = cRed;
+        bars = 1;
+    }
+
+    text.innerText = `${Math.floor(ping)}ms`;
+    text.style.color = color;
+    line.style.backgroundColor = color;
+
+    for (let i = 1; i <= 4; i++) {
+      const bar = document.getElementById(`bar-${id}-${i}`);
+      if (bar) {
+          bar.style.backgroundColor = i <= bars ? color : "#1e293b"; 
+      }
+    }
+  }
+
+  const runTest = async () => {
+    const nodes = [
+      { id: 'do-sti', host: 'do-sti-01.arkaniahost.xyz' },
+      { id: 'us-abe', host: 'us-abe-01.arkaniahost.xyz' }
+    ];
+
+    const btn = document.getElementById('refresh-ping');
+    if(btn) btn.classList.add('animate-pulse', 'pointer-events-none');
+
+    for (const node of nodes) {
+      const text = document.getElementById(`ping-text-${node.id}`);
+      if (text) {
+          text.innerText = "...";
+          text.style.color = "#94a3b8";
+      }
+
+      const ping = await getLowestPing(node.host);
+      updateUI(node.id, ping);
+    }
+
+    if(btn) btn.classList.remove('animate-pulse', 'pointer-events-none');
+  };
+
+  document.getElementById('refresh-ping')?.addEventListener('click', runTest);
+</script>

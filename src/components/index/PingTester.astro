@@ -27,7 +27,7 @@ const nodes = [
     <div class="flex flex-col md:flex-row items-end justify-between gap-6 mb-12 border-b border-white/10 pb-6">
       <div>
         <h2 class="text-2xl md:text-4xl font-black text-white uppercase tracking-tighter">
-          PRUEBA TU <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-brand-magenta">PING</span>
+          PRUEBA TU <span class="text-transparent bg-clip-text bg-linear-to-r from-brand-cyan to-brand-magenta">PING</span>
         </h2>
         <p class="mt-2 text-slate-500 text-sm font-mono uppercase tracking-widest">
            Conexión en tiempo real desde tu ubicación
@@ -47,9 +47,9 @@ const nodes = [
       </div>
 
       {nodes.map((node) => (
-        <div class="group relative grid md:grid-cols-12 gap-4 items-center py-6 px-4 border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+        <div class="group relative grid md:grid-cols-12 gap-4 items-center py-6 px-4 border-t border-white/5 hover:bg-white/2 transition-colors">
             
-            <div id={`status-line-${node.id}`} class="absolute left-0 top-0 bottom-0 w-[2px] bg-slate-800 transition-colors duration-500"></div>
+            <div id={`status-line-${node.id}`} class="absolute left-0 top-0 bottom-0 w-0.5 bg-slate-800 transition-colors duration-500"></div>
 
             <div class="col-span-12 md:col-span-5 flex items-center gap-4">
                <div class="w-10 h-8 flex items-center justify-center bg-white/5 rounded overflow-hidden border border-white/5 transition-all duration-300">

@@ -68,9 +68,9 @@ const team = [
       {team.map((member) => (
         <div class="group relative py-16 px-6 flex flex-col items-center text-center transition-all duration-500">
           
-          <div class={`absolute inset-0 bg-gradient-to-t ${member.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+          <div class={`absolute inset-0 bg-linear-to-t ${member.gradient} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
           
-          <div class={`absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ${member.color.replace('text-', 'bg-')}`}></div>
+          <div class={`absolute top-0 left-0 right-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ${member.color.replace('text-', 'bg-')}`}></div>
 
           <div class="relative z-10 flex flex-col items-center w-full">
             

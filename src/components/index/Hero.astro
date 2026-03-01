@@ -1,5 +1,6 @@
 ---
 import { Zap, ChevronRight } from "@lucide/astro";
+import { Image } from "astro:assets";
 ---
 
 <section id="hero" class="relative pt-24 pb-12 lg:pt-32 lg:pb-20 overflow-hidden flex items-center">
@@ -18,12 +19,12 @@ import { Zap, ChevronRight } from "@lucide/astro";
         </div>
 
         <h1 class="text-4xl md:text-6xl font-black text-white tracking-tighter leading-[0.95] mb-6">
-          EL HOSTING QUE <br />
+          EL HOSTING DE MINECRAFT QUE <br />
           <span class="text-gradient uppercase">Tus Amigos</span> MERECEN
         </h1>
 
         <p class="max-w-md text-slate-400 text-base md:text-lg mb-8">
-          Servidores de alto rendimiento. Juega sin lag desde todo Latinoamérica.
+          Servidores de Minecraft de alto rendimiento con latencia mínima en LATAM. Hosting y VPS diseñados para jugar sin lag, respaldados por expertos.
         </p>
 
         <div class="flex items-center gap-6">
@@ -41,9 +42,12 @@ import { Zap, ChevronRight } from "@lucide/astro";
         <div class="absolute -inset-1 bg-linear-to-r from-brand-cyan to-brand-magenta rounded-brand blur opacity-15 group-hover:opacity-30 transition duration-700"></div>
         
         <div class="relative bg-surface border border-white/5 rounded-brand overflow-hidden aspect-video shadow-2xl">
-          <img 
+          <Image
             src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/redeemheroa/Redeem-Hero_Mobile_576x324.png" 
-            alt="Performance Arkania" 
+            alt="Servidores de Minecraft de alto rendimiento en ArkaniaHost, latencia mínima en LATAM"
+            width={576}
+            height={324}
+            format="webp"
             class="w-full h-full object-cover opacity-80"
           />
           <div class="absolute inset-0 bg-linear-to-t from-background/90 via-transparent to-transparent"></div>

@@ -41,9 +41,20 @@ const legalDocs = [
     link: "/legal/sla"
   }
 ];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Centro Legal | ArkaniaHost",
+  "url": "https://arkaniahost.xyz/legal",
+  "description": "Términos de servicio, política de privacidad y acuerdos de nivel de servicio (SLA) de ArkaniaHost.",
+  "publisher": {
+    "@id": "https://arkaniahost.xyz/#organization"
+  }
+};
 ---
 
-<Layout title="Centro Legal | ArkaniaHost">
+<Layout title="Centro Legal | ArkaniaHost" description="Términos de servicio, política de privacidad y acuerdos de nivel de servicio (SLA) de ArkaniaHost." schema={schema}>
   <Navbar />
 
   <!-- HERO HEADER -->
@@ -64,7 +75,7 @@ const legalDocs = [
       </h1>
       
       <p class="max-w-2xl mx-auto text-lg text-slate-400 font-light leading-relaxed">
-        Sin letra pequeña ilegible. Aquí encontrarás todos los contratos y garantías que rigen nuestra relación contigo.
+        Transparencia total. Conoce nuestras garantías de Uptime SLA, políticas de privacidad y términos de servicio de hosting.
       </p>
     </div>
   </section>
@@ -72,6 +83,7 @@ const legalDocs = [
   <!-- INDEXER GRID -->
   <section class="py-20 bg-slate-950 border-t border-white/5 relative">
     <div class="max-w-6xl mx-auto px-4">
+      <h2 class="sr-only">Documentos Legales</h2>
       <div class="grid md:grid-cols-3 gap-8">
         {legalDocs.map((doc) => (
           <a href={doc.link} class={`group relative bg-slate-900/50 border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${doc.border} ${doc.bgHover}`}>
@@ -86,9 +98,9 @@ const legalDocs = [
                 <span class={`font-mono text-[10px] uppercase tracking-widest font-bold block mb-1 ${doc.color}`}>
                   {doc.subtitle}
                 </span>
-                <h2 class="text-2xl font-black text-white italic tracking-tight group-hover:underline decoration-2 underline-offset-4 decoration-slate-700">
+                <h3 class="text-2xl font-black text-white italic tracking-tight group-hover:underline decoration-2 underline-offset-4 decoration-slate-700">
                   {doc.title}
-                </h2>
+                </h3>
               </div>
               
               <p class="text-slate-400 text-sm leading-relaxed font-light">
@@ -112,9 +124,9 @@ const legalDocs = [
       <div class="flex items-center justify-center gap-3 mb-6 text-yellow-500">
         <Server size={24} />
       </div>
-      <h3 class="text-2xl font-bold text-white uppercase tracking-tight mb-4">
-        ¿Tienes dudas sobre el cumplimiento?
-      </h3>
+      <h2 class="text-2xl font-bold text-white uppercase tracking-tight mb-4">
+        ¿Dudas sobre nuestras Políticas de Hosting?
+      </h2>
       <p class="text-slate-400 text-sm mb-8 leading-relaxed max-w-xl mx-auto">
         Si encuentras alguna actividad en nuestros servidores que viole estos términos (phishing, ataques DDoS, contenido ilegal), repórtalo inmediatamente.
       </p>

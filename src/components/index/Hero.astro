@@ -28,7 +28,7 @@ import { Image } from "astro:assets";
         </p>
 
         <div class="flex items-center gap-6">
-          <a href="#pricing" class="btn-primary px-6 py-3 text-xs uppercase tracking-tighter">
+          <a href="#pricing" class="btn-primary px-8 py-4 text-sm uppercase tracking-tighter">
             <Zap size={16} class="fill-current" /> Empezar Ahora
           </a>
           
@@ -42,7 +42,7 @@ import { Image } from "astro:assets";
         <div class="absolute -inset-1 bg-linear-to-r from-brand-cyan to-brand-magenta rounded-brand blur opacity-15 group-hover:opacity-30 transition duration-700"></div>
         
         <div class="relative bg-surface border border-white/5 rounded-brand overflow-hidden aspect-video shadow-2xl">
-          <Image
+          <Image loading="eager" fetchpriority="high"
             src="https://www.minecraft.net/content/dam/minecraftnet/franchise/component-library/redeemheroa/Redeem-Hero_Mobile_576x324.png" 
             alt="Servidores de Minecraft de alto rendimiento en ArkaniaHost, latencia mínima en LATAM"
             width={576}

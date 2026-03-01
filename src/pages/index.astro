@@ -8,6 +8,7 @@ import Features from "../components/index/Features.astro";
 import PingTester from "../components/index/PingTester.astro";
 import Pricing from "../components/index/Pricing.astro";
 import FAQ from "../components/index/FAQ.astro";
+import SeoContent from "../components/index/SeoContent.astro";
 import Footer from "../components/Footer.astro";
 
 // Nota: He dejado Navbar, Hero, FAQ y Footer importados. 
@@ -21,9 +22,17 @@ const schema = {
       "@id": "https://arkaniahost.xyz/#organization",
       "name": "ArkaniaHost",
       "url": "https://arkaniahost.xyz",
-      "logo": "https://arkaniahost.xyz/favicon.svg",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://arkaniahost.xyz/favicon.svg"
+      },
       "sameAs": [
-        "https://discord.arkaniahost.xyz"
+        "https://discord.arkaniahost.xyz",
+        "https://youtube.com/@arkaniahost",
+        "https://x.com/arkaniahost",
+        "https://linkedin.com/company/arkaniahost",
+        "https://instagram.com/arkaniahost",
+        "https://facebook.com/arkaniahost"
       ]
     },
     {
@@ -31,7 +40,7 @@ const schema = {
       "@id": "https://arkaniahost.xyz/#website",
       "url": "https://arkaniahost.xyz",
       "name": "ArkaniaHost",
-      "description": "Hosting de servidores de Minecraft en LATAM y EE.UU. con latencia mínima.",
+      "description": "Hosting de servidores de Minecraft de alto rendimiento en LATAM y EE.UU. con latencia mínima, protección anti-DDoS y soporte premium especializado.",
       "publisher": {
         "@id": "https://arkaniahost.xyz/#organization"
       }
@@ -40,7 +49,7 @@ const schema = {
 };
 ---
 
-<Layout title="ArkaniaHost | Tu servidor de amigos" schema={schema}>
+<Layout title="Hosting de Servidores de Minecraft | LATAM" schema={schema}>
   <Navbar />
   
   <main>
@@ -57,6 +66,8 @@ const schema = {
     <Pricing />
     
     <FAQ />
+
+    <SeoContent />
   </main>
 
   <Footer />

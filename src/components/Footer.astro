@@ -1,5 +1,5 @@
 ---
-import { Terminal, ExternalLink } from "@lucide/astro";
+import { Terminal, ExternalLink, Youtube, Twitter, Linkedin, Instagram, Facebook } from "@lucide/astro";
 ---
 
 <footer class="relative z-10 bg-surface border-t border-white/5 pt-20 pb-10">
@@ -24,7 +24,7 @@ import { Terminal, ExternalLink } from "@lucide/astro";
 
           <a 
             href="https://discord.arkaniahost.xyz" 
-            target="_blank" 
+            target="_blank" rel="noopener noreferrer"
             class="inline-flex items-center gap-3 px-5 py-2.5 bg-[#5865F2]/10 border border-[#5865F2]/20 rounded-lg text-[#5865F2] hover:bg-[#5865F2] hover:text-white transition-all group w-fit"
           >
             <svg viewBox="0 0 127.14 96.36" class="w-4 h-4 fill-current transition-transform group-hover:scale-110">
@@ -42,23 +42,43 @@ import { Terminal, ExternalLink } from "@lucide/astro";
             <a href="/about" class="hover:text-brand-magenta transition-colors">Sobre Nosotros</a>
           </li>
         </ul>
+        <div class="pt-2">
+            <h4 class="text-white font-bold uppercase text-xs tracking-widest mb-3">Redes Sociales</h4>
+            <div class="flex gap-3 text-slate-400">
+              <a href="https://youtube.com/@arkaniahost" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF0000] transition-colors" aria-label="YouTube">
+                 <Youtube size={18} />
+              </a>
+              <a href="https://x.com/arkaniahost" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="X (Twitter)">
+                 <Twitter size={18} />
+              </a>
+              <a href="https://linkedin.com/company/arkaniahost" target="_blank" rel="noopener noreferrer" class="hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
+                 <Linkedin size={18} />
+              </a>
+              <a href="https://instagram.com/arkaniahost" target="_blank" rel="noopener noreferrer" class="hover:text-[#E1306C] transition-colors" aria-label="Instagram">
+                 <Instagram size={18} />
+              </a>
+              <a href="https://facebook.com/arkaniahost" target="_blank" rel="noopener noreferrer" class="hover:text-[#1877F2] transition-colors" aria-label="Facebook">
+                 <Facebook size={18} />
+              </a>
+            </div>
+        </div>
       </div>
 
       <div class="lg:col-span-2 space-y-6">
         <h4 class="text-white font-bold uppercase text-xs tracking-widest">Accesos Rápidos</h4>
         <ul class="space-y-3 text-sm text-slate-400">
           <li>
-            <a href="https://panel.arkaniahost.xyz" target="_blank" class="hover:text-brand-magenta transition-colors flex items-center gap-2 group">
+            <a href="https://panel.arkaniahost.xyz" target="_blank" rel="noopener noreferrer" class="hover:text-brand-magenta transition-colors flex items-center gap-2 group">
               Panel de Control <ExternalLink size={12} class="opacity-0 group-hover:opacity-100 transition-opacity"/>
             </a>
           </li>
           <li>
-            <a href="https://billing.arkaniahost.xyz" target="_blank" class="hover:text-brand-magenta transition-colors flex items-center gap-2 group">
+            <a href="https://billing.arkaniahost.xyz" target="_blank" rel="noopener noreferrer" class="hover:text-brand-magenta transition-colors flex items-center gap-2 group">
               Área de Clientes <ExternalLink size={12} class="opacity-0 group-hover:opacity-100 transition-opacity"/>
             </a>
           </li>
-          <li><a href="https://status.arkaniahost.xyz" target="_blank" class="hover:text-brand-magenta transition-colors">Estado de la Red</a></li>
-          <li><a href="https://billing.arkaniahost.xyz/tickets/create" target="_blank" class="hover:text-brand-magenta transition-colors">Abrir Ticket</a></li>
+          <li><a href="https://status.arkaniahost.xyz" target="_blank" rel="noopener noreferrer" class="hover:text-brand-magenta transition-colors">Estado de la Red</a></li>
+          <li><a href="https://billing.arkaniahost.xyz/tickets/create" target="_blank" rel="noopener noreferrer" class="hover:text-brand-magenta transition-colors">Abrir Ticket</a></li>
         </ul>
       </div>
 

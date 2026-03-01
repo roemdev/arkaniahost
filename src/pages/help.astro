@@ -214,7 +214,7 @@ const schema = {
               </p>
             </div>
 
-            <a href="https://billing.arkaniahost.xyz/submitticket.php?step=2&deptid=2" target="_blank" class="px-5 py-2 bg-red-600 hover:bg-red-500 text-white text-xs font-bold uppercase tracking-wider rounded transition-colors shadow-lg shadow-red-900/20 whitespace-nowrap">
+            <a href="https://billing.arkaniahost.xyz/submitticket.php?step=2&deptid=2" target="_blank" rel="noopener noreferrer" class="px-5 py-2 bg-red-600 hover:bg-red-500 text-white text-xs font-bold uppercase tracking-wider rounded transition-colors shadow-lg shadow-red-900/20 whitespace-nowrap">
               Reportar Fallo
             </a>
           </div>
@@ -232,7 +232,7 @@ const schema = {
             
             <div class="flex flex-col gap-4">
               {contactMethods.map((method) => (
-                <a href={method.href} target="_blank" class={`group flex items-center gap-4 bg-background border border-white/5 p-4 rounded-xl transition-all duration-300 hover:-translate-y-1 ${method.border}`}>
+                <a href={method.href} target="_blank" rel="noopener noreferrer" class={`group flex items-center gap-4 bg-background border border-white/5 p-4 rounded-xl transition-all duration-300 hover:-translate-y-1 ${method.border}`}>
                   <div class={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${method.bg} ${method.color}`}>
                      {method.isSvg ? (
                        <div class="w-5 h-5" set:html={method.icon} />

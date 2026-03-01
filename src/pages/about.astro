@@ -9,9 +9,20 @@ import AboutTechStack from "../components/about/AboutTechStack.astro";
 import AboutTeam from "../components/about/AboutTeam.astro";
 import AboutRoadmap from "../components/about/AboutRoadmap.astro";
 import AboutCTA from "../components/about/AboutCTA.astro";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Sobre Nosotros | ArkaniaHost",
+  "url": "https://arkaniahost.xyz/about",
+  "description": "Conoce más sobre ArkaniaHost, nuestros valores, equipo y la tecnología que utilizamos para ofrecerte el mejor hosting.",
+  "publisher": {
+    "@id": "https://arkaniahost.xyz/#organization"
+  }
+};
 ---
 
-<Layout title="Sobre Nosotros | ArkaniaHost">
+<Layout title="Sobre Nosotros | ArkaniaHost" description="Conoce más sobre ArkaniaHost, nuestros valores, equipo y la tecnología que utilizamos para ofrecerte el mejor hosting." schema={schema}>
   <Navbar />
   
   <main>

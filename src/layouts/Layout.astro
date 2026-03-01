@@ -1,15 +1,18 @@
 ---
 import "../styles/global.css";
 import SpeedInsights from '@vercel/speed-insights/astro';
+import SEO from "../components/SEO.astro";
 
 interface Props {
   title: string;
   description?: string;
+  schema?: Record<string, any>;
 }
 
 const { 
   title, 
-  description = "Hosting de servidores de Minecraft en LATAM y EE.UU. con latencia mínima."
+  description = "Hosting de servidores de Minecraft en LATAM y EE.UU. con latencia mínima.",
+  schema
 } = Astro.props;
 ---
 
@@ -19,8 +22,12 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title} | ArkaniaHost</title>
-    <meta name="description" content={description} />
+
+    <SEO
+      title={`${title} | ArkaniaHost`}
+      description={description}
+      schema={schema}
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

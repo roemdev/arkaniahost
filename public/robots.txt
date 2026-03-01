@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://arkaniahost.xyz/sitemap-index.xml

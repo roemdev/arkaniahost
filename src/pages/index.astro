@@ -12,9 +12,35 @@ import Footer from "../components/Footer.astro";
 
 // Nota: He dejado Navbar, Hero, FAQ y Footer importados. 
 // Deberás crear Features.astro y Pricing.astro basándote en lo que hablamos.
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://arkaniahost.xyz/#organization",
+      "name": "ArkaniaHost",
+      "url": "https://arkaniahost.xyz",
+      "logo": "https://arkaniahost.xyz/favicon.svg",
+      "sameAs": [
+        "https://discord.arkaniahost.xyz"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://arkaniahost.xyz/#website",
+      "url": "https://arkaniahost.xyz",
+      "name": "ArkaniaHost",
+      "description": "Hosting de servidores de Minecraft en LATAM y EE.UU. con latencia mínima.",
+      "publisher": {
+        "@id": "https://arkaniahost.xyz/#organization"
+      }
+    }
+  ]
+};
 ---
 
-<Layout title="ArkaniaHost | Tu servidor de amigos">
+<Layout title="ArkaniaHost | Tu servidor de amigos" schema={schema}>
   <Navbar />
   
   <main>

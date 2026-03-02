@@ -167,7 +167,7 @@ const schema = {
 
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {diagnosticSteps.map((step) => (
-              <a href={step.href} target={step.href.startsWith('http') ? "_blank" : "_self"} class="group/step relative flex flex-col h-full bg-background border border-white/5 p-4 rounded-lg hover:border-brand-cyan/30 transition-all hover:-translate-y-1">
+              <a href={step.href} target={step.href.startsWith('http') ? "_blank" : "_self"} rel={step.href.startsWith('http') ? "noopener noreferrer" : undefined} class="group/step relative flex flex-col h-full bg-background border border-white/5 p-4 rounded-lg hover:border-brand-cyan/30 transition-all hover:-translate-y-1">
                 <div class="mb-3 text-slate-400 group-hover/step:text-brand-cyan transition-colors">
                   <step.icon size={20} />
                 </div>

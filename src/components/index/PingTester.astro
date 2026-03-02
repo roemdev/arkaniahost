@@ -98,14 +98,7 @@ const nodes = [
   }
 
   async function getLowestPing(host: string) {
-    await probe(host).catch(() => {}); 
-    
-    const promises: Promise<number>[] = [];
-    
-    for(let i=0; i<3; i++) {
-        promises.push(probe(host).catch(() => 999));
-    }
-
+    const promises = Array.from({ length: 3 }, () => probe(host).catch(() => 999));
     const results = await Promise.all(promises);
     return Math.min(...results);
   }
@@ -165,7 +158,7 @@ const nodes = [
     const btn = document.getElementById('refresh-ping');
     if(btn) btn.classList.add('animate-pulse', 'pointer-events-none');
 
-    for (const node of nodes) {
+    await Promise.all(nodes.map(async (node) => {
       const text = document.getElementById(`ping-text-${node.id}`);
       if (text) {
           text.innerText = "...";
@@ -174,7 +167,7 @@ const nodes = [
 
       const ping = await getLowestPing(node.host);
       updateUI(node.id, ping);
-    }
+    }));
 
     if(btn) btn.classList.remove('animate-pulse', 'pointer-events-none');
   };

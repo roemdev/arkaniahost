@@ -2,21 +2,19 @@
 > arkaniahost@0.0.1 dev
 > astro dev
 
-23:15:41 [types] Generated 1ms
-23:15:41 [content] Syncing content
-23:15:41 [content] Synced content
-23:15:41 [vite] Re-optimizing dependencies because vite config has changed
+14:32:18 [types] Generated 1ms
+14:32:18 [content] Syncing content
+14:32:18 [content] Synced content
+14:32:18 [vite] Re-optimizing dependencies because vite config has changed
 
- astro  v5.16.6 ready in 368 ms
+ astro  v5.16.6 ready in 378 ms
 
 ┃ Local    http://localhost:4321/
 ┃ Network  use --host to expose
 
-23:15:41 watching for file changes...
+14:32:18 watching for file changes...
 
  update  ▶ New version of Astro available: 5.18.0
   Run npx @astrojs/upgrade to update
 
-23:16:38 [200] / 2638ms
-23:16:45 [200] /about 2084ms
-23:16:48 [200] /legal/terms 2091ms
+14:35:58 [200] /help 2149ms

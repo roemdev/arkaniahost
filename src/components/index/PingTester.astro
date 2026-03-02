@@ -99,16 +99,13 @@ const nodes = [
   async function getLowestPing(host: string) {
     await probe(host).catch(() => {}); 
     
-    const results: number[] = [];
+    const promises: Promise<number>[] = [];
     
     for(let i=0; i<3; i++) {
-        try { 
-            const res = await probe(host); 
-            results.push(res);
-        } catch (e) { 
-            results.push(999); 
-        }
+        promises.push(probe(host).catch(() => 999));
     }
+
+    const results = await Promise.all(promises);
     return Math.min(...results);
   }
 

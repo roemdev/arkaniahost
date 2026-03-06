@@ -4,6 +4,7 @@ export interface Props {
   description: string;
   canonicalURL?: string | URL;
   image?: string;
+  keywords?: string;
   schema?: Record<string, any>;
 }
 
@@ -11,7 +12,8 @@ const {
   title,
   description,
   canonicalURL = new URL(Astro.url.pathname, Astro.site),
-  image = "/favicon.svg",
+  image = "/op-image.jpg",
+  keywords = "hosting minecraft, servidor minecraft, hosting minecraft latam, minecraft dominicana, pterodactyl hosting",
   schema
 } = Astro.props;
 ---
@@ -19,11 +21,17 @@ const {
 <!-- SEO Global -->
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="robots" content="index, follow" />
+<meta name="googlebot" content="index, follow, max-image-preview:large" />
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Hreflang Tags -->
 <link rel="alternate" hreflang="es" href={canonicalURL} />
 <link rel="alternate" hreflang="x-default" href={canonicalURL} />
+
+<meta property="og:site_name" content="ArkaniaHost" />
+<meta property="og:locale" content="es_DO" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />

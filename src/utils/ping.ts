@@ -1,4 +1,9 @@
 export function probe(host: string): Promise<number> {
+  const hostRegex = /^(?!-)[a-z0-9-]{1,63}(?<!-)\.arkaniahost\.xyz$/;
+  if (!hostRegex.test(host)) {
+    return Promise.reject(new Error("Invalid host"));
+  }
+
   return new Promise((resolve, reject) => {
     const validHostRegex = /^(?!-)[a-z0-9-]{1,63}(?<!-)\.arkaniahost\.xyz$/;
     if (!validHostRegex.test(host)) {
@@ -20,7 +25,10 @@ export async function getLowestPing(host: string, probeFn = probe) {
   // Warmup
   await probeFn(host).catch(() => {});
 
-  const promises = Array.from({ length: 3 }, () => probeFn(host).catch(() => 999));
+  const promises = Array.from({ length: 3 }, () =>
+    probeFn(host).catch(() => 999)
+  );
+
   const results = await Promise.all(promises);
   return Math.min(...results);
 }

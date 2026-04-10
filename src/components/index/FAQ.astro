@@ -100,44 +100,43 @@ const faqs = [
 </section>
 
 <script is:inline defer>
-  const faqItems = document.querySelectorAll(".faq-item");
+  const faqItemsElements = document.querySelectorAll(".faq-item");
 
-  faqItems.forEach((item) => {
-    const button = item.querySelector(".faq-button");
-    const answer = item.querySelector(".faq-answer");
-    const icon = item.querySelector(".faq-icon");
-    const glow = item.querySelector(".active-glow");
-    const number = item.querySelector(".font-mono"); 
+  // 1. Pre-mapear los elementos para evitar consultas redundantes al DOM (O(N^2))
+  const faqData = Array.from(faqItemsElements).map((item) => {
+    return {
+      item,
+      button: item.querySelector(".faq-button"),
+      answer: item.querySelector(".faq-answer"),
+      icon: item.querySelector(".faq-icon"),
+      glow: item.querySelector(".active-glow"),
+      number: item.querySelector(".font-mono")
+    };
+  });
 
-    // 1. CLÁUSULA DE GUARDIA:
-    // Si falta algún elemento esencial, detenemos la ejecución aquí para este item.
-    // Esto elimina el error de "button is possibly null" más abajo.
+  faqData.forEach((current) => {
+    const { item, button, answer, icon, glow, number } = current;
+
+    // CLÁUSULA DE GUARDIA:
     if (!button || !answer || !icon || !glow || !number) return;
 
     button.addEventListener("click", () => {
       const isExpanded = button.getAttribute("aria-expanded") === "true";
 
-      // 1. Cerrar otros
-      faqItems.forEach((otherItem) => {
-        if (otherItem !== item) {
-          const otherBtn = otherItem.querySelector(".faq-button");
-          const otherAns = otherItem.querySelector(".faq-answer");
-          const otherIcon = otherItem.querySelector(".faq-icon");
-          const otherGlow = otherItem.querySelector(".active-glow");
-          const otherNum = otherItem.querySelector(".font-mono");
-          
-          // Usamos '?.' para que si algo de esto es null, simplemente lo ignore
-          otherBtn?.setAttribute("aria-expanded", "false");
-          otherAns?.classList.remove("grid-rows-[1fr]");
-          otherAns?.classList.add("grid-rows-[0fr]");
-          otherIcon?.classList.remove("rotate-45", "text-brand-magenta");
-          otherGlow?.classList.remove("opacity-100");
-          otherItem?.classList.remove("border-brand-magenta/30");
-          otherNum?.classList.remove("text-brand-magenta");
+      // 1. Cerrar otros (Usamos las referencias cacheadas)
+      faqData.forEach((other) => {
+        if (other.item !== item) {
+          other.button?.setAttribute("aria-expanded", "false");
+          other.answer?.classList.remove("grid-rows-[1fr]");
+          other.answer?.classList.add("grid-rows-[0fr]");
+          other.icon?.classList.remove("rotate-45", "text-brand-magenta");
+          other.glow?.classList.remove("opacity-100");
+          other.item?.classList.remove("border-brand-magenta/30");
+          other.number?.classList.remove("text-brand-magenta");
         }
       });
 
-      // 2. Toggle del actual (Aquí ya sabemos que existen por la guardia del inicio)
+      // 2. Toggle del actual
       if (!isExpanded) {
         button.setAttribute("aria-expanded", "true");
         answer.classList.remove("grid-rows-[0fr]");

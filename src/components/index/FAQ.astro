@@ -100,39 +100,44 @@ const faqs = [
 </section>
 
 <script is:inline defer>
-  const faqItemsElements = document.querySelectorAll(".faq-item");
+  const faqItems = document.querySelectorAll(".faq-item");
 
-  // 1. Pre-mapear los elementos para evitar consultas redundantes al DOM (O(N^2))
-  const faqData = Array.from(faqItemsElements).map((item) => {
-    return {
-      item,
-      button: item.querySelector(".faq-button"),
-      answer: item.querySelector(".faq-answer"),
-      icon: item.querySelector(".faq-icon"),
-      glow: item.querySelector(".active-glow"),
-      number: item.querySelector(".font-mono")
-    };
-  });
+  const faqData = Array.from(faqItems).map((item) => ({
+    item,
+    button: item.querySelector(".faq-button"),
+    answer: item.querySelector(".faq-answer"),
+    icon: item.querySelector(".faq-icon"),
+    glow: item.querySelector(".active-glow"),
+    number: item.querySelector(".font-mono"),
+  }));
 
-  faqData.forEach((current) => {
-    const { item, button, answer, icon, glow, number } = current;
+  faqData.forEach((data) => {
+    const { item, button, answer, icon, glow, number } = data;
 
-    // CLÁUSULA DE GUARDIA:
     if (!button || !answer || !icon || !glow || !number) return;
 
     button.addEventListener("click", () => {
       const isExpanded = button.getAttribute("aria-expanded") === "true";
 
-      // 1. Cerrar otros (Usamos las referencias cacheadas)
-      faqData.forEach((other) => {
-        if (other.item !== item) {
-          other.button?.setAttribute("aria-expanded", "false");
-          other.answer?.classList.remove("grid-rows-[1fr]");
-          other.answer?.classList.add("grid-rows-[0fr]");
-          other.icon?.classList.remove("rotate-45", "text-brand-magenta");
-          other.glow?.classList.remove("opacity-100");
-          other.item?.classList.remove("border-brand-magenta/30");
-          other.number?.classList.remove("text-brand-magenta");
+      // 1. Cerrar otros
+      faqData.forEach((otherData) => {
+        if (otherData.item !== item) {
+          const {
+            button: otherBtn,
+            answer: otherAns,
+            icon: otherIcon,
+            glow: otherGlow,
+            item: otherItem,
+            number: otherNum,
+          } = otherData;
+
+          otherBtn?.setAttribute("aria-expanded", "false");
+          otherAns?.classList.remove("grid-rows-[1fr]");
+          otherAns?.classList.add("grid-rows-[0fr]");
+          otherIcon?.classList.remove("rotate-45", "text-brand-magenta");
+          otherGlow?.classList.remove("opacity-100");
+          otherItem?.classList.remove("border-brand-magenta/30");
+          otherNum?.classList.remove("text-brand-magenta");
         }
       });
 
@@ -141,16 +146,16 @@ const faqs = [
         button.setAttribute("aria-expanded", "true");
         answer.classList.remove("grid-rows-[0fr]");
         answer.classList.add("grid-rows-[1fr]");
-        
+
         icon.classList.add("rotate-45", "text-brand-magenta");
         glow.classList.add("opacity-100");
         item.classList.add("border-brand-magenta/30");
-        number.classList.add("text-brand-magenta"); 
+        number.classList.add("text-brand-magenta");
       } else {
         button.setAttribute("aria-expanded", "false");
         answer.classList.remove("grid-rows-[1fr]");
         answer.classList.add("grid-rows-[0fr]");
-        
+
         icon.classList.remove("rotate-45", "text-brand-magenta");
         glow.classList.remove("opacity-100");
         item.classList.remove("border-brand-magenta/30");

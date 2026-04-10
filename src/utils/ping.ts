@@ -18,7 +18,7 @@ export async function getLowestPing(host: string, probeFn = probe) {
   const promises = Array.from({ length: 3 }, () =>
     probeFn(host).catch(() => 999)
   );
-  const results = await Promise.all(promises);
 
+  const results = await Promise.all(promises);
   return Math.min(...results);
 }

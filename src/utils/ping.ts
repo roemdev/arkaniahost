@@ -5,6 +5,11 @@ export function probe(host: string): Promise<number> {
   }
 
   return new Promise((resolve, reject) => {
+    const validHostRegex = /^(?!-)[a-z0-9-]{1,63}(?<!-)\.arkaniahost\.xyz$/;
+    if (!validHostRegex.test(host)) {
+      return reject("Invalid host");
+    }
+
     const start = Date.now();
     const img = new Image();
     const timeout = setTimeout(() => reject("timeout"), 3000);

@@ -1,9 +1,12 @@
 /**
- * Safely stringifies an object to JSON, escaping HTML-sensitive characters
- * and Unicode line separators to prevent XSS when embedded in HTML.
+ * Safely stringifies an object to JSON for use in a <script type="application/ld+json"> tag.
+ * Escapes characters that could be used for XSS or script breakout, such as <, >, and &.
+ *
+ * @param obj The object to stringify
+ * @returns A safe JSON string
  */
-export function safeJsonStringify(data: unknown): string {
-  return JSON.stringify(data)
+export function safeJsonStringify(obj: unknown): string {
+  return JSON.stringify(obj)
     .replace(/</g, '\\u003c')
     .replace(/>/g, '\\u003e')
     .replace(/&/g, '\\u0026')

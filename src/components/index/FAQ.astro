@@ -102,31 +102,35 @@ const faqs = [
 <script is:inline defer>
   const faqItems = document.querySelectorAll(".faq-item");
 
-  faqItems.forEach((item) => {
-    const button = item.querySelector(".faq-button");
-    const answer = item.querySelector(".faq-answer");
-    const icon = item.querySelector(".faq-icon");
-    const glow = item.querySelector(".active-glow");
-    const number = item.querySelector(".font-mono"); 
+  const faqData = Array.from(faqItems).map((item) => ({
+    item,
+    button: item.querySelector(".faq-button"),
+    answer: item.querySelector(".faq-answer"),
+    icon: item.querySelector(".faq-icon"),
+    glow: item.querySelector(".active-glow"),
+    number: item.querySelector(".font-mono"),
+  }));
 
-    // 1. CLÁUSULA DE GUARDIA:
-    // Si falta algún elemento esencial, detenemos la ejecución aquí para este item.
-    // Esto elimina el error de "button is possibly null" más abajo.
+  faqData.forEach((data) => {
+    const { item, button, answer, icon, glow, number } = data;
+
     if (!button || !answer || !icon || !glow || !number) return;
 
     button.addEventListener("click", () => {
       const isExpanded = button.getAttribute("aria-expanded") === "true";
 
       // 1. Cerrar otros
-      faqItems.forEach((otherItem) => {
-        if (otherItem !== item) {
-          const otherBtn = otherItem.querySelector(".faq-button");
-          const otherAns = otherItem.querySelector(".faq-answer");
-          const otherIcon = otherItem.querySelector(".faq-icon");
-          const otherGlow = otherItem.querySelector(".active-glow");
-          const otherNum = otherItem.querySelector(".font-mono");
-          
-          // Usamos '?.' para que si algo de esto es null, simplemente lo ignore
+      faqData.forEach((otherData) => {
+        if (otherData.item !== item) {
+          const {
+            button: otherBtn,
+            answer: otherAns,
+            icon: otherIcon,
+            glow: otherGlow,
+            item: otherItem,
+            number: otherNum,
+          } = otherData;
+
           otherBtn?.setAttribute("aria-expanded", "false");
           otherAns?.classList.remove("grid-rows-[1fr]");
           otherAns?.classList.add("grid-rows-[0fr]");
@@ -137,21 +141,21 @@ const faqs = [
         }
       });
 
-      // 2. Toggle del actual (Aquí ya sabemos que existen por la guardia del inicio)
+      // 2. Toggle del actual
       if (!isExpanded) {
         button.setAttribute("aria-expanded", "true");
         answer.classList.remove("grid-rows-[0fr]");
         answer.classList.add("grid-rows-[1fr]");
-        
+
         icon.classList.add("rotate-45", "text-brand-magenta");
         glow.classList.add("opacity-100");
         item.classList.add("border-brand-magenta/30");
-        number.classList.add("text-brand-magenta"); 
+        number.classList.add("text-brand-magenta");
       } else {
         button.setAttribute("aria-expanded", "false");
         answer.classList.remove("grid-rows-[1fr]");
         answer.classList.add("grid-rows-[0fr]");
-        
+
         icon.classList.remove("rotate-45", "text-brand-magenta");
         glow.classList.remove("opacity-100");
         item.classList.remove("border-brand-magenta/30");

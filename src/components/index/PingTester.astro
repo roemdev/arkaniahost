@@ -83,6 +83,21 @@ const nodes = [
 </section>
 
 <script>
+  const nodes = [
+    { id: 'do-sti', host: 'do-sti-01.arkaniahost.xyz' },
+    { id: 'us-abe', host: 'us-abe-01.arkaniahost.xyz' }
+  ];
+
+  const nodeCache: Record<string, { text: HTMLElement | null, line: HTMLElement | null, bars: (HTMLElement | null)[] }> = Object.fromEntries(
+    nodes.map(node => [
+      node.id,
+      {
+        text: document.getElementById(`ping-text-${node.id}`),
+        line: document.getElementById(`status-line-${node.id}`),
+        bars: [1, 2, 3, 4].map(i => document.getElementById(`bar-${node.id}-${i}`))
+      }
+    ])
+  );
 
   function probe(host: string): Promise<number> {
     return new Promise((resolve, reject) => {
@@ -104,14 +119,14 @@ const nodes = [
   }
 
   function updateUI(id: string, ping: number) {
-    const text = document.getElementById(`ping-text-${id}`);
-    const line = document.getElementById(`status-line-${id}`);
+    const cache = nodeCache[id];
+    if (!cache || !cache.text || !cache.line) return;
+
+    const { text, line, bars: barElements } = cache;
     
     const cGreen = "#22c55e";  
     const cYellow = "#eab308"; 
     const cRed = "#ef4444";    
-
-    if (!text || !line) return;
 
     if (ping >= 999) {
       text.innerText = "OFF";
@@ -121,48 +136,43 @@ const nodes = [
     }
 
     let color = cGreen;
-    let bars = 4;
+    let barsCount = 4;
 
     if (ping < 70) {
         color = cGreen;
-        bars = 4;
+        barsCount = 4;
     } else if (ping < 130) {
         color = cYellow;
-        bars = 3;
+        barsCount = 3;
     } else if (ping < 200) {
         color = "#f97316"; 
-        bars = 2;
+        barsCount = 2;
     } else {
         color = cRed;
-        bars = 1;
+        barsCount = 1;
     }
 
     text.innerText = `${Math.floor(ping)}ms`;
     text.style.color = color;
     line.style.backgroundColor = color;
 
-    for (let i = 1; i <= 4; i++) {
-      const bar = document.getElementById(`bar-${id}-${i}`);
+    for (let i = 0; i < 4; i++) {
+      const bar = barElements[i];
       if (bar) {
-          bar.style.backgroundColor = i <= bars ? color : "#1e293b"; 
+          bar.style.backgroundColor = (i + 1) <= barsCount ? color : "#1e293b";
       }
     }
   }
 
   const runTest = async () => {
-    const nodes = [
-      { id: 'do-sti', host: 'do-sti-01.arkaniahost.xyz' },
-      { id: 'us-abe', host: 'us-abe-01.arkaniahost.xyz' }
-    ];
-
     const btn = document.getElementById('refresh-ping');
     if(btn) btn.classList.add('animate-pulse', 'pointer-events-none');
 
     await Promise.all(nodes.map(async (node) => {
-      const text = document.getElementById(`ping-text-${node.id}`);
-      if (text) {
-          text.innerText = "...";
-          text.style.color = "#94a3b8";
+      const cache = nodeCache[node.id];
+      if (cache && cache.text) {
+          cache.text.innerText = "...";
+          cache.text.style.color = "#94a3b8";
       }
 
       const ping = await getLowestPing(node.host);

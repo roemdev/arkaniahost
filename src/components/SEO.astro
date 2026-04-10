@@ -1,11 +1,13 @@
 ---
+import { safeJsonStringify } from "../utils/security";
+
 export interface Props {
   title: string;
   description: string;
   canonicalURL?: string | URL;
   image?: string;
   keywords?: string;
-  schema?: Record<string, any>;
+  schema?: Record<string, unknown>;
 }
 
 const {
@@ -49,5 +51,5 @@ const {
 
 <!-- JSON-LD Schema -->
 {schema && (
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={safeJsonStringify(schema)} />
 )}

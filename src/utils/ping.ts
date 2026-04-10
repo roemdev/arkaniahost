@@ -1,4 +1,9 @@
 export function probe(host: string): Promise<number> {
+  const hostRegex = /^(?!-)[a-z0-9-]{1,63}(?<!-)\.arkaniahost\.xyz$/;
+  if (!hostRegex.test(host)) {
+    return Promise.reject(new Error("Invalid host"));
+  }
+
   return new Promise((resolve, reject) => {
     const start = Date.now();
     const img = new Image();

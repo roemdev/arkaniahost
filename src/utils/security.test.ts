@@ -22,7 +22,6 @@ test('safeJsonStringify escapes dangerous characters', () => {
   assert.strictEqual(result.includes('\\u0026'), true, 'Should contain \\u0026');
   assert.strictEqual(result.includes('\\u2028'), true, 'Should contain \\u2028');
 
-  // Verify it is still valid JSON
   const parsed = JSON.parse(result);
   assert.deepStrictEqual(parsed, input, 'Parsed JSON should match input');
 });

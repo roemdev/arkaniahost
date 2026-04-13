@@ -41,7 +41,7 @@ const sections = [
 <Layout title="Política de Privacidad | ArkaniaHost">
   <Navbar />
 
-  <!-- HEADER -->
+
   <section class="relative pt-32 pb-16 bg-slate-950 overflow-hidden">
     <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
     <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none"></div>
@@ -64,14 +64,14 @@ const sections = [
     </div>
   </section>
 
-  <!-- CONTENT -->
+
   <section class="py-20 bg-slate-950 border-t border-white/5 relative">
     <div class="max-w-4xl mx-auto px-4">
       
       <div class="space-y-6">
         {sections.map((section, index) => (
           <div class="group relative bg-slate-900/30 border border-white/5 rounded-2xl p-8 hover:bg-slate-900/50 transition-colors overflow-hidden">
-            <!-- Número de fondo decorativo -->
+
             <span class="absolute -top-6 -right-4 text-9xl font-black text-white/[0.02] group-hover:text-cyan-500/[0.05] transition-colors select-none pointer-events-none z-0">
               {index + 1}
             </span>
@@ -97,7 +97,7 @@ const sections = [
         ))}
       </div>
 
-      <!-- FOOTER NOTE -->
+
        <br>
       <div class="mt-24 p-6 bg-cyan-500/5 border border-cyan-500/20 rounded-xl flex gap-4 items-start relative z-10">
         <Shield class="text-cyan-500 shrink-0 mt-1" size={20} />

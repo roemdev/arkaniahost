@@ -119,7 +119,6 @@ const faqs = [
     button.addEventListener("click", () => {
       const isExpanded = button.getAttribute("aria-expanded") === "true";
 
-      // 1. Cerrar otros
       faqData.forEach((otherData) => {
         if (otherData.item !== item) {
           const {
@@ -141,7 +140,6 @@ const faqs = [
         }
       });
 
-      // 2. Toggle del actual
       if (!isExpanded) {
         button.setAttribute("aria-expanded", "true");
         answer.classList.remove("grid-rows-[0fr]");

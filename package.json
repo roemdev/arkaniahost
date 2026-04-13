@@ -6,7 +6,6 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
     "test": "node --test --experimental-strip-types 'src/**/*.test.ts'"
   },
   "dependencies": {
@@ -17,5 +16,8 @@
     "astro": "^5.16.6",
     "flag-icons": "^7.5.0",
     "tailwindcss": "^4.1.18"
-  }
+  },
+  "devDependencies": {
+  "astro": "^5.16.6"
+}
 }

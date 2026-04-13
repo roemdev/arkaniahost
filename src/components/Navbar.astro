@@ -3,24 +3,18 @@ import {
   Terminal, CreditCard, LayoutGrid, ExternalLink
 } from "@lucide/astro";
 
-// Obtenemos la ruta actual desde el servidor
 const pathname = Astro.url.pathname;
 
-// Función simple para verificar si un link está activo
 const isActive = (href: string) => {
-  // Caso especial para Inicio
   if (href === '/') return pathname === '/';
-  // Ignoramos anclas y enlaces externos
   if (href.startsWith('http') || href.startsWith('#')) return false;
   
-  // Normalización para evitar errores con trailing slashes
   const currentPath = pathname.endsWith('/') && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
   const targetPath = href.endsWith('/') && href.length > 1 ? href.slice(0, -1) : href;
 
   return currentPath === targetPath || currentPath.startsWith(targetPath + '/');
 };
 
-// Verificaciones específicas para los enlaces principales
 const isHomeActive = isActive('/');
 const isAboutActive = isActive('/about');
 const isSupportActive = isActive('/help');

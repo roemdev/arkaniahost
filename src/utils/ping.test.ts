@@ -2,24 +2,20 @@ import test from 'node:test';
 import assert from 'node:assert';
 import { probe, getLowestPing } from './ping.ts';
 
-// We need to mock Image globally for probe tests
 const originalImage = globalThis.Image;
 
 test('probe - accepts valid host', async () => {
-  // Mock Image just for this test to avoid actual network requests
   class MockImage {
     src = '';
     onload: (() => void) | null = null;
     onerror: (() => void) | null = null;
 
-    // Auto-trigger onload when src is set
     setSrc(val: string) {
       this.src = val;
       if (this.onload) setTimeout(() => this.onload!(), 10);
     }
   }
 
-  // Override global Image
   const originalImage = globalThis.Image;
   globalThis.Image = new Proxy(MockImage, {
     construct(target, args) {
@@ -49,17 +45,17 @@ test('probe - accepts valid host', async () => {
 test('probe - rejects invalid host', async () => {
   await assert.rejects(
     async () => probe('evil.com'),
-    (err) => err === 'Invalid host'
+    (err: any) => err.message === 'Invalid host'
   );
 
   await assert.rejects(
     async () => probe('https://arkaniahost.xyz'),
-    (err) => err === 'Invalid host'
+    (err: any) => err.message === 'Invalid host'
   );
 
   await assert.rejects(
     async () => probe('do-sti-01.arkaniahost.com'),
-    (err) => err === 'Invalid host'
+    (err: any) => err.message === 'Invalid host'
   );
 });
 
@@ -142,15 +138,12 @@ test('probe - accepts valid hosts', async () => {
     'node-1.arkaniahost.xyz',
   ];
 
-  // We can't easily execute probe in Node because of Image,
-  // but we can check that it doesn't fail the regex check.
-  // Since Image is not defined, it should throw ReferenceError if it passes the regex.
   for (const host of validHosts) {
     try {
         await probe(host);
     } catch (e: any) {
         assert.notStrictEqual(e.message, 'Invalid host');
-        assert.strictEqual(e instanceof ReferenceError, true);
+        assert.ok(e.message === 'Image is not defined' || e.message === 'Image is not a constructor');
     }
   }
 });

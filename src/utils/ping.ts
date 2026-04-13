@@ -22,7 +22,6 @@ export function probe(host: string): Promise<number> {
 }
 
 export async function getLowestPing(host: string, probeFn = probe) {
-  // Warmup
   await probeFn(host).catch(() => {});
 
   const promises = Array.from({ length: 3 }, () =>

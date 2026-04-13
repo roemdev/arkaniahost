@@ -7,7 +7,6 @@ import {
   Lock, Gavel, Server
 } from "@lucide/astro";
 
-// --- DATOS ---
 
 const legalDocs = [
   {
@@ -57,7 +56,7 @@ const schema = {
 <Layout title="Centro Legal | ArkaniaHost" description="Términos de servicio, política de privacidad y acuerdos de nivel de servicio (SLA) de ArkaniaHost." schema={schema}>
   <Navbar />
 
-  <!-- HERO HEADER -->
+
   <section class="relative pt-32 pb-20 overflow-hidden">
     <div class="absolute inset-0 bg-slate-950">
       <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
@@ -80,19 +79,19 @@ const schema = {
     </div>
   </section>
 
-  <!-- INDEXER GRID -->
+
   <section class="py-20 bg-slate-950 border-t border-white/5 relative">
     <div class="max-w-6xl mx-auto px-4">
       <h2 class="sr-only">Documentos Legales</h2>
       <div class="grid md:grid-cols-3 gap-8">
         {legalDocs.map((doc) => (
           <a href={doc.link} class={`group relative bg-slate-900/50 border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:-translate-y-1 ${doc.border} ${doc.bgHover}`}>
-            <!-- Icono Flotante -->
+
             <div class="mb-6 inline-block p-4 rounded-xl bg-slate-950 border border-white/5 shadow-lg group-hover:scale-110 transition-transform duration-300">
               <doc.icon size={32} class={doc.color} />
             </div>
 
-            <!-- Contenido -->
+
             <div class="space-y-4">
               <div>
                 <span class={`font-mono text-[10px] uppercase tracking-widest font-bold block mb-1 ${doc.color}`}>
@@ -108,7 +107,7 @@ const schema = {
               </p>
             </div>
 
-            <!-- Flecha de acción -->
+
             <div class="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white/50 group-hover:text-white transition-colors">
               Leer Documento <ArrowRight size={14} class="group-hover:translate-x-1 transition-transform" />
             </div>
@@ -118,7 +117,7 @@ const schema = {
     </div>
   </section>
 
-  <!-- INFO BLOCK -->
+
   <section class="py-20 bg-slate-900/30 border-y border-white/5">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <div class="flex items-center justify-center gap-3 mb-6 text-yellow-500">

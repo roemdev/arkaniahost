@@ -1,0 +1,6 @@
+{
+  "question": "¿Puedo traer mi servidor de otro host?",
+  "answer": "Sí, la migración es gratuita. Súbenos el backup de tu mundo (o danos acceso SFTP al host anterior) y nosotros nos encargamos de moverlo sin pérdida de datos. El tiempo estimado depende del tamaño del mundo, pero en la mayoría de los casos está listo en menos de una hora.",
+  "order": 3,
+  "openByDefault": false
+}

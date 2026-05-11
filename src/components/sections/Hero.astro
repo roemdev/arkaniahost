@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets"; // 1. Importar el componente de imagen
+import minecraftBg from "../../../src/assets/minecraft-bg.png";
+import { ROTATING_WORDS } from "../../data/navigation";
+
+const firstWord = ROTATING_WORDS[0];
+---
+
+<header
+    class="relative pt-48 pb-16 overflow-hidden flex flex-col items-center justify-center text-center min-h-[75vh]"
+>
+  <!-- Imagen de fondo optimizada -->
+  <div class="absolute inset-0 z-0">
+    <Image
+        src={minecraftBg}
+        alt="Servidor Minecraft de fondo"
+        class="w-full h-full object-cover opacity-50 grayscale-[10%]"
+        loading="eager"
+        fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/80 to-[#030303]"></div>
+  </div>
+
+  <div class="max-w-4xl mx-auto px-6 relative z-10 w-full mt-10">
+    <div class="animate-fade-in-up">
+
+      <!-- Badge de latencia -->
+      <a
+          href="#planes"
+          class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/10 text-[10px] sm:text-xs font-medium text-gray-300 hover:bg-white/[0.08] transition-colors mb-8 backdrop-blur-sm"
+      >
+        <span class="w-1.5 h-1.5 rounded-full bg-brand"></span>
+        Latencia optimizada para todo LATAM
+        <i class="fa-solid fa-arrow-right ml-1 text-[10px] opacity-50"></i>
+      </a>
+
+      <!-- Titular con texto rotativo -->
+      <h1 class="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight text-white">
+        El servidor para tus <span id="rotating-text" class="text-brand transition-opacity duration-300">{firstWord}</span><br />
+        <span class="text-white">Cero complicaciones.</span>
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
+        Infraestructura premium, almacenamiento ilimitado y un panel diseñado para humanos.
+        Despliega tu mundo en segundos sin tocar código.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
+        <a
+            href="#planes"
+            class="w-full sm:w-auto px-10 py-4 bg-brand hover:bg-[#aa00d4] text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_20px_rgba(204,0,255,0.2)]"
+        >
+          Ver planes ahora
+        </a>
+        <span class="text-gray-400 text-sm font-medium">
+          desde <span class="text-white font-bold">$2.99</span> / mes
+        </span>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<script>
+  import { ROTATING_WORDS } from "../../data/navigation";
+
+  const el = document.getElementById("rotating-text") as HTMLElement;
+  let index = 0;
+
+  setInterval(() => {
+    el.style.opacity = "0";
+    setTimeout(() => {
+      index = (index + 1) % ROTATING_WORDS.length;
+      el.textContent = ROTATING_WORDS[index];
+      el.style.opacity = "1";
+    }, 400);
+  }, 3000);
+</script>

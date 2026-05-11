@@ -1,0 +1,17 @@
+{
+  "name": "Elite",
+  "tagline": "Para proyectos grandes que necesitan máxima estabilidad.",
+  "price": 11.99,
+  "currency": "USD",
+  "featured": false,
+  "order": 4,
+  "features": [
+    "Prioridad alta de recursos",
+    "Ideal para networks pequeñas",
+    "12 GB de RAM",
+    "Asistencia personalizada",
+    "Configuración avanzada incluida",
+    "Máximo rendimiento disponible"
+  ],
+  "paymenterUrl": "https://billing.arkaniahost.xyz/products/minecraft-server/elite/checkout"
+}

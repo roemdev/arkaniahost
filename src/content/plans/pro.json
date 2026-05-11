@@ -1,0 +1,17 @@
+{
+  "name": "Pro",
+  "tagline": "Pensado para modpacks y comunidades más exigentes.",
+  "price": 8.99,
+  "currency": "USD",
+  "featured": true,
+  "badge": "El todoterreno",
+  "order": 3,
+  "features": [
+    "Soporta todos los modpacks",
+    "Añade plugins a gran escala",
+    "9 GB de RAM",
+    "Hasta 40 jugadores recomendados",
+    "Mayor margen para picos de carga"
+  ],
+  "paymenterUrl": "https://billing.arkaniahost.xyz/products/minecraft-server/pro/checkout"
+}

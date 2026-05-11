@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+
+const testimonials = (await getCollection("testimonials")).sort(
+  (a, b) => a.data.order - b.data.order
+);
+
+// Genera los iconos de estrellas según el rating (admite medias estrellas)
+function starsFor(rating: number): string[] {
+  const stars: string[] = [];
+  for (let i = 1; i <= 5; i++) {
+    if (rating >= i) stars.push("fa-solid fa-star");
+    else if (rating >= i - 0.5) stars.push("fa-solid fa-star-half-stroke");
+    else stars.push("fa-regular fa-star");
+  }
+  return stars;
+}
+---
+
+<section id="testimonios" class="py-24 border-t border-white/[0.08] relative z-10">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+
+    <h2 class="font-display text-3xl font-bold mb-12 text-white">Confianza Real</h2>
+
+    <div class="grid md:grid-cols-3 gap-6 text-left">
+      {testimonials.map(({ data: t }) => (
+        <div class="glass-card p-6 flex flex-col js-reveal">
+          <!-- Estrellas -->
+          <div class="text-brand text-xs mb-4 flex gap-1">
+            {starsFor(t.rating).map((cls) => <i class={cls}></i>)}
+          </div>
+
+          <p class="text-gray-300 text-sm font-light leading-relaxed mb-6 italic">
+            "{t.quote}"
+          </p>
+
+          <!-- Avatar e identificación -->
+          <div class="mt-auto flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center font-bold text-[10px]">
+              {t.initials}
+            </div>
+            <div class="text-xs font-bold">
+              {t.name}
+              <span class="block text-[10px] text-gray-500 font-normal">{t.plan}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

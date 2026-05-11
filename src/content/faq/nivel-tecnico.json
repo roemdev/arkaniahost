@@ -1,0 +1,6 @@
+{
+  "question": "¿Qué nivel técnico necesito para empezar?",
+  "answer": "Ninguno. Instalación, encendido y respaldos se manejan con botones gráficos, sin necesidad de comandos.",
+  "order": 2,
+  "openByDefault": false
+}

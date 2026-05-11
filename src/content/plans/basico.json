@@ -1,0 +1,15 @@
+{
+  "name": "Starter",
+  "tagline": "Perfecto para jugar con amigos sin complicaciones.",
+  "price": 2.99,
+  "currency": "USD",
+  "featured": false,
+  "order": 1,
+  "features": [
+    "Excelente en Vanilla o Paper",
+    "Hasta 4 jugadores recomendados",
+    "3 GB de RAM",
+    "Soporta algunos plugins ligeros"
+  ],
+  "paymenterUrl": "https://billing.arkaniahost.xyz/products/minecraft-server/starter/checkout"
+}

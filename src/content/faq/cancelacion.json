@@ -1,0 +1,6 @@
+{
+  "question": "¿Hay contratos o penalizaciones por cancelar?",
+  "answer": "No. El servicio es mes a mes y puedes cancelarlo en cualquier momento desde el panel de facturación. Si cancelas antes de que termine el período pagado, el servidor sigue activo hasta la fecha de vencimiento. No hacemos cobros adicionales.",
+  "order": 4,
+  "openByDefault": false
+}

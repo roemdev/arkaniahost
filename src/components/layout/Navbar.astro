@@ -1,0 +1,47 @@
+---
+import { NAV_LINKS } from "../../data/navigation";
+
+const panelUrl  = import.meta.env.PUBLIC_PANEL_URL;
+const clientUrl = import.meta.env.PUBLIC_BILLING_URL;
+---
+
+<nav class="w-full glass-nav border-b border-white/[0.08]">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+
+    <!-- Logo -->
+    <a href="/" class="font-display font-bold text-xl tracking-tight text-white">
+      Arkania<span class="text-brand">Host</span>.
+    </a>
+
+    <!-- Links Desktop -->
+    <div class="hidden md:flex items-center gap-8">
+      {NAV_LINKS.map((link) => (
+        <a
+          href={link.href}
+          class="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+
+    <!-- Área de acceso -->
+    <div class="flex items-center gap-4 sm:gap-6">
+      <a
+        href={panelUrl}
+        class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+      >
+        <i class="fa-solid fa-server text-xs opacity-70"></i>
+        <span class="hidden sm:inline">Panel</span>
+      </a>
+      <div class="w-[1px] h-4 bg-white/[0.08]"></div>
+      <a
+        href={clientUrl}
+        class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+      >
+        <i class="fa-regular fa-user text-xs opacity-70"></i>
+        <span class="hidden sm:inline">Cliente</span>
+      </a>
+    </div>
+  </div>
+</nav>

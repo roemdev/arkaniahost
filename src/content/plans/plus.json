@@ -1,0 +1,16 @@
+{
+  "name": "Plus",
+  "tagline": "Ideal para plugins y mundos expandidos.",
+  "price": 5.99,
+  "currency": "USD",
+  "featured": false,
+  "order": 2,
+  "features": [
+    "Rendimiento estable para Survival",
+    "Hasta 10 jugadores recomendados",
+    "6 GB de RAM",
+    "Bueno para modpacks básicos",
+    "Excelente con plugins"
+  ],
+  "paymenterUrl": "https://billing.arkaniahost.xyz/products/minecraft-server/plus/checkout"
+}

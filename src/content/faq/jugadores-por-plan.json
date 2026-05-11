@@ -1,0 +1,6 @@
+{
+  "question": "¿Cuántos jugadores soporta cada plan?",
+  "answer": "Depende del tipo de servidor y los mods que uses. En Vanilla puro, 3 GB RAM suele ser suficiente para 5–8 jugadores. Con modpacks medianos (40–80 mods) recomendamos al menos 6 GB. Para modpacks pesados como All the Mods o FTB, 9–12 GB. Si tienes dudas, escríbenos y te ayudamos a elegir.",
+  "order": 1,
+  "openByDefault": true
+}

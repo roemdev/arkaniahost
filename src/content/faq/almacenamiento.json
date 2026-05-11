@@ -1,0 +1,6 @@
+{
+  "question": "¿Qué implica el almacenamiento ilimitado?",
+  "answer": "Operamos sin cuotas de disco estrictas. Tu mundo puede expandirse geográfica y arquitectónicamente sin recargos.",
+  "order": 1,
+  "openByDefault": true
+}

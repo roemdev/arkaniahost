@@ -1,0 +1,115 @@
+---
+import { SOCIAL_LINKS } from "../../data/navigation";
+
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: "Plataforma",
+    links: [
+      { label: "Ver planes",       href: "https://billing.arkaniahost.xyz/products/minecraft-server" },
+      { label: "Panel de Clientes",  href: "https://billing.arkaniahost.xyz" },
+      { label: "Panel de control", href: "https://panel.arkaniahost.xyz" },
+    ],
+  },
+  {
+    title: "Soporte",
+    links: [
+      { label: "Centro de ayuda",  href: "https://billing.arkaniahost.xyz/admin/tickets/create" },
+      { label: "Discord",          href: "https://discord.arkaniahost.xyz"},
+      { label: "Estado del sistema", href: "https://status.arkaniahost.xyz" },
+    ],
+  },
+  {
+    title: "Legal",
+    links: [
+      { label: "Términos de servicio", href: "#"   },
+      { label: "Política de privacidad", href: "#" },
+      { label: "Política de reembolso", href: "#" },
+    ],
+  },
+];
+---
+
+<footer class="pt-20 pb-10 relative z-10 bg-[#030303]">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <!-- Grid superior -->
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-10 mb-16">
+
+      <!-- Columna de marca — ocupa 2 columnas en desktop -->
+      <div class="col-span-2">
+        <div class="font-display font-bold text-2xl text-white mb-4">
+          Arkania<span class="text-brand">Host</span>.
+        </div>
+        <p class="text-gray-500 text-sm font-light leading-relaxed max-w-xs mb-8">
+          Infraestructura premium para comunidades de Minecraft en LATAM.
+          Rendimiento real, sin sobreventa.
+        </p>
+
+        <!-- Redes sociales -->
+        <div class="flex gap-3">
+          {SOCIAL_LINKS.map((s) => (
+              <a
+                  href={s.href}
+                  aria-label={s.label}
+                  class="w-8 h-8 rounded-md bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-gray-400 hover:text-white hover:border-white/20 transition-colors"
+              >
+                <i class={`${s.icon} text-xs`}></i>
+              </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Columnas de links -->
+      {columns.map((col) => (
+          <div>
+            <h4 class="text-white font-semibold text-xs uppercase tracking-widest mb-5">
+              {col.title}
+            </h4>
+            <ul class="space-y-3.5">
+              {col.links.map((link) => (
+                  <li>
+                    <a
+                        href={link.href}
+                        class="text-sm text-gray-500 hover:text-gray-200 transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+              ))}
+            </ul>
+          </div>
+      ))}
+    </div>
+
+    <!-- Separador -->
+    <div class="border-t border-white/[0.06]"></div>
+
+    <!-- Barra inferior -->
+    <div class="pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="space-y-1.5">
+        <p class="text-gray-600 text-xs">
+          &copy; {year} ArkaniaHost. Todos los derechos reservados.
+        </p>
+        <!-- Disclaimer obligatorio para cualquier negocio relacionado a Minecraft -->
+        <p class="text-gray-700 text-xs">
+          Minecraft es marca registrada de Mojang AB. ArkaniaHost no está asociado ni respaldado por Mojang o Microsoft.
+        </p>
+      </div>
+
+      <!-- Badge de estado del sistema -->
+      <a
+          href="https://status.arkaniahost.xyz"
+          class="flex items-center gap-2 bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-full hover:border-white/[0.12] transition-colors flex-shrink-0"
+      >
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+        </span>
+        <span class="text-xs text-gray-400">Todos los sistemas operacionales</span>
+      </a>
+    </div>
+
+  </div>
+</footer>

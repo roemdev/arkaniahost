@@ -1,0 +1,6 @@
+{
+  "question": "¿Puedo cambiar la versión de Minecraft o instalar modpacks?",
+  "answer": "Sí. Desde el panel puedes cambiar entre versiones de Vanilla, Paper, Fabric, Forge o NeoForge con un par de clics. Para modpacks, basta con subir el archivo o instalarlo directamente desde CurseForge. No necesitas tocar ningún archivo de configuración manualmente.",
+  "order": 2,
+  "openByDefault": false
+}

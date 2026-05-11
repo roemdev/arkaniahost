@@ -1,0 +1,6 @@
+{
+  "question": "¿Hacen backups automáticos de mi mundo?",
+  "answer": "Sí. Todos los planes incluyen backups diarios automáticos que se guardan por 7 días. Puedes restaurar cualquier punto desde el panel con un clic. También puedes hacer backups manuales en cualquier momento antes de instalar algo nuevo.",
+  "order": 5,
+  "openByDefault": false
+}

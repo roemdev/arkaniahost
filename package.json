@@ -2,18 +2,20 @@
   "name": "arkaniahost",
   "type": "module",
   "version": "0.1.0",
+  "packageManager": "pnpm@11.1.2",
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=24"
   },
   "scripts": {
-    "dev":     "astro dev",
-    "build":   "astro build",
+    "dev": "astro dev",
+    "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro":             "^6.0.0",
-    "tailwindcss":       "^4.0.0",
-    "@tailwindcss/vite": "^4.0.0"
+    "astro": "^6.3.3",
+    "tailwindcss": "^4.3.0",
+    "@tailwindcss/vite": "^4.3.0",
+    "sharp": "^0.34.5"
   },
   "overrides": {
     "vite": "^7"

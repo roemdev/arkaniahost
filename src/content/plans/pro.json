@@ -1,10 +1,9 @@
 {
   "name": "Pro",
   "tagline": "Pensado para modpacks y comunidades más exigentes.",
-  "price": 8.99,
+  "price": 22.50,
   "currency": "USD",
-  "featured": true,
-  "badge": "El todoterreno",
+  "featured": false,
   "order": 3,
   "features": [
     "Soporta todos los modpacks",

@@ -1,9 +1,10 @@
 {
   "name": "Plus",
   "tagline": "Ideal para plugins y mundos expandidos.",
-  "price": 5.99,
+  "price": 14.99,
   "currency": "USD",
-  "featured": false,
+  "featured": true,
+  "badge": "EL IDEAL",
   "order": 2,
   "features": [
     "Rendimiento estable para Survival",

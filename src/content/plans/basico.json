@@ -1,7 +1,7 @@
 {
   "name": "Starter",
   "tagline": "Perfecto para jugar con amigos sin complicaciones.",
-  "price": 4.00,
+  "price": 4,
   "currency": "USD",
   "featured": false,
   "order": 1,

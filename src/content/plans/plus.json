@@ -1,7 +1,7 @@
 {
   "name": "Plus",
   "tagline": "Ideal para plugins y mundos expandidos.",
-  "price": 7.00,
+  "price": 7,
   "currency": "USD",
   "featured": false,
   "order": 2,

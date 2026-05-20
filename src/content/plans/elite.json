@@ -1,7 +1,7 @@
 {
   "name": "Elite",
   "tagline": "Para proyectos grandes que necesitan máxima estabilidad.",
-  "price": 13.00,
+  "price": 13,
   "currency": "USD",
   "featured": false,
   "order": 4,

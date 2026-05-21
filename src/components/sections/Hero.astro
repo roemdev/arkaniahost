@@ -7,13 +7,11 @@ import { ROTATING_WORDS } from "../../data/navigation";
 const firstWord = ROTATING_WORDS[0];
 ---
 
-<header
-    class="relative pt-48 pb-16 overflow-hidden flex flex-col items-center justify-center text-center min-h-[75vh]"
->
+<header class="relative pt-48 pb-16 overflow-hidden flex flex-col items-center justify-center text-center min-h-[75vh]">
   <div class="absolute inset-0 z-0">
     <Image
         src={minecraftBg}
-        alt="Servidor Minecraft de fondo"
+        alt="ArkaniaHost - Hosting de Minecraft en LATAM (Fondo)"
         class="w-full h-full object-cover opacity-50 grayscale-[10%]"
         loading="eager"
         fetchpriority="high"
@@ -33,10 +31,14 @@ const firstWord = ROTATING_WORDS[0];
         <i class="fa-solid fa-arrow-right ml-1 text-[10px] opacity-50"></i>
       </a>
 
-      <h1 class="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight text-white">
+      <!-- H1 Semántico para SEO -->
+      <h1 class="sr-only">Hosting de Minecraft en LATAM</h1>
+
+      <!-- Título Visual -->
+      <h2 class="font-display text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight text-white">
         El servidor para tus <span id="rotating-text" class="text-brand transition-opacity duration-300">{firstWord}</span><br />
         <span class="text-white">Cero complicaciones.</span>
-      </h1>
+      </h2>
 
       <p class="text-base sm:text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light leading-relaxed">
         Tu servidor de Minecraft con Hosting Premium Simplificado. Infraestructura de primera, almacenamiento ilimitado y un panel diseñado para humanos.
@@ -59,7 +61,7 @@ const firstWord = ROTATING_WORDS[0];
          <div class="absolute inset-0 bg-brand/20 blur-[120px] pointer-events-none"></div>
          <Image
              src={panelImg}
-             alt="Panel de Control ArkaniaHost"
+             alt="Panel de Control Pterodactyl de ArkaniaHost"
              class="w-full h-auto object-cover relative z-10 rounded-xl"
              loading="eager"
          />

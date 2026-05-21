@@ -34,11 +34,28 @@ const schema = {
       url: "https://arkaniahost.xyz",
       name: "ArkaniaHost",
       description:
-        "Infraestructura premium y almacenamiento ilimitado para comunidades en LATAM. Rendimiento extremo simplificado.",
+        "Hosting de servidores de Minecraft en LATAM con almacenamiento NVMe, ping ultrabajo, instalador de modpacks 1 clic y soporte directo. Cero sobreventa.",
       publisher: {
         "@id": "https://arkaniahost.xyz/#organization",
       },
     },
+    {
+      "@type": "Product",
+      "@id": "https://arkaniahost.xyz/#product",
+      name: "Hosting de Minecraft en LATAM",
+      description: "Servidores de Minecraft de alto rendimiento con ping optimizado para Latinoamérica.",
+      brand: {
+        "@type": "Brand",
+        name: "ArkaniaHost"
+      },
+      offers: {
+        "@type": "Offer",
+        url: "https://arkaniahost.xyz/#planes",
+        priceCurrency: "USD",
+        price: "2.99",
+        availability: "https://schema.org/InStock"
+      }
+    }
   ],
 };
 ---

@@ -1,60 +1,72 @@
 ---
+import { Image } from "astro:assets";
 import { SOCIAL_LINKS } from "../../data/navigation";
+import logoImg from "../../assets/logo-no-bg.png";
 
 const year = new Date().getFullYear();
 
 const columns = [
   {
-    title: "Plataforma",
+    title: "Servicios",
     links: [
-      { label: "Ver planes",       href: "https://billing.arkaniahost.xyz/products/minecraft-server" },
-      { label: "Panel de Clientes",  href: "https://billing.arkaniahost.xyz" },
-      { label: "Panel de control", href: "https://panel.arkaniahost.xyz" },
+      { label: "Minecraft Java", href: "https://billing.arkaniahost.xyz/products/minecraft-server", isExternal: true },
+      { label: "Minecraft Bedrock", href: "https://billing.arkaniahost.xyz/products/minecraft-server", isExternal: true },
+      { label: "Ver todos los planes", href: "https://billing.arkaniahost.xyz/products/minecraft-server", isExternal: true },
     ],
   },
   {
-    title: "Soporte",
+    title: "Plataforma",
     links: [
-      { label: "Documentación",    href: "https://docs.arkaniahost.xyz" },
-      { label: "Centro de ayuda",  href: "https://billing.arkaniahost.xyz/admin/tickets/create" },
-      { label: "Discord",          href: "https://discord.arkaniahost.xyz"},
-      { label: "Estado del sistema", href: "https://status.arkaniahost.xyz" },
+      { label: "Panel Pterodactyl", href: "https://panel.arkaniahost.xyz", isExternal: true },
+      { label: "Área de Clientes",  href: "https://billing.arkaniahost.xyz", isExternal: true },
+      { label: "Estado del sistema", href: "https://status.arkaniahost.xyz", isExternal: true },
+    ],
+  },
+  {
+    title: "Recursos",
+    links: [
+      { label: "Centro de ayuda",  href: "https://billing.arkaniahost.xyz/admin/tickets/create", isExternal: true },
+      { label: "Documentación",    href: "/docs", isExternal: false },
+      { label: "Nuestro Blog",     href: "/blog", isExternal: false },
+      { label: "Comunidad Discord", href: "https://discord.arkaniahost.xyz", isExternal: true },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Términos de servicio", href: "/legal/terms" },
-      { label: "Política de privacidad", href: "/legal/privacy" },
-      { label: "SLA y Reembolsos", href: "/legal/sla" },
+      { label: "Términos de servicio", href: "/legal/terms", isExternal: false },
+      { label: "Política de privacidad", href: "/legal/privacy", isExternal: false },
+      { label: "SLA y Reembolsos", href: "/legal/sla", isExternal: false },
     ],
   },
 ];
 ---
 
-<footer class="pt-20 pb-10 relative z-10 bg-[#030303]">
+<footer class="pt-20 pb-10 relative z-10 bg-[#030303] border-t border-white/[0.05]">
   <div class="max-w-7xl mx-auto px-6">
 
     <!-- Grid superior -->
-    <div class="grid grid-cols-2 md:grid-cols-5 gap-10 mb-16">
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-10 mb-16">
 
       <!-- Columna de marca — ocupa 2 columnas en desktop -->
-      <div class="col-span-2">
-        <div class="font-display font-bold text-2xl text-white mb-4">
-          Arkania<span class="text-brand">Host</span>.
+      <div class="col-span-2 md:col-span-2">
+        <div class="flex items-center gap-2 font-display font-bold text-2xl text-white mb-4">
+          <Image src={logoImg} alt="ArkaniaHost Logo" class="w-8 h-8 object-contain opacity-90" />
+          <span>Arkania<span class="text-brand">Host</span>.</span>
         </div>
         <p class="text-gray-500 text-sm font-light leading-relaxed max-w-xs mb-8">
-          Infraestructura premium para comunidades de Minecraft en LATAM.
-          Rendimiento real, sin sobreventa.
+          Hosting Minecraft simple y listo para jugar. Control completo para tu comunidad con soporte rápido y especializado.
         </p>
 
         <!-- Redes sociales -->
         <div class="flex gap-3">
-          {SOCIAL_LINKS.map((s) => (
+          {SOCIAL_LINKS && SOCIAL_LINKS.map((s) => (
               <a
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
-                  class="w-8 h-8 rounded-md bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-gray-400 hover:text-white hover:border-white/20 transition-colors"
+                  class="w-8 h-8 rounded-md bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-gray-400 hover:text-white hover:border-white/20 hover:bg-brand/10 hover:text-brand transition-colors"
               >
                 <i class={`${s.icon} text-xs`}></i>
               </a>
@@ -65,7 +77,7 @@ const columns = [
       <!-- Columnas de links -->
       {columns.map((col) => (
           <div>
-            <h4 class="text-white font-semibold text-xs uppercase tracking-widest mb-5">
+            <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-5">
               {col.title}
             </h4>
             <ul class="space-y-3.5">
@@ -73,9 +85,14 @@ const columns = [
                   <li>
                     <a
                         href={link.href}
-                        class="text-sm text-gray-500 hover:text-gray-200 transition-colors"
+                        target={link.isExternal ? "_blank" : undefined}
+                        rel={link.isExternal ? "noopener noreferrer" : undefined}
+                        class="text-sm text-gray-500 hover:text-white transition-colors flex items-center gap-1.5 w-fit"
                     >
                       {link.label}
+                      {link.isExternal && (
+                          <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-50"></i>
+                      )}
                     </a>
                   </li>
               ))}
@@ -102,13 +119,17 @@ const columns = [
       <!-- Badge de estado del sistema -->
       <a
           href="https://status.arkaniahost.xyz"
-          class="flex items-center gap-2 bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-full hover:border-white/[0.12] transition-colors flex-shrink-0"
+          target="_blank" rel="noopener noreferrer"
+          class="flex items-center gap-2 bg-white/[0.03] border border-white/[0.06] px-3 py-1.5 rounded-full hover:border-white/[0.12] transition-colors flex-shrink-0 group"
       >
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
         </span>
-        <span class="text-xs text-gray-400">Todos los sistemas operacionales</span>
+        <span class="text-xs text-gray-400 group-hover:text-gray-200 transition-colors flex items-center gap-1.5">
+          Todos los sistemas operacionales
+          <i class="fa-solid fa-arrow-up-right-from-square text-[9px] opacity-50"></i>
+        </span>
       </a>
     </div>
 

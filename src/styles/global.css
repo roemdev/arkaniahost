@@ -82,6 +82,24 @@ body {
 }
 .premium-glass-card:hover { border-color: rgba(204, 0, 255, 0.6); }
 
+/* ─── Voxel & Gaming Aesthetic ───────────────────────────────────────────── */
+.voxel-border {
+  box-shadow: 
+    4px 0 0 0 rgba(204, 0, 255, 0.3),
+    -4px 0 0 0 rgba(204, 0, 255, 0.3),
+    0 -4px 0 0 rgba(204, 0, 255, 0.3),
+    0 4px 0 0 rgba(204, 0, 255, 0.3);
+}
+
+.voxel-button {
+  transition: transform 0.1s ease;
+  border-radius: 0;
+  clip-path: polygon(
+    4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), 
+    calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px), 0 4px
+  );
+}
+
 /* ─── Accordion ──────────────────────────────────────────────────────────── */
 details > summary::-webkit-details-marker { display: none; }
 details[open] summary ~ * { animation: fadeIn 0.3s ease-in-out; }

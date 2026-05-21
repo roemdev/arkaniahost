@@ -1,0 +1,48 @@
+---
+import panelImg from "../../assets/panel.png";
+
+const panelFeatures = [
+  { label: "Archivos", icon: "fa-solid fa-folder-open" },
+  { label: "Consola", icon: "fa-solid fa-terminal" },
+  { label: "Uso de recursos", icon: "fa-solid fa-chart-line" },
+  { label: "Backups", icon: "fa-solid fa-box-archive" },
+  { label: "Instaladores", icon: "fa-solid fa-download" },
+  { label: "Administración", icon: "fa-solid fa-sliders" }
+];
+---
+
+<section class="py-24 relative z-10 bg-[#060606] overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    
+    <!-- Texto -->
+    <div class="space-y-6">
+      <h2 class="text-3xl md:text-5xl font-display font-bold text-white leading-tight">
+        Administra todo tu servidor desde <span class="text-brand">un solo lugar</span>.
+      </h2>
+      <p class="text-lg text-gray-400 font-light max-w-lg">
+        Nuestro panel Pterodactyl personalizado te da control absoluto sobre tu servidor. Sin complicaciones, sin consolas confusas. Todo a un clic de distancia.
+      </p>
+
+      <div class="grid grid-cols-2 gap-4 pt-4">
+        {panelFeatures.map(f => (
+          <div class="flex items-center gap-3 text-white">
+            <div class="w-8 h-8 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-brand">
+              <i class={`${f.icon} text-sm`}></i>
+            </div>
+            <span class="text-sm font-medium">{f.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Visual (Imagen Panel) -->
+    <div class="relative">
+      <div class="absolute inset-0 bg-brand/20 blur-[100px] rounded-full"></div>
+      <div class="relative rounded-xl overflow-hidden shadow-2xl border border-white/10 group z-10">
+        <div class="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+        <img src={panelImg.src} alt="Panel Pterodactyl" class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700" />
+      </div>
+    </div>
+
+  </div>
+</section>

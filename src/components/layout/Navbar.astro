@@ -1,47 +1,50 @@
 ---
-import { NAV_LINKS } from "../../data/navigation";
+import { Image } from "astro:assets";
+import logoImg from "../../assets/logo-no-bg.png";
 
-const panelUrl  = import.meta.env.PUBLIC_PANEL_URL;
-const clientUrl = import.meta.env.PUBLIC_BILLING_URL;
+const panelUrl  = import.meta.env.PUBLIC_PANEL_URL || "https://panel.arkaniahost.xyz";
+const clientUrl = import.meta.env.PUBLIC_BILLING_URL || "https://billing.arkaniahost.xyz";
 ---
 
-<nav class="w-full glass-nav border-b border-white/[0.08]">
+<nav class="w-full glass-nav border-b border-white/[0.08] fixed z-50 top-0">
   <div class="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
 
     <!-- Logo -->
-    <a href="/" class="font-display font-bold text-xl tracking-tight text-white">
-      Arkania<span class="text-brand">Host</span>.
+    <a href="/" class="font-display font-bold text-xl tracking-tight text-white flex items-center gap-2">
+      <Image src={logoImg} alt="ArkaniaHost Logo" class="w-8 h-8 object-contain" />
+      <span>Arkania<span class="text-brand">Host</span>.</span>
     </a>
 
     <!-- Links Desktop -->
-    <div class="hidden md:flex items-center gap-8">
-      {NAV_LINKS.map((link) => (
-        <a
-          href={link.href}
-          class="text-sm font-medium text-gray-400 hover:text-white transition-colors"
-        >
-          {link.label}
-        </a>
-      ))}
+    <div class="hidden lg:flex items-center gap-6">
+      <a href="https://billing.arkaniahost.xyz/products/minecraft-server" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Minecraft Hosting</a>
+      <a href="/blog" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Blog</a>
+      <a href="/docs" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Docs</a>
+      <a href="https://status.arkaniahost.xyz" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-1.5">
+        Estado <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+      </a>
+      <a href={panelUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-1.5">
+        Panel <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+      </a>
+      <a href={clientUrl} target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-1.5">
+        Área de clientes <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"></i>
+      </a>
     </div>
 
-    <!-- Área de acceso -->
-    <div class="flex items-center gap-4 sm:gap-6">
+    <!-- CTA -->
+    <div class="flex items-center gap-4">
       <a
-        href={panelUrl}
-        class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-2"
+        href="#planes"
+        class="hidden sm:flex bg-brand hover:bg-[#aa00d4] text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors voxel-button items-center gap-2"
       >
-        <i class="fa-solid fa-server text-xs opacity-70"></i>
-        <span class="hidden sm:inline">Panel</span>
+        <span>Comenzar</span>
+        <i class="fa-solid fa-arrow-right text-xs"></i>
       </a>
-      <div class="w-[1px] h-4 bg-white/[0.08]"></div>
-      <a
-        href={clientUrl}
-        class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center gap-2"
-      >
-        <i class="fa-regular fa-user text-xs opacity-70"></i>
-        <span class="hidden sm:inline">Cliente</span>
-      </a>
+      
+      <!-- Mobile Menu Button (Placeholder for simplicity) -->
+      <button class="lg:hidden text-gray-300 hover:text-white">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
     </div>
   </div>
 </nav>

@@ -1,51 +1,53 @@
 ---
-import { getCollection } from "astro:content";
-
-const testimonials = (await getCollection("testimonials")).sort(
-  (a, b) => a.data.order - b.data.order
-);
-
-function starsFor(rating: number): string[] {
-  const stars: string[] = [];
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) stars.push("fa-solid fa-star");
-    else if (rating >= i - 0.5) stars.push("fa-solid fa-star-half-stroke");
-    else stars.push("fa-regular fa-star");
+const testimonials = [
+  {
+    name: "Alex M.",
+    role: "Administrador de Servidor",
+    text: "Migrar nuestro SMP a ArkaniaHost fue la mejor decisión. El panel es súper intuitivo y no hemos tenido caídas en los últimos meses. Recomendado 100%.",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Alex&backgroundColor=b6e3f4"
+  },
+  {
+    name: "Sofía R.",
+    role: "Creadora de Contenido",
+    text: "El soporte me ayudó a configurar mi modpack en menos de 15 minutos. El servidor va súper fluido incluso con más de 100 mods cargados.",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia&backgroundColor=c0aede"
+  },
+  {
+    name: "Carlos T.",
+    role: "Owner de Network",
+    text: "Tenemos nuestro lobby en Bedrock y Java conectando sin problemas. El rendimiento del Xeon se nota mucho comparado con otros hosts genéricos.",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos&backgroundColor=ffdfbf"
   }
-  return stars;
-}
+];
 ---
 
-<section id="testimonios" class="py-24 border-t border-white/[0.08] relative z-10">
-  <div class="max-w-7xl mx-auto px-6 text-center">
+<section class="py-24 relative z-10">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Lo que dicen nuestros clientes</h2>
+      <p class="text-gray-400">Comunidades que ya confían en nuestra infraestructura.</p>
+    </div>
 
-    <h2 class="font-display text-3xl font-bold mb-12 text-white text-center">
-      Confianza <span class="text-brand">Real</span>
-    </h2>
-
-    <div class="grid md:grid-cols-3 gap-6 text-left">
-      {testimonials.map(({ data: t }) => (
-        <div class="glass-card p-6 flex flex-col js-reveal">
-          <div class="text-brand text-xs mb-4 flex gap-1">
-            {starsFor(t.rating).map((cls) => <i class={cls}></i>)}
+    <div class="grid md:grid-cols-3 gap-6">
+      {testimonials.map(t => (
+        <div class="glass-card p-6 border border-white/5 rounded-xl flex flex-col">
+          <div class="flex items-center gap-1 text-brand mb-4">
+            <i class="fa-solid fa-star text-sm"></i>
+            <i class="fa-solid fa-star text-sm"></i>
+            <i class="fa-solid fa-star text-sm"></i>
+            <i class="fa-solid fa-star text-sm"></i>
+            <i class="fa-solid fa-star text-sm"></i>
           </div>
-
-          <p class="text-gray-300 text-sm font-light leading-relaxed mb-6 italic">
-            "{t.quote}"
-          </p>
-
-          <div class="mt-auto flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center font-bold text-[10px]">
-              {t.initials}
-            </div>
-            <div class="text-xs font-bold">
-              {t.name}
-              <span class="block text-[10px] text-gray-500 font-normal">{t.plan}</span>
+          <p class="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">"{t.text}"</p>
+          <div class="flex items-center gap-3 mt-auto">
+            <img src={t.avatar} alt={t.name} class="w-10 h-10 rounded-full bg-white/10" />
+            <div>
+              <div class="text-white font-medium text-sm">{t.name}</div>
+              <div class="text-gray-500 text-xs">{t.role}</div>
             </div>
           </div>
         </div>
       ))}
     </div>
-
   </div>
 </section>

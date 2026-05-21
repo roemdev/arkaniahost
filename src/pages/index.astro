@@ -1,18 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import PromoBar from "../components/ui/PromoBar.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
 import Hero from "../components/sections/Hero.astro";
-import Marquee from "../components/sections/Marquee.astro";
-import Solution from "../components/sections/Solution.astro";
-import Workflow from "../components/sections/Workflow.astro";
+import Pricing from "../components/sections/Pricing.astro";
+import Experiences from "../components/sections/Experiences.astro";
 import Features from "../components/sections/Features.astro";
-import PricingTable from "../components/sections/PricingTable.astro";
+import PanelPreview from "../components/sections/PanelPreview.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
-import Stats from "../components/sections/Stats.astro";
 import FAQ from "../components/sections/FAQ.astro";
-import CTA from "../components/sections/CTA.astro";
+import BottomCTA from "../components/sections/BottomCTA.astro";
 
 const schema = {
   "@context": "https://schema.org",
@@ -34,7 +31,7 @@ const schema = {
       url: "https://arkaniahost.xyz",
       name: "ArkaniaHost",
       description:
-        "Hosting de servidores de Minecraft en LATAM con almacenamiento NVMe, ping ultrabajo, instalador de modpacks 1 clic y soporte directo. Cero sobreventa.",
+        "Hosting de servidores de Minecraft en Pennsylvania, USA con almacenamiento SSD y panel Pterodactyl. Java y Bedrock, instalación en un clic.",
       publisher: {
         "@id": "https://arkaniahost.xyz/#organization",
       },
@@ -42,8 +39,8 @@ const schema = {
     {
       "@type": "Product",
       "@id": "https://arkaniahost.xyz/#product",
-      name: "Hosting de Minecraft en LATAM",
-      description: "Servidores de Minecraft de alto rendimiento con ping optimizado para Latinoamérica.",
+      name: "Hosting Minecraft Premium",
+      description: "Servidores de Minecraft con procesadores Xeon, almacenamiento SSD, panel Pterodactyl y 99%+ de uptime.",
       brand: {
         "@type": "Brand",
         name: "ArkaniaHost"
@@ -52,7 +49,7 @@ const schema = {
         "@type": "Offer",
         url: "https://arkaniahost.xyz/#planes",
         priceCurrency: "USD",
-        price: "2.99",
+        price: "4.00",
         availability: "https://schema.org/InStock"
       }
     }
@@ -62,30 +59,24 @@ const schema = {
 
 <BaseLayout>
   <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
-  <div class="absolute w-full z-50 top-0 flex flex-col">
-    <PromoBar
-      message="🎉 Promo: 20% de descuento con el código"
-      code="ARKANIA20"
-    />
-    <Navbar />
-  </div>
+  
+  <Navbar />
 
   <main>
     <Hero />
-    <Marquee />
-    <Solution />
-    <Workflow />
+    <Pricing />
+    <Experiences />
     <Features />
-    <PricingTable />
+    <PanelPreview />
     <Testimonials />
-    <Stats />
     <FAQ />
-    <CTA />
+    <BottomCTA />
   </main>
 
   <Footer />
 </BaseLayout>
 
 <script>
-  import "../scripts/reveal.ts";
+  // Simple reveal if needed, o quitar
+  // import "../scripts/reveal.ts";
 </script>

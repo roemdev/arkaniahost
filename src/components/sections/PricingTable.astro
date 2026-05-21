@@ -1,5 +1,7 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import panelImg from "../../../src/assets/panel.png";
 
 const plans = (await getCollection("plans")).sort(
   (a, b) => a.data.order - b.data.order
@@ -8,6 +10,21 @@ const plans = (await getCollection("plans")).sort(
 
 <section id="planes" class="py-24 md:py-32 relative z-10">
   <div class="max-w-7xl mx-auto px-6 text-center">
+
+    <div class="mb-32">
+      <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-10 text-white text-center animate-fade-in-up js-reveal">
+        Conoce nuestro <span class="text-brand">Panel de Control</span>
+      </h2>
+      <div class="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-brand/10 border border-white/10 animate-fade-in-up js-reveal" style="transition-delay: 100ms;">
+         <div class="absolute inset-0 bg-brand/20 blur-[120px] pointer-events-none"></div>
+         <Image
+             src={panelImg}
+             alt="Panel de Control Pterodactyl de ArkaniaHost"
+             class="w-full h-auto object-cover relative z-10 rounded-xl"
+             loading="lazy"
+         />
+      </div>
+    </div>
 
     <h2 class="font-display text-3xl md:text-4xl font-bold tracking-tight mb-4 text-white text-center">
       Planes diseñados para <span class="text-brand">escalar.</span>

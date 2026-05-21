@@ -40,4 +40,13 @@ const testimonials = defineCollection({
   }),
 });
 
-export const collections = { plans, faq, testimonials };
+const legal = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/legal" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    updatedAt: z.string().optional(),
+  }),
+});
+
+export const collections = { plans, faq, testimonials, legal };

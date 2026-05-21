@@ -1,0 +1,135 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/layout/Navbar.astro";
+import Footer from "../../components/layout/Footer.astro";
+
+export async function getStaticPaths() {
+  const legalDocs = await getCollection("legal");
+  return legalDocs.map((doc) => ({
+    params: { id: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+---
+
+<BaseLayout title={`${doc.data.title} | ArkaniaHost`}>
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="py-24 md:py-32 max-w-7xl mx-auto px-6 relative z-10">
+    <div class="flex flex-col md:flex-row gap-12">
+      
+      <aside class="md:w-1/4 flex-shrink-0 animate-fade-in-up">
+        <div class="sticky top-32">
+          <h3 class="font-display font-bold text-white mb-6 uppercase tracking-widest text-xs">Legal</h3>
+          <ul class="space-y-4">
+            <li><a href="/legal/terms" class={`transition-colors text-sm ${doc.id === 'terms' ? 'text-brand font-medium' : 'text-gray-500 hover:text-white'}`}>Términos de Servicio</a></li>
+            <li><a href="/legal/privacy" class={`transition-colors text-sm ${doc.id === 'privacy' ? 'text-brand font-medium' : 'text-gray-500 hover:text-white'}`}>Privacidad</a></li>
+            <li><a href="/legal/sla" class={`transition-colors text-sm ${doc.id === 'sla' ? 'text-brand font-medium' : 'text-gray-500 hover:text-white'}`}>SLA y Reembolsos</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="md:w-3/4 animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="mb-12 border-b border-white/10 pb-8">
+          <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+            {doc.data.title}
+          </h1>
+          {doc.data.updatedAt && (
+            <p class="text-gray-500 text-sm font-light">Última actualización: {doc.data.updatedAt}</p>
+          )}
+        </div>
+
+        <div class="markdown-content text-gray-400 font-light leading-relaxed">
+          <Content />
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style is:global>
+  .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: white;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .markdown-content h2 { font-size: 1.75rem; }
+  .markdown-content h3 { font-size: 1.25rem; }
+  
+  .markdown-content p {
+    margin-bottom: 1rem;
+  }
+  .markdown-content ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .markdown-content ul li {
+    margin-bottom: 0.5rem;
+  }
+  .markdown-content a {
+    color: #eab308; /* text-brand equivalent or whatever your brand color is */
+  }
+  .markdown-content a:hover {
+    text-decoration: underline;
+  }
+  .markdown-content strong {
+    color: #d1d5db; /* text-gray-300 */
+    font-weight: 500;
+  }
+  .markdown-content blockquote {
+    border-left: 4px solid #cc00ff;
+    background: linear-gradient(to right, rgba(204,0,255, 0.1), transparent);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    color: #e5e7eb;
+    font-style: italic;
+  }
+  .markdown-content blockquote p {
+    margin-bottom: 0;
+  }
+  .markdown-content blockquote strong {
+    color: white;
+  }
+  .markdown-content table {
+    width: 100%;
+    margin-bottom: 2rem;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+  .markdown-content th, .markdown-content td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  .markdown-content th {
+    font-weight: 600;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.05);
+    font-family: 'Outfit', sans-serif;
+  }
+  .markdown-content td {
+    color: #9ca3af;
+  }
+  .markdown-content code {
+    background-color: rgba(255,255,255,0.1);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+    font-family: monospace;
+    color: #e5e7eb;
+  }
+</style>

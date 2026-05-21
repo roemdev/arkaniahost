@@ -1,13 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import minecraftBg from "../../../src/assets/minecraft-bg.png";
-import panelImg from "../../../src/assets/panel.png";
+
 import { ROTATING_WORDS } from "../../data/navigation";
 
 const firstWord = ROTATING_WORDS[0];
 ---
 
-<header class="relative pt-48 pb-16 overflow-hidden flex flex-col items-center justify-center text-center min-h-[75vh]">
+<header class="relative pt-48 pb-24 overflow-hidden flex flex-col items-center justify-center text-center">
   <div class="absolute inset-0 z-0">
     <Image
         src={minecraftBg}
@@ -45,7 +45,7 @@ const firstWord = ROTATING_WORDS[0];
         Despliega tu mundo sin complicaciones en segundos, sin tocar código.
       </p>
 
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-5 mb-16">
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-5">
         <a
             href="#planes"
             class="w-full sm:w-auto px-10 py-4 bg-brand hover:bg-[#aa00d4] text-white rounded-lg text-sm font-bold transition-all shadow-[0_0_20px_rgba(204,0,255,0.2)]"
@@ -57,15 +57,7 @@ const firstWord = ROTATING_WORDS[0];
         </span>
       </div>
 
-      <div class="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden shadow-2xl shadow-brand/10 border border-white/10 animate-fade-in-up" style="animation-delay: 0.2s;">
-         <div class="absolute inset-0 bg-brand/20 blur-[120px] pointer-events-none"></div>
-         <Image
-             src={panelImg}
-             alt="Panel de Control Pterodactyl de ArkaniaHost"
-             class="w-full h-auto object-cover relative z-10 rounded-xl"
-             loading="eager"
-         />
-      </div>
+
 
     </div>
   </div>

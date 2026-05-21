@@ -1,0 +1,66 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/layout/Navbar.astro";
+import Footer from "../../components/layout/Footer.astro";
+
+// Obtenemos todos los posts del blog ordenados por fecha (del más reciente al más antiguo)
+const allPosts = await getCollection("blog");
+const sortedPosts = allPosts.sort(
+  (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+);
+---
+
+<BaseLayout title="Blog | ArkaniaHost">
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="py-24 md:py-32 max-w-7xl mx-auto px-6 relative z-10 min-h-[70vh]">
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+        Nuestro <span class="text-brand">Blog</span>
+      </h1>
+      <p class="text-gray-400 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+        Guías, anuncios y recursos técnicos para sacarle el máximo partido a tu servidor.
+      </p>
+    </div>
+
+    {sortedPosts.length === 0 ? (
+      <div class="glass-card p-12 text-center animate-fade-in-up">
+        <i class="fa-solid fa-pen-nib text-4xl text-gray-500 mb-4"></i>
+        <h3 class="font-display text-2xl font-bold text-white mb-2">Próximamente</h3>
+        <p class="text-gray-400">Aún no hay artículos publicados. ¡Vuelve pronto!</p>
+      </div>
+    ) : (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {sortedPosts.map((post) => (
+          <a href={`/blog/${post.id}`} class="group glass-card rounded-xl overflow-hidden border border-white/5 hover:border-brand/30 transition-all flex flex-col">
+            {post.data.image && (
+              <div class="h-48 w-full overflow-hidden">
+                <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+              </div>
+            )}
+            <div class="p-6 flex-grow flex flex-col">
+              <div class="flex items-center justify-between text-xs text-gray-500 mb-4">
+                <span>{post.data.date}</span>
+                <span class="bg-white/5 px-2 py-1 rounded text-gray-300">{post.data.author}</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                {post.data.description}
+              </p>
+              <div class="text-brand text-sm font-medium flex items-center gap-2 mt-auto">
+                Leer artículo <i class="fa-solid fa-arrow-right text-[10px] group-hover:translate-x-1 transition-transform"></i>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </main>
+
+  <Footer />
+</BaseLayout>

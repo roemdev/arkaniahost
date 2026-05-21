@@ -23,14 +23,18 @@ import logoMc from "../../assets/logo-mc-style.png";
         Ejecuta servidores Java o Bedrock con instalación en un clic, panel Pterodactyl y control completo.
       </p>
 
-      <!-- Botones -->
-      <div class="flex flex-wrap gap-4 pt-4">
-        <a href="https://billing.arkaniahost.xyz/products/minecraft-server" class="bg-brand hover:bg-[#aa00d4] text-white px-8 py-3.5 rounded-md font-semibold transition-all voxel-button flex items-center gap-2 shadow-[0_0_20px_rgba(204,0,255,0.3)] hover:shadow-[0_0_30px_rgba(204,0,255,0.5)]">
+      <!-- Botones y Precio -->
+      <div class="flex flex-wrap items-center gap-6 pt-4">
+        <a href="https://billing.arkaniahost.xyz/products/minecraft-server" class="bg-brand hover:bg-[#aa00d4] text-white px-8 py-3.5 rounded-md font-semibold transition-all flex items-center gap-2 shadow-[0_0_20px_rgba(204,0,255,0.3)] hover:shadow-[0_0_30px_rgba(204,0,255,0.5)]">
           <i class="fa-solid fa-play text-sm"></i> Crear servidor
         </a>
-        <a href="https://billing.arkaniahost.xyz/products/minecraft-server" class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-3.5 rounded-md font-medium transition-all voxel-button">
-          Ver planes
-        </a>
+        <div class="flex flex-col">
+          <span class="text-gray-400 text-xs uppercase tracking-wider font-semibold">Planes desde</span>
+          <div class="flex items-baseline gap-1">
+            <span class="text-white text-2xl font-bold">$4.00</span>
+            <span class="text-sm text-gray-500">/mes</span>
+          </div>
+        </div>
       </div>
 
       <!-- Etiquetas/Badges -->

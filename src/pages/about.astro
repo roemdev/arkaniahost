@@ -2,32 +2,65 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/layout/Navbar.astro";
 import Footer from "../components/layout/Footer.astro";
-import CTA from "../components/sections/CTA.astro";
 
 const roadmap = [
   {
-    quarter: "Q1 2026",
-    title: "Lanzamiento de ArkaniaHost",
-    description: "Despliegue inicial de nuestra infraestructura con protección DDoS personalizada.",
+    quarter: "Q3 2026",
+    title: "Lanzamiento Inicial",
+    description:
+      "Despliegue de infraestructura base con protección DDoS avanzada y nodos primarios.",
     status: "completed",
   },
   {
-    quarter: "Q2 2026",
-    title: "Panel de Control V2",
-    description: "Rediseño de la interfaz de usuario, instalador de modpacks y copias de seguridad.",
+    quarter: "Q4 2026",
+    title: "Panel V2 & Backups",
+    description:
+      "Rediseño de interfaz, instalador de modpacks automáticos y copias de seguridad en la nube.",
     status: "current",
   },
   {
-    quarter: "Q3 2026",
-    title: "Nuevos Nodos en LATAM",
-    description: "Apertura de nuevas ubicaciones para garantizar la latencia más baja.",
+    quarter: "Q1 2027",
+    title: "Nodos LATAM",
+    description:
+      "Apertura de nuevas ubicaciones en Sudamérica para garantizar 0 ping regional a todos los jugadores.",
     status: "upcoming",
   },
   {
-    quarter: "Q4 2026",
+    quarter: "Q2 2027",
     title: "Soporte Multi-Juego",
-    description: "Alojamiento especializado de Rust, Palworld y servidores de voz.",
+    description:
+      "Alojamiento especializado para Rust, Palworld, servidores de voz y bases de datos dedicadas.",
     status: "upcoming",
+  },
+];
+
+const contactMethods = [
+  {
+    title: "Comunidad en Discord",
+    description: "Únete a nuestra comunidad para soporte rápido, anuncios, interacción con otros usuarios y sorteos exclusivos.",
+    icon: "fa-brands fa-discord",
+    link: "https://discord.arkaniahost.xyz",
+    buttonText: "Unirse al servidor",
+    color: "bg-[#5865F2]",
+    hoverColor: "hover:bg-[#4752C4]"
+  },
+  {
+    title: "Centro de Soporte",
+    description: "Abre un ticket en nuestro panel de facturación. Ideal para problemas técnicos complejos o de facturación.",
+    icon: "fa-solid fa-headset",
+    link: "https://billing.arkaniahost.xyz/admin/tickets/create",
+    buttonText: "Abrir Ticket",
+    color: "bg-brand",
+    hoverColor: "hover:bg-[#aa00d4]"
+  },
+  {
+    title: "Correo Electrónico",
+    description: "Para consultas de negocios, alianzas comerciales, patrocinios o dudas de carácter formal e institucional.",
+    icon: "fa-solid fa-envelope",
+    link: "mailto:contacto@arkaniahost.xyz",
+    buttonText: "Enviar Email",
+    color: "bg-white/10",
+    hoverColor: "hover:bg-white/20"
   }
 ];
 
@@ -35,29 +68,55 @@ const values = [
   {
     icon: "fa-solid fa-server",
     title: "Cero Sobreventa",
-    desc: "Asignamos recursos dedicados a tu contenedor."
+    desc: "Garantizamos recursos 100% dedicados para tu servidor. Sin vecinos ruidosos, solo potencia bruta para soportar cualquier carga.",
+    colorClass: "text-blue-400",
+    bgClass: "bg-blue-500/10",
   },
   {
     icon: "fa-solid fa-bolt",
     title: "Hardware Premium",
-    desc: "Unidades NVMe y procesadores de alta frecuencia."
+    desc: "Procesadores de altísima frecuencia y almacenamiento NVMe para cargar tus mundos y chunks en tiempo récord.",
+    colorClass: "text-amber-400",
+    bgClass: "bg-amber-500/10",
   },
   {
     icon: "fa-solid fa-users",
     title: "Por Jugadores",
-    desc: "Entendemos lo crítico que es un buen TPS."
+    desc: "Entendemos lo frustrante que es el lag. Diseñamos nuestra red e infraestructura pensando únicamente en el TPS perfecto.",
+    colorClass: "text-emerald-400",
+    bgClass: "bg-emerald-500/10",
   },
   {
     icon: "fa-solid fa-headset",
     title: "Soporte Directo",
-    desc: "Atención técnica directa, sin bots automáticos."
-  }
+    desc: "Atención técnica real por parte de expertos. Sin bots automáticos ni tickets que tardan días en ser respondidos.",
+    colorClass: "text-pink-400",
+    bgClass: "bg-pink-500/10",
+  },
 ];
 
 const team = [
-  { name: "DMENA", role: "CEO", icon: "fa-solid fa-user-tie" },
-  { name: "RROWNER", role: "CFO", icon: "fa-solid fa-chart-line" },
-  { name: "roemdev", role: "CTO", icon: "fa-solid fa-code" }
+  {
+    name: "DMENA",
+    role: "CEO",
+    icon: "fa-solid fa-crown",
+    color: "text-brand",
+    desc: "Lidera la visión estratégica global y define el rumbo de ArkaniaHost para mantenernos en la vanguardia del sector.",
+  },
+  {
+    name: "RROWNER",
+    role: "CFO",
+    icon: "fa-solid fa-scale-balanced",
+    color: "text-emerald-400",
+    desc: "Optimiza la eficiencia operativa para garantizar hardware de nivel empresarial a precios justos y accesibles.",
+  },
+  {
+    name: "roemdev",
+    role: "CTO",
+    icon: "fa-solid fa-terminal",
+    color: "text-blue-400",
+    desc: "Ingeniero principal a cargo de la arquitectura de servidores, nuestro panel de control y la protección anti-DDoS.",
+  },
 ];
 ---
 
@@ -66,90 +125,304 @@ const team = [
     <Navbar />
   </div>
 
-  <main class="pt-24 pb-20 relative z-10">
-
-    <section class="max-w-5xl mx-auto px-6 text-center relative z-10 pt-16 mb-16 animate-fade-in-up">
-      <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-        Sobre <span class="text-brand">Nosotros</span>
+  <main class="pt-32 pb-20 relative z-10">
+    <!-- Hero Section -->
+    <section
+      class="max-w-5xl mx-auto px-6 text-center relative z-10 pt-10 mb-20 animate-fade-in-up"
+    >
+      <h1
+        class="text-4xl md:text-6xl font-display font-extrabold text-white leading-tight mb-6"
+      >
+        Sobre <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-[#a300cc]"
+          >Nosotros</span
+        >
       </h1>
-      <p class="text-gray-400 text-lg font-light leading-relaxed max-w-2xl mx-auto">
-        Conoce la visión y la infraestructura que impulsa a miles de comunidades de Minecraft en toda Latinoamérica.
+      <p
+        class="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto"
+      >
+        Conoce la visión y la infraestructura que impulsa a miles de comunidades
+        de Minecraft en toda Latinoamérica.
       </p>
     </section>
 
-    <section class="max-w-4xl mx-auto px-6 mb-20 animate-fade-in-up" style="animation-delay: 0.1s;">
-      <div class="glass-card p-8 md:p-12 text-center md:text-left">
-        <p class="text-lg text-white mb-4 font-medium">Nacimos con un propósito claro: eliminar las frustraciones del alojamiento tradicional de Minecraft.</p>
-        <p class="text-gray-400 font-light leading-relaxed">
-          Durante años, los dueños de servidores en nuestra región han sufrido de alta latencia, soporte ausente y sobreventa extrema de recursos. En ArkaniaHost, construimos una plataforma enfocada en la transparencia, el rendimiento bruto y una experiencia de usuario impecable. Nuestro objetivo es ser el pilar tecnológico indiscutible para las comunidades de gaming en LATAM.
+    <!-- Mission -->
+    <section
+      class="max-w-5xl mx-auto px-6 mb-24 animate-fade-in-up"
+      style="animation-delay: 0.1s;"
+    >
+      <div class="bg-white/[0.03] backdrop-blur-[10px] shadow-lg rounded-2xl border border-white/5 p-8 md:p-12 text-center">
+        <h2 class="text-2xl text-white font-bold mb-4">
+          Nacimos con un propósito claro
+        </h2>
+        <p class="text-gray-400 leading-relaxed font-light">
+          Durante años, los dueños de servidores en nuestra región han sufrido
+          de alta latencia, soporte ausente y sobreventa extrema de recursos. En
+          ArkaniaHost, construimos una plataforma enfocada en la <span
+            class="text-white font-medium">transparencia</span
+          >, el <span class="text-white font-medium">rendimiento bruto</span> y una
+          <span class="text-white font-medium">experiencia impecable</span>.
+          Nuestro objetivo es ser el pilar tecnológico indiscutible para las
+          comunidades de gaming.
         </p>
       </div>
     </section>
 
-    <section class="max-w-5xl mx-auto px-6 mb-24 animate-fade-in-up" style="animation-delay: 0.15s;">
-      <div class="text-center mb-10">
-        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white">Nuestro <span class="text-brand">Equipo</span></h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        {team.map((member) => (
-          <div class="glass-card p-8 flex flex-col items-center text-center">
-            <div class="w-16 h-16 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center mb-4 text-gray-400">
-              <i class={`${member.icon} text-xl`}></i>
-            </div>
-            <h3 class="font-display text-xl font-bold text-white mb-1">{member.name}</h3>
-            <p class="text-brand text-xs font-bold tracking-widest uppercase">{member.role}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="max-w-5xl mx-auto px-6 mb-24 animate-fade-in-up" style="animation-delay: 0.2s;">
-      <div class="text-center mb-10">
-        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white">Los pilares de <span class="text-brand">Arkania</span></h2>
-      </div>
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {values.map((val) => (
-          <div class="glass-card p-6 flex flex-col h-full">
-            <div class="w-10 h-10 rounded bg-white/[0.05] border border-white/10 flex items-center justify-center mb-4 text-white">
-              <i class={val.icon}></i>
-            </div>
-            <h3 class="font-display text-lg font-bold mb-2 text-white">{val.title}</h3>
-            <p class="text-gray-400 text-sm leading-relaxed font-light">{val.desc}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section class="max-w-3xl mx-auto px-6 mb-20 animate-fade-in-up" style="animation-delay: 0.3s;">
+    <!-- Pilares -->
+    <section
+      class="max-w-7xl mx-auto px-6 mb-24 animate-fade-in-up"
+      style="animation-delay: 0.2s;"
+    >
       <div class="text-center mb-12">
-        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white">Nuestro <span class="text-brand">Roadmap</span></h2>
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+          Los Pilares de Arkania
+        </h2>
       </div>
 
-      <div class="border-l border-white/10 ml-4 md:ml-8 space-y-10">
-        {roadmap.map((item) => {
-          const isCompleted = item.status === "completed";
-          const isCurrent = item.status === "current";
-          
-          return (
-            <div class="relative pl-8">
-              <div class={`absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full ${isCompleted ? 'bg-brand shadow-[0_0_8px_rgba(204,0,255,0.5)]' : isCurrent ? 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'bg-white/20'}`}></div>
+      <div class="max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          {
+            values.map((val, index) => {
+              // Lógica para mostrar solo las líneas internas (una cruz en el medio)
+              const borderClasses =
+                index === 0
+                  ? "border-b border-white/10 md:border-r"
+                  : index === 1
+                  ? "border-b border-white/10"
+                  : index === 2
+                  ? "border-b border-white/10 md:border-b-0 md:border-r"
+                  : "";
 
-              <div class="mb-1">
-                <span class={`text-[10px] font-bold tracking-widest uppercase ${isCompleted ? 'text-brand' : isCurrent ? 'text-white' : 'text-gray-500'}`}>
-                  {item.quarter}
+              return (
+                <div
+                  class={`p-10 md:p-14 flex flex-col items-start ${borderClasses}`}
+                >
+                  <div
+                    class={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 mb-6 ${val.bgClass} ${val.colorClass}`}
+                  >
+                    <i class={`${val.icon} text-2xl`} />
+                  </div>
+
+                  <h3
+                    class={`text-2xl font-display font-bold mb-3 ${val.colorClass}`}
+                  >
+                    {val.title}
+                  </h3>
+                  <p class="text-gray-400 text-base leading-relaxed font-light">
+                    {val.desc}
+                  </p>
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- El Equipo (Estilo Bento Box) -->
+    <section
+      class="max-w-5xl mx-auto px-6 mb-32 animate-fade-in-up"
+      style="animation-delay: 0.3s;"
+    >
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+          La Directiva
+        </h2>
+        <p class="text-gray-400 font-light max-w-lg mx-auto">
+          El núcleo estratégico y técnico detrás de Arkania.
+        </p>
+      </div>
+
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto md:h-[400px]"
+      >
+        {/* CEO - Caja grande izquierda */}
+        <div
+          class="bg-white/[0.03] backdrop-blur-[10px] shadow-lg rounded-2xl border border-white/5 flex flex-col items-center justify-center p-12 relative overflow-hidden"
+        >
+          <div
+            class={`relative z-10 w-32 h-32 rounded-full flex items-center justify-center mb-6 bg-[#0a0a0a] border border-white/10 ${team[0].color}`}
+          >
+            <i class={`${team[0].icon} text-5xl`}></i>
+          </div>
+
+          <h3
+            class="relative z-10 font-display text-4xl font-bold text-white mb-2"
+          >
+            {team[0].name}
+          </h3>
+          <span
+            class="relative z-10 text-brand bg-brand/10 px-4 py-1.5 rounded-full border border-brand/20 text-xs font-bold tracking-widest uppercase mb-4"
+          >
+            {team[0].role}
+          </span>
+          <p class="text-gray-400 text-sm font-light text-center max-w-xs">
+            {team[0].desc}
+          </p>
+        </div>
+
+        {/* Resto del equipo - Apilados a la derecha */}
+        <div class="flex flex-col gap-4">
+          {/* CFO - Arriba derecha */}
+          <div
+            class="bg-white/[0.03] backdrop-blur-[10px] shadow-lg rounded-2xl border border-white/5 flex-1 flex flex-col sm:flex-row items-center sm:items-start p-8 gap-6 text-center sm:text-left"
+          >
+            <div
+              class={`w-16 h-16 rounded-2xl flex items-center justify-center bg-[#0a0a0a] border border-white/10 flex-shrink-0 ${team[1].color}`}
+            >
+              <i class={`${team[1].icon} text-2xl`}></i>
+            </div>
+            <div>
+              <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-2">
+                <h3 class="font-display text-2xl font-bold text-white">
+                  {team[1].name}
+                </h3>
+                <span
+                  class="text-emerald-400 bg-emerald-400/10 border border-emerald-400/20 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase self-center"
+                >
+                  {team[1].role}
                 </span>
               </div>
-              <h3 class="font-display text-xl font-bold text-white mb-2">{item.title}</h3>
               <p class="text-gray-400 text-sm font-light leading-relaxed">
-                {item.description}
+                {team[1].desc}
               </p>
             </div>
-          )
+          </div>
+
+          {/* CTO - Abajo derecha */}
+          <div
+            class="bg-white/[0.03] backdrop-blur-[10px] shadow-lg rounded-2xl border border-white/5 flex-1 flex flex-col sm:flex-row items-center sm:items-start p-8 gap-6 text-center sm:text-left"
+          >
+            <div
+              class={`w-16 h-16 rounded-2xl flex items-center justify-center bg-[#0a0a0a] border border-white/10 flex-shrink-0 ${team[2].color}`}
+            >
+              <i class={`${team[2].icon} text-2xl`}></i>
+            </div>
+            <div>
+              <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-2">
+                <h3 class="font-display text-2xl font-bold text-white">
+                  {team[2].name}
+                </h3>
+                <span
+                  class="text-blue-400 bg-blue-400/10 border border-blue-400/20 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase self-center"
+                >
+                  {team[2].role}
+                </span>
+              </div>
+              <p class="text-gray-400 text-sm font-light leading-relaxed">
+                {team[2].desc}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roadmap (Estilo Editorial / Tipográfico normalizado) -->
+    <section class="max-w-5xl mx-auto px-6 mb-32 animate-fade-in-up" style="animation-delay: 0.4s;">
+      <div class="mb-16 border-b border-white/10 pb-8">
+        <div class="max-w-xl">
+          <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Nuestro Roadmap</h2>
+          <p class="text-gray-400 font-light">El camino que estamos recorriendo para construir la mejor plataforma de la región.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        {roadmap.map((item, index) => {
+          const isCompleted = item.status === "completed";
+          const isCurrent = item.status === "current";
+
+          return (
+            <div class={`relative group flex flex-col md:flex-row gap-4 md:gap-8 py-6 md:py-8 border-b border-white/5 transition-colors duration-500 ${
+              isCurrent ? 'hover:bg-brand/5' : 'hover:bg-white/5'
+            }`}>
+              
+              <!-- Elemento decorativo lateral de estado -->
+              {isCurrent && (
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-brand shadow-[0_0_20px_rgba(204,0,255,0.8)]"></div>
+              )}
+              {isCompleted && (
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-white/10 group-hover:bg-brand/50 transition-colors"></div>
+              )}
+
+              <!-- Izquierda: Fecha -->
+              <div class="md:w-1/4 flex-shrink-0 pl-4 md:pl-6 flex flex-col justify-center">
+                <span class={`text-2xl md:text-3xl font-display font-bold tracking-tight transition-all duration-500 ${
+                  isCurrent ? 'text-transparent bg-clip-text bg-gradient-to-br from-brand to-brand/40' : 
+                  isCompleted ? 'text-white' : 
+                  'text-transparent bg-clip-text bg-gradient-to-b from-white/20 to-transparent'
+                }`}>
+                  {item.quarter}
+                </span>
+                
+                <div class="mt-2 h-6">
+                  {isCurrent ? (
+                    <span class="inline-flex items-center gap-1.5 text-brand text-[10px] md:text-xs font-bold uppercase tracking-widest animate-pulse">
+                      <i class="fa-solid fa-spinner fa-spin"></i> En desarrollo
+                    </span>
+                  ) : isCompleted ? (
+                    <span class="inline-flex items-center gap-1.5 text-gray-500 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                      <i class="fa-solid fa-check"></i> Completado
+                    </span>
+                  ) : (
+                    <span class="inline-flex items-center gap-1.5 text-gray-600 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                      <i class="fa-solid fa-lock"></i> Planificado
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              <!-- Derecha: Contenido -->
+              <div class="md:w-3/4 flex flex-col justify-center pl-4 md:pl-0 pr-4">
+                <h3 class={`font-display text-lg md:text-xl font-bold mb-1 transition-colors duration-300 ${
+                  isCompleted || isCurrent ? 'text-white' : 'text-gray-500'
+                }`}>
+                  {item.title}
+                </h3>
+                <p class={`text-sm md:text-base font-light leading-relaxed max-w-2xl ${
+                  isCompleted || isCurrent ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  {item.description}
+                </p>
+              </div>
+
+            </div>
+          );
         })}
       </div>
     </section>
-    
-    <CTA />
+
+    <!-- Contacto -->
+    <section class="max-w-5xl mx-auto px-6 mb-32 animate-fade-in-up" style="animation-delay: 0.6s;">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">¿Listo para el siguiente nivel?</h2>
+        <p class="text-gray-400 font-light max-w-lg mx-auto">Únete a nuestra comunidad o escríbenos directamente. Estamos aquí para impulsar tu proyecto.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {contactMethods.map((method) => (
+          <div class={`bg-white/[0.03] backdrop-blur-[10px] shadow-lg p-8 rounded-2xl border border-white/5 flex flex-col`}>
+            
+            <div class={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 text-2xl text-white ${method.color} shadow-lg`}>
+              <i class={method.icon}></i>
+            </div>
+            
+            <h3 class="font-display text-xl font-bold text-white mb-3">
+              {method.title}
+            </h3>
+            
+            <p class="text-gray-400 text-sm font-light leading-relaxed mb-8 flex-grow">
+              {method.description}
+            </p>
+            
+            <a href={method.link} target="_blank" rel="noopener noreferrer" class={`w-full py-3 rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 text-white ${method.color} ${method.hoverColor}`}>
+              {method.buttonText} <i class="fa-solid fa-arrow-right text-[10px] opacity-70"></i>
+            </a>
+            
+          </div>
+        ))}
+      </div>
+    </section>
   </main>
 
   <Footer />

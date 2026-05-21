@@ -1,0 +1,23 @@
+---
+import { getCollection, render } from "astro:content";
+import DocsLayout from "../../layouts/DocsLayout.astro";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("docs");
+  return docs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+---
+
+<DocsLayout title={`${doc.data.title} | Docs ArkaniaHost`} description={doc.data.description}>
+  <article class="prose prose-invert prose-brand max-w-none prose-headings:font-display prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
+    <h1 class="mb-4 text-4xl md:text-5xl">{doc.data.title}</h1>
+    <p class="text-xl text-gray-400 font-light mt-0 mb-8 border-b border-white/10 pb-8">{doc.data.description}</p>
+    <Content />
+  </article>
+</DocsLayout>

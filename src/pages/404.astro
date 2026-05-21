@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import { Image } from "astro:assets";
+import errorImg from "../assets/404.png";
+---
+
+<BaseLayout title="Página no encontrada | ArkaniaHost">
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main
+    class="min-h-screen flex items-center justify-center relative z-10 px-6 pt-20"
+  >
+    <div class="text-center max-w-[90rem] mx-auto space-y-8 w-full">
+      <!-- Imagen de Error 404 (Protagonista Absoluto y Clickable) -->
+      <div class="animate-fade-in-up w-full flex justify-center px-4">
+        <a href="/" class="group block w-full max-w-5xl">
+          <Image 
+            src={errorImg} 
+            alt="Error 404 - Volver al Inicio" 
+            class="w-full h-auto object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]" 
+          />
+        </a>
+      </div>
+
+      <!-- Detalle técnico gracioso -->
+      <div class="pt-4 animate-fade-in-up" style="animation-delay: 0.2s;">
+        <code
+          class="text-xs md:text-sm text-gray-500 bg-[#030303] px-6 py-3 rounded-md font-mono border border-white/5 shadow-inner"
+        >
+          Internal Exception: java.net.SocketException: Connection reset
+        </code>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

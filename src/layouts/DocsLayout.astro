@@ -1,0 +1,77 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+
+const { title, description } = Astro.props;
+
+// Obtener toda la documentación para el menú lateral
+const allDocs = await getCollection("docs");
+
+// Agrupar por categoría
+const groupedDocs = allDocs.reduce((acc, doc) => {
+  const cat = doc.data.category;
+  if (!acc[cat]) acc[cat] = [];
+  acc[cat].push(doc);
+  return acc;
+}, {} as Record<string, typeof allDocs>);
+
+// Ordenar dentro de cada categoría
+Object.keys(groupedDocs).forEach((key) => {
+  groupedDocs[key].sort((a, b) => a.data.order - b.data.order);
+});
+
+// Ordenar las categorías visualmente (opcional, aquí haré que Primeros Pasos salga primero)
+const orderedCategories = Object.keys(groupedDocs).sort((a, b) => {
+  if (a === "Primeros Pasos") return -1;
+  if (b === "Primeros Pasos") return 1;
+  return a.localeCompare(b);
+});
+
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <div class="max-w-[90rem] mx-auto px-6 pt-32 pb-24 flex flex-col md:flex-row gap-12 relative z-10 min-h-screen">
+    
+    <!-- Sidebar de Navegación -->
+    <aside class="w-full md:w-64 flex-shrink-0 md:sticky md:top-32 h-fit overflow-y-auto hidden md:block">
+      <nav class="space-y-8">
+        {orderedCategories.map((category) => (
+          <div>
+            <h3 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">{category}</h3>
+            <ul class="space-y-2 border-l border-white/10 ml-2">
+              {groupedDocs[category].map((item) => {
+                const itemPath = `/docs/${item.id}`;
+                const isActive = currentPath === itemPath || currentPath === itemPath + "/";
+                return (
+                  <li>
+                    <a 
+                      href={itemPath} 
+                      class={`block pl-4 py-1.5 text-sm transition-colors border-l-2 -ml-[1px] ${isActive ? 'text-brand border-brand font-medium' : 'text-gray-400 border-transparent hover:text-white hover:border-white/30'}`}
+                    >
+                      {item.data.title}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ))}
+      </nav>
+    </aside>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow max-w-3xl min-w-0">
+      <slot />
+    </main>
+
+  </div>
+
+  <Footer />
+</BaseLayout>

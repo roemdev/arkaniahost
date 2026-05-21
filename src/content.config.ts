@@ -40,6 +40,27 @@ const testimonials = defineCollection({
   }),
 });
 
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.string(),
+    author: z.string().default("Equipo ArkaniaHost"),
+    image: z.string().optional(),
+  }),
+});
+
+const docs = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/docs" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.string(),
+    order: z.number().default(0),
+  }),
+});
+
 const legal = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/legal" }),
   schema: z.object({
@@ -49,4 +70,4 @@ const legal = defineCollection({
   }),
 });
 
-export const collections = { plans, faq, testimonials, legal };
+export const collections = { plans, faq, testimonials, legal, blog, docs };

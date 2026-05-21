@@ -1,0 +1,55 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/layout/Navbar.astro";
+import Footer from "../../components/layout/Footer.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={`${post.data.title} | Blog ArkaniaHost`} description={post.data.description}>
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="py-32 max-w-3xl mx-auto px-6 relative z-10 min-h-screen">
+    <!-- Botón Volver -->
+    <a href="/blog" class="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-sm font-medium mb-12">
+      <i class="fa-solid fa-arrow-left"></i> Volver al blog
+    </a>
+
+    <!-- Cabecera del Artículo -->
+    <header class="mb-12 border-b border-white/10 pb-8">
+      {post.data.image && (
+        <img src={post.data.image} alt={post.data.title} class="w-full h-64 md:h-96 object-cover rounded-2xl mb-8 border border-white/10" />
+      )}
+      <div class="flex items-center gap-4 text-sm text-gray-500 mb-4">
+        <span><i class="fa-regular fa-calendar mr-1"></i> {post.data.date}</span>
+        <span>&bull;</span>
+        <span><i class="fa-solid fa-user-pen mr-1"></i> {post.data.author}</span>
+      </div>
+      <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
+        {post.data.title}
+      </h1>
+      <p class="text-xl text-gray-400 font-light leading-relaxed">
+        {post.data.description}
+      </p>
+    </header>
+
+    <!-- Contenido del Artículo (Markdown) renderizado con Tailwind Typography -->
+    <article class="prose prose-invert prose-brand max-w-none prose-headings:font-display prose-a:text-brand prose-a:no-underline hover:prose-a:underline">
+      <Content />
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

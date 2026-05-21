@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import CTA from "../components/sections/CTA.astro";
+
+const roadmap = [
+  {
+    quarter: "Q1 2026",
+    title: "Lanzamiento de ArkaniaHost",
+    description: "Despliegue inicial de nuestra infraestructura con protección DDoS personalizada.",
+    status: "completed",
+  },
+  {
+    quarter: "Q2 2026",
+    title: "Panel de Control V2",
+    description: "Rediseño de la interfaz de usuario, instalador de modpacks y copias de seguridad.",
+    status: "current",
+  },
+  {
+    quarter: "Q3 2026",
+    title: "Nuevos Nodos en LATAM",
+    description: "Apertura de nuevas ubicaciones para garantizar la latencia más baja.",
+    status: "upcoming",
+  },
+  {
+    quarter: "Q4 2026",
+    title: "Soporte Multi-Juego",
+    description: "Alojamiento especializado de Rust, Palworld y servidores de voz.",
+    status: "upcoming",
+  }
+];
+
+const values = [
+  {
+    icon: "fa-solid fa-server",
+    title: "Cero Sobreventa",
+    desc: "Asignamos recursos dedicados a tu contenedor."
+  },
+  {
+    icon: "fa-solid fa-bolt",
+    title: "Hardware Premium",
+    desc: "Unidades NVMe y procesadores de alta frecuencia."
+  },
+  {
+    icon: "fa-solid fa-users",
+    title: "Por Jugadores",
+    desc: "Entendemos lo crítico que es un buen TPS."
+  },
+  {
+    icon: "fa-solid fa-headset",
+    title: "Soporte Directo",
+    desc: "Atención técnica directa, sin bots automáticos."
+  }
+];
+
+const team = [
+  { name: "DMENA", role: "CEO", icon: "fa-solid fa-user-tie" },
+  { name: "RROWNER", role: "CFO", icon: "fa-solid fa-chart-line" },
+  { name: "roemdev", role: "CTO", icon: "fa-solid fa-code" }
+];
+---
+
+<BaseLayout title="Sobre nosotros | ArkaniaHost">
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="pt-24 pb-20 relative z-10">
+
+    <section class="max-w-5xl mx-auto px-6 text-center relative z-10 pt-16 mb-16 animate-fade-in-up">
+      <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+        Sobre <span class="text-brand">Nosotros</span>
+      </h1>
+      <p class="text-gray-400 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+        Conoce la visión y la infraestructura que impulsa a miles de comunidades de Minecraft en toda Latinoamérica.
+      </p>
+    </section>
+
+    <section class="max-w-4xl mx-auto px-6 mb-20 animate-fade-in-up" style="animation-delay: 0.1s;">
+      <div class="glass-card p-8 md:p-12 text-center md:text-left">
+        <p class="text-lg text-white mb-4 font-medium">Nacimos con un propósito claro: eliminar las frustraciones del alojamiento tradicional de Minecraft.</p>
+        <p class="text-gray-400 font-light leading-relaxed">
+          Durante años, los dueños de servidores en nuestra región han sufrido de alta latencia, soporte ausente y sobreventa extrema de recursos. En ArkaniaHost, construimos una plataforma enfocada en la transparencia, el rendimiento bruto y una experiencia de usuario impecable. Nuestro objetivo es ser el pilar tecnológico indiscutible para las comunidades de gaming en LATAM.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 mb-24 animate-fade-in-up" style="animation-delay: 0.15s;">
+      <div class="text-center mb-10">
+        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white">Nuestro <span class="text-brand">Equipo</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {team.map((member) => (
+          <div class="glass-card p-8 flex flex-col items-center text-center">
+            <div class="w-16 h-16 rounded-full bg-white/[0.05] border border-white/10 flex items-center justify-center mb-4 text-gray-400">
+              <i class={`${member.icon} text-xl`}></i>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white mb-1">{member.name}</h3>
+            <p class="text-brand text-xs font-bold tracking-widest uppercase">{member.role}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 mb-24 animate-fade-in-up" style="animation-delay: 0.2s;">
+      <div class="text-center mb-10">
+        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white">Los pilares de <span class="text-brand">Arkania</span></h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {values.map((val) => (
+          <div class="glass-card p-6 flex flex-col h-full">
+            <div class="w-10 h-10 rounded bg-white/[0.05] border border-white/10 flex items-center justify-center mb-4 text-white">
+              <i class={val.icon}></i>
+            </div>
+            <h3 class="font-display text-lg font-bold mb-2 text-white">{val.title}</h3>
+            <p class="text-gray-400 text-sm leading-relaxed font-light">{val.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="max-w-3xl mx-auto px-6 mb-20 animate-fade-in-up" style="animation-delay: 0.3s;">
+      <div class="text-center mb-12">
+        <h2 class="font-display text-2xl md:text-3xl font-bold tracking-tight text-white">Nuestro <span class="text-brand">Roadmap</span></h2>
+      </div>
+
+      <div class="border-l border-white/10 ml-4 md:ml-8 space-y-10">
+        {roadmap.map((item) => {
+          const isCompleted = item.status === "completed";
+          const isCurrent = item.status === "current";
+          
+          return (
+            <div class="relative pl-8">
+              <div class={`absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full ${isCompleted ? 'bg-brand shadow-[0_0_8px_rgba(204,0,255,0.5)]' : isCurrent ? 'bg-white shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'bg-white/20'}`}></div>
+
+              <div class="mb-1">
+                <span class={`text-[10px] font-bold tracking-widest uppercase ${isCompleted ? 'text-brand' : isCurrent ? 'text-white' : 'text-gray-500'}`}>
+                  {item.quarter}
+                </span>
+              </div>
+              <h3 class="font-display text-xl font-bold text-white mb-2">{item.title}</h3>
+              <p class="text-gray-400 text-sm font-light leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+    
+    <CTA />
+  </main>
+
+  <Footer />
+</BaseLayout>

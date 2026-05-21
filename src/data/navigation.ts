@@ -22,10 +22,10 @@ export const ROTATING_WORDS = [
 
 // Features del marquee
 export const MARQUEE_FEATURES = [
-  { icon: "fa-solid fa-infinity",               label: "Almacenamiento Ilimitado" },
-  { icon: "fa-solid fa-truck-fast",             label: "Migración Gratuita"       },
-  { icon: "fa-solid fa-wand-magic-sparkles",    label: "Instalación de Mods"      },
-  { icon: "fa-solid fa-globe",                  label: "IP Personalizada"         },
+  { icon: "fa-solid fa-infinity", label: "Almacenamiento Ilimitado" },
+  { icon: "fa-solid fa-truck-fast", label: "Migración Gratuita" },
+  { icon: "fa-solid fa-wand-magic-sparkles", label: "Instalación de Mods" },
+  { icon: "fa-solid fa-bolt", label: "Activación Inmediata" },
 ] as const;
 
 // Pasos del flujo de trabajo
@@ -39,17 +39,17 @@ export const WORKFLOW_STEPS = [
 export const SOLUTION_CARDS = [
   {
     icon: "fa-solid fa-layer-group",
-    title: "Panel Visual",
-    description: "Una interfaz pulida y directa. Instala modpacks o cambia configuraciones con clics, sin tocar comandos.",
+    title: "Panel Intuitivo",
+    description: "Interfaz directa. Instala o cambia configuraciones con pocos clics.",
   },
   {
     icon: "fa-solid fa-microchip",
-    title: "Rendimiento Dedicado",
-    description: "No sobrevendemos. Tu espacio está respaldado por hardware de alto nivel para procesar tu mundo sin fluctuaciones.",
+    title: "Hardware Dedicado",
+    description: "Cero sobreventa. Procesamos tu mundo sin lag ni caídas.",
   },
   {
     icon: "fa-solid fa-headset",
-    title: "Soporte Directo",
-    description: "Conectamos a humanos con humanos. Nuestro equipo técnico asiste tus configuraciones vía Discord o WhatsApp con precisión.",
+    title: "Soporte Humano",
+    description: "Asistencia directa sin bots ni respuestas automatizadas.",
   },
 ] as const;

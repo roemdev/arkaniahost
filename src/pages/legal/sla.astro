@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/layout/Navbar.astro";
+import Footer from "../../components/layout/Footer.astro";
+
+const lastUpdate = "21 de mayo de 2026";
+---
+
+<BaseLayout title="SLA y Reembolsos | ArkaniaHost">
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="py-24 md:py-32 max-w-7xl mx-auto px-6 relative z-10">
+    <div class="flex flex-col md:flex-row gap-12">
+      
+      <aside class="md:w-1/4 flex-shrink-0 animate-fade-in-up">
+        <div class="sticky top-32">
+          <h3 class="font-display font-bold text-white mb-6 uppercase tracking-widest text-xs">Documentación</h3>
+          <ul class="space-y-4">
+            <li><a href="/legal/terms" class="text-gray-500 hover:text-gray-300 transition-colors text-sm flex items-center justify-between">Términos de Servicio</a></li>
+            <li><a href="/legal/privacy" class="text-gray-500 hover:text-gray-300 transition-colors text-sm flex items-center justify-between">Privacidad</a></li>
+            <li><a href="/legal/sla" class="text-brand font-medium text-sm flex items-center justify-between">SLA y Reembolsos</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="md:w-3/4 animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="mb-12 border-b border-white/10 pb-8">
+          <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+            SLA y <span class="text-brand">Reembolsos</span>
+          </h1>
+          <p class="text-gray-500 text-sm font-light">Última actualización: {lastUpdate}</p>
+        </div>
+
+        <div class="text-gray-400 font-light leading-relaxed">
+          
+          <h3 class="font-display text-xl font-bold text-white mt-4 mb-4">1. Garantía de Uptime (99% SLA)</h3>
+          <p class="mb-6">Nuestro compromiso es mantener su servidor accesible y en funcionamiento el 99% del tiempo durante un mes calendario. Este porcentaje de disponibilidad no incluye mantenimientos programados (los cuales serán notificados con antelación) ni interrupciones causadas por factores ajenos a la infraestructura de ArkaniaHost (tales como caídas masivas de red a nivel mundial o modificaciones del propio usuario en sus archivos que causen crasheos del software de Minecraft).</p>
+          
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">2. Compensaciones por Incumplimiento del SLA</h3>
+          <p class="mb-4">Si la disponibilidad de su servicio cae por debajo del 99% garantizado en un mes determinado debido a problemas de nuestros nodos o red, usted es elegible para solicitar una compensación:</p>
+          <ul class="list-disc pl-6 space-y-2 mb-6 marker:text-brand">
+            <li><strong class="text-gray-300 font-medium">95% a 98.9% Uptime:</strong> Crédito del 10% del valor mensual pagado en su cuenta para futuras renovaciones.</li>
+            <li><strong class="text-gray-300 font-medium">Menos del 95% Uptime:</strong> Crédito del 25% del valor mensual pagado en su cuenta para futuras renovaciones.</li>
+          </ul>
+          <p class="mb-6">Para reclamar estos créditos, deberá abrir un ticket de soporte dentro de los 7 días posteriores al mes afectado. Las compensaciones se entregan en forma de saldo virtual, no como reembolsos en efectivo a su tarjeta o PayPal.</p>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">3. Política de Reembolso Inicial (72 Horas)</h3>
+          <p class="mb-6">Confiamos en la calidad de nuestra infraestructura. Por ello, ofrecemos una ventana de <strong class="text-gray-300 font-medium">72 horas (3 días)</strong> para todos los planes de servidores de juegos en su primer ciclo de facturación. Si experimenta problemas de latencia inusual (network jitter) originados en nuestro nodo o hardware defectuoso, y nuestro soporte no logra mitigar la situación en 24 horas, usted puede exigir el 100% de la devolución de su dinero.</p>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">4. Excepciones al Reembolso y SLA</h3>
+          <p class="mb-4">Los reembolsos en efectivo o créditos SLA <strong class="text-brand font-bold">NO</strong> aplican si el tiempo de inactividad o la insatisfacción deriva de:</p>
+          <ul class="list-disc pl-6 space-y-2 mb-8 marker:text-brand">
+            <li>Crasheos del servidor provocados por el consumo excesivo de memoria debido a una mala selección de plan (Ej: Intentar correr 200 mods en 2GB de RAM).</li>
+            <li>Configuraciones erróneas del usuario (archivos <code class="bg-white/10 px-1.5 py-0.5 rounded text-sm text-gray-300 font-mono">server.properties</code> rotos, loops infinitos en comandos, mundos corruptos subidos vía FTP).</li>
+            <li>Pagos correspondientes a renovaciones, mejoras (upgrades), IPs Dedicadas o Dominios.</li>
+            <li>Cuentas suspendidas por haber infringido los Términos de Servicio (Ej: ataques de red, intentos de vulneración del panel).</li>
+          </ul>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">5. Chargebacks (Reversión de cargos)</h3>
+          <p class="mb-6">Iniciar una disputa en PayPal o con su banco emisor antes de tratar el caso con nuestro equipo resultará en la terminación inmediata e irrevocable de todos sus servicios actuales y el bloqueo permanente de su cuenta para prevenir futuras contrataciones.</p>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

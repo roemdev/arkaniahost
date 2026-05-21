@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+---
+
+<BaseLayout title="Contacto | ArkaniaHost">
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="py-24 md:py-32 max-w-5xl mx-auto px-6 relative z-10">
+    <div class="text-center mb-16 animate-fade-in-up">
+      <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+        Ponte en <span class="text-brand">Contacto</span>
+      </h1>
+      <p class="text-gray-400 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+        ¿Tienes dudas o necesitas asistencia técnica? Estamos listos para ayudarte a resolver cualquier inconveniente.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 animate-fade-in-up" style="animation-delay: 0.1s;">
+      <a href="https:
+        <div class="w-16 h-16 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center mb-6 text-white group-hover:bg-[#5865F2] transition-colors duration-300">
+          <i class="fa-brands fa-discord text-2xl"></i>
+        </div>
+        <h3 class="font-display text-2xl font-bold mb-3 text-white">Discord</h3>
+        <p class="text-gray-400 text-sm leading-relaxed font-light mb-8">
+          Únete a nuestra comunidad. Es la forma más rápida de obtener respuestas breves, compartir con otros creadores y ver avisos del sistema.
+        </p>
+        <span class="mt-auto px-6 py-2 bg-white/[0.05] border border-white/10 text-white rounded-lg text-sm font-medium group-hover:border-white/30 transition-all">
+          Unirse al servidor
+        </span>
+      </a>
+
+      <a href="https:
+        <div class="w-16 h-16 rounded-lg bg-white/[0.05] border border-white/10 flex items-center justify-center mb-6 text-white group-hover:bg-brand transition-colors duration-300">
+          <i class="fa-solid fa-headset text-2xl"></i>
+        </div>
+        <h3 class="font-display text-2xl font-bold mb-3 text-white">Soporte Técnico</h3>
+        <p class="text-gray-400 text-sm leading-relaxed font-light mb-8">
+          Para problemas de facturación, IPs dedicadas, o configuraciones complejas que requieran acceso a tu servidor, abre un ticket seguro.
+        </p>
+        <span class="mt-auto px-6 py-2 bg-white/[0.05] border border-white/10 text-white rounded-lg text-sm font-medium group-hover:border-white/30 transition-all">
+          Abrir Ticket
+        </span>
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

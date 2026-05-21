@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/layout/Navbar.astro";
+import Footer from "../../components/layout/Footer.astro";
+---
+
+<BaseLayout title="Política de Privacidad | ArkaniaHost">
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="py-24 md:py-32 max-w-7xl mx-auto px-6 relative z-10">
+    <div class="flex flex-col md:flex-row gap-12">
+      
+      <aside class="md:w-1/4 flex-shrink-0 animate-fade-in-up">
+        <div class="sticky top-32">
+          <h3 class="font-display font-bold text-white mb-6 uppercase tracking-widest text-xs">Documentación</h3>
+          <ul class="space-y-4">
+            <li><a href="/legal/terms" class="text-gray-500 hover:text-gray-300 transition-colors text-sm flex items-center justify-between">Términos de Servicio</a></li>
+            <li><a href="/legal/privacy" class="text-brand font-medium text-sm flex items-center justify-between">Privacidad</a></li>
+            <li><a href="/legal/sla" class="text-gray-500 hover:text-gray-300 transition-colors text-sm flex items-center justify-between">SLA y Reembolsos</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="md:w-3/4 animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="mb-12 border-b border-white/10 pb-8">
+          <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+            Política de <span class="text-brand">Privacidad</span>
+          </h1>
+          <p class="text-gray-500 text-sm font-light">Última actualización: 21 de mayo de 2026</p>
+        </div>
+
+        <div class="text-gray-400 font-light leading-relaxed">
+          
+          <p class="text-lg text-gray-300 font-medium mb-8">En ArkaniaHost somos plenamente conscientes de que la confianza es la base de nuestro negocio. Esta Política de Privacidad detalla exhaustivamente nuestras prácticas de recopilación, almacenamiento y uso de datos de clientes.</p>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">1. ¿Qué datos recopilamos?</h3>
+          <p class="mb-4">Recopilamos únicamente la información técnica y personal que es indispensable para entregar el servicio y cumplir regulaciones fiscales:</p>
+          <ul class="list-disc pl-6 space-y-2 mb-8 marker:text-brand">
+            <li><strong class="text-gray-300 font-medium">Información del Cliente:</strong> Nombres, apellidos, direcciones físicas de facturación y direcciones de correo electrónico proporcionadas al crear la cuenta en el portal de facturación (Client Area).</li>
+            <li><strong class="text-gray-300 font-medium">Datos de Sesión:</strong> Direcciones IP, ubicaciones geográficas estimadas e identificadores del navegador. Esto es esencial para prevenir que bots abusivos o pagos fraudulentos comprometan nuestra plataforma.</li>
+            <li><strong class="text-gray-300 font-medium">Información del Servicio:</strong> Contenido cargado a nuestros nodos de alojamiento, tales como mundos de Minecraft, bases de datos SQL y credenciales del propio panel de control de juegos.</li>
+          </ul>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">2. ¿Cómo utilizamos su información?</h3>
+          <p class="mb-4">Nuestra postura comercial prohíbe terminantemente la venta, alquiler o mercantilización de bases de datos a terceros. Toda la información obtenida es utilizada con el propósito de:</p>
+          <ul class="list-disc pl-6 space-y-2 mb-8 marker:text-brand">
+            <li>Ejecutar la prestación del servicio técnico y mantenimiento.</li>
+            <li>Procesar cobros y emitir comprobantes de pago.</li>
+            <li>Notificar sobre incidencias técnicas de infraestructura, mantenimientos urgentes y actualizaciones de seguridad importantes.</li>
+          </ul>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">3. Terceros y Pasarelas de Pago</h3>
+          <p class="mb-6">Delegamos el procesamiento financiero a empresas globales certificadas en normas PCI-DSS (como PayPal o equivalentes). <strong class="text-gray-300 font-medium">ArkaniaHost nunca ve, procesa ni almacena directamente los números completos de sus tarjetas de crédito/débito</strong>. Solo recibimos confirmaciones criptográficas de que una transacción fue completada exitosamente, junto con los últimos 4 dígitos como referencia de pago.</p>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">4. Almacenamiento y Retención de Datos</h3>
+          <p class="mb-6">Sus datos personales se resguardan en bases de datos protegidas por cortafuegos robustos y algoritmos de cifrado. Cuando usted cancela definitivamente un servicio y solicita el cierre de su cuenta, eliminamos de forma irreversible todos los datos almacenados en su nodo (mundos, configuraciones). Sin embargo, la legislación fiscal internacional nos exige mantener ciertos registros de facturación, por lo que su nombre y comprobantes de compra históricos se conservarán por un período de hasta 5 años, aislados de cualquier uso comercial.</p>
+
+          <h3 class="font-display text-xl font-bold text-white mt-12 mb-4">5. Derechos de Privacidad</h3>
+          <p class="mb-6">Conforme a las leyes internacionales de privacidad de datos, usted tiene derecho a solicitar la exportación de todos los datos que tenemos sobre usted, o exigir su rectificación y borrado (en caso de no tener pagos pendientes). Cualquier solicitud relativa a la privacidad debe ser encauzada a través de un ticket en su panel de cliente.</p>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>

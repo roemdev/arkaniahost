@@ -1,16 +1,18 @@
 ---
-import BaseLayout    from "../layouts/BaseLayout.astro";
-import PromoBar      from "../components/ui/PromoBar.astro";
-import Navbar        from "../components/layout/Navbar.astro";
-import Footer        from "../components/layout/Footer.astro";
-import Hero          from "../components/sections/Hero.astro";
-import Marquee       from "../components/sections/Marquee.astro";
-import Solution      from "../components/sections/Solution.astro";
-import Workflow      from "../components/sections/Workflow.astro";
-import PricingTable  from "../components/sections/PricingTable.astro";
-import Testimonials  from "../components/sections/Testimonials.astro";
-import FAQ           from "../components/sections/FAQ.astro";
-import CTA           from "../components/sections/CTA.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PromoBar from "../components/ui/PromoBar.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import Hero from "../components/sections/Hero.astro";
+import Marquee from "../components/sections/Marquee.astro";
+import Solution from "../components/sections/Solution.astro";
+import Workflow from "../components/sections/Workflow.astro";
+import Features from "../components/sections/Features.astro";
+import PricingTable from "../components/sections/PricingTable.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import Stats from "../components/sections/Stats.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import CTA from "../components/sections/CTA.astro";
 
 const schema = {
   "@context": "https://schema.org",
@@ -18,33 +20,31 @@ const schema = {
     {
       "@type": "Organization",
       "@id": "https://arkaniahost.xyz/#organization",
-      "name": "ArkaniaHost",
-      "url": "https://arkaniahost.xyz",
-      "logo": {
+      name: "ArkaniaHost",
+      url: "https://arkaniahost.xyz",
+      logo: {
         "@type": "ImageObject",
-        "url": "https://arkaniahost.xyz/favicon.ico"
+        url: "https://arkaniahost.xyz/favicon.ico",
       },
-      "sameAs": [
-        "https://discord.arkaniahost.xyz"
-      ]
+      sameAs: ["https://discord.arkaniahost.xyz"],
     },
     {
       "@type": "WebSite",
       "@id": "https://arkaniahost.xyz/#website",
-      "url": "https://arkaniahost.xyz",
-      "name": "ArkaniaHost",
-      "description": "Infraestructura premium y almacenamiento ilimitado para comunidades en LATAM. Rendimiento extremo simplificado.",
-      "publisher": {
-        "@id": "https://arkaniahost.xyz/#organization"
-      }
-    }
-  ]
+      url: "https://arkaniahost.xyz",
+      name: "ArkaniaHost",
+      description:
+        "Infraestructura premium y almacenamiento ilimitado para comunidades en LATAM. Rendimiento extremo simplificado.",
+      publisher: {
+        "@id": "https://arkaniahost.xyz/#organization",
+      },
+    },
+  ],
 };
 ---
 
 <BaseLayout>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <!-- Barra de promo + nav fijos en la parte superior -->
+  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
   <div class="absolute w-full z-50 top-0 flex flex-col">
     <PromoBar
       message="🎉 Promo: 20% de descuento con el código"
@@ -58,17 +58,17 @@ const schema = {
     <Marquee />
     <Solution />
     <Workflow />
+    <Features />
     <PricingTable />
     <Testimonials />
+    <Stats />
     <FAQ />
     <CTA />
   </main>
 
   <Footer />
-
 </BaseLayout>
 
-<!-- Scroll reveal global: se carga después del HTML, sin bloquear render -->
 <script>
   import "../scripts/reveal.ts";
 </script>

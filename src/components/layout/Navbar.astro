@@ -80,10 +80,90 @@ const clientUrl = "https://billing.arkaniahost.xyz/dashboard";
         <i class="fa-solid fa-arrow-right text-xs"></i>
       </a>
 
-      <!-- Mobile Menu Button (Placeholder for simplicity) -->
-      <button class="lg:hidden text-gray-300 hover:text-white">
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-btn"
+        class="lg:hidden text-gray-300 hover:text-white"
+      >
         <i class="fa-solid fa-bars text-xl"></i>
       </button>
     </div>
   </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden bg-[#030303]/95 backdrop-blur-xl border-b border-white/10 w-full px-6 py-4 flex-col gap-4 absolute top-16 left-0 shadow-xl"
+  >
+    <a
+      href="/about"
+      class="text-sm font-medium text-gray-300 hover:text-white transition-colors block"
+      >Nosotros</a
+    >
+    <a
+      href="/blog"
+      class="text-sm font-medium text-gray-300 hover:text-white transition-colors block"
+      >Blog</a
+    >
+    <a
+      href="/docs"
+      class="text-sm font-medium text-gray-300 hover:text-white transition-colors block"
+      >Docs</a
+    >
+    <a
+      href="https://status.arkaniahost.xyz"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center justify-between"
+    >
+      Estado <i
+        class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"
+      ></i>
+    </a>
+    <a
+      href={panelUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center justify-between"
+    >
+      Panel <i
+        class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"
+      ></i>
+    </a>
+    <a
+      href={clientUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-sm font-medium text-gray-300 hover:text-white transition-colors flex items-center justify-between"
+    >
+      Área de clientes <i
+        class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60"
+      ></i>
+    </a>
+    <a
+      href="#planes"
+      class="bg-brand hover:bg-[#aa00d4] text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors text-center mt-2 block voxel-button"
+    >
+      Comenzar
+    </a>
+  </div>
 </nav>
+
+<script>
+  const btn = document.getElementById("mobile-menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const icon = btn?.querySelector("i");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+    menu?.classList.toggle("flex");
+
+    if (menu?.classList.contains("hidden")) {
+      icon?.classList.remove("fa-xmark");
+      icon?.classList.add("fa-bars");
+    } else {
+      icon?.classList.remove("fa-bars");
+      icon?.classList.add("fa-xmark");
+    }
+  });
+</script>

@@ -2,51 +2,55 @@
 const faqs = [
   {
     q: "¿Cuánta RAM necesito?",
-    a: "Depende de lo que quieras hacer. Para Vanilla con pocos amigos, 3GB (Starter) es suficiente. Si usas muchos plugins o modpacks pesados, te recomendamos el plan Plus (6GB) o Pro (9GB)."
+    a: "Depende de lo que quieras hacer. Para Vanilla con pocos amigos, 3GB (Starter) es suficiente. Si usas muchos plugins o modpacks pesados, te recomendamos el plan Plus (6GB) o Pro (9GB).",
   },
   {
     q: "¿Java o Bedrock?",
-    a: "¡Ambos! Puedes instalar un servidor de Java, uno de Bedrock, o usar un servidor Java con GeyserMC para permitir que jugadores de Bedrock se conecten también."
+    a: "¡Ambos! Puedes instalar un servidor de Java, uno de Bedrock, o usar un servidor Java con GeyserMC para permitir que jugadores de Bedrock se conecten también.",
   },
   {
     q: "¿Puedo instalar mods?",
-    a: "Sí. Tienes acceso completo a tus archivos, lo que te permite instalar cualquier mod (Forge, Fabric) o plugin (Paper, Spigot) sin restricciones."
+    a: "Sí. Tienes acceso completo a tus archivos, lo que te permite instalar cualquier mod (Forge, Fabric) o plugin (Paper, Spigot) sin restricciones.",
   },
   {
     q: "¿Puedo subir mi mundo?",
-    a: "Claro que sí. Puedes subir tu mundo actual a través de nuestro Administrador de Archivos web o usando SFTP para archivos grandes."
+    a: "Claro que sí. Puedes subir tu mundo actual a través de nuestro Administrador de Archivos web o usando SFTP para archivos grandes.",
   },
   {
     q: "¿Cómo funciona la migración?",
-    a: "Ofrecemos migración gratuita. Solo tienes que abrir un ticket después de comprar tu plan, darnos acceso a tu host anterior, y nosotros nos encargaremos de mover todos tus archivos y mundos."
+    a: "Ofrecemos migración gratuita. Solo tienes que abrir un ticket después de comprar tu plan, darnos acceso a tu host anterior, y nosotros nos encargaremos de mover todos tus archivos y mundos.",
   },
   {
     q: "¿Puedo cambiar de plan?",
-    a: "Sí, puedes escalar tus recursos (RAM, CPU, etc.) en cualquier momento desde tu área de clientes. Se aplicará un prorrateo automático y no perderás ningún dato."
-  }
+    a: "Sí, puedes escalar tus recursos (RAM, CPU, etc.) en cualquier momento desde tu área de clientes. Se aplicará un prorrateo automático y no perderás ningún dato.",
+  },
 ];
 ---
 
-<section class="py-24 relative z-10 bg-[#060606]">
+<section class="py-24 relative z-10">
   <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">Preguntas Frecuentes</h2>
+      <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-4">
+        Preguntas Frecuentes
+      </h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-4 items-start">
-      {faqs.map((faq, index) => (
-        <details class="group glass-card border border-white/5 rounded-lg [&_summary::-webkit-details-marker]:hidden">
-          <summary class="flex items-center justify-between p-6 cursor-pointer text-white font-medium">
-            {faq.q}
-            <span class="transition group-open:rotate-180 text-brand">
-              <i class="fa-solid fa-chevron-down text-sm"></i>
-            </span>
-          </summary>
-          <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-            {faq.a}
-          </div>
-        </details>
-      ))}
+      {
+        faqs.map((faq, index) => (
+          <details class="group glass-card border border-white/5 rounded-lg [&_summary::-webkit-details-marker]:hidden">
+            <summary class="flex items-center justify-between p-6 cursor-pointer text-white font-medium">
+              {faq.q}
+              <span class="transition group-open:rotate-180 text-brand">
+                <i class="fa-solid fa-chevron-down text-sm" />
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+              {faq.a}
+            </div>
+          </details>
+        ))
+      }
     </div>
   </div>
 </section>

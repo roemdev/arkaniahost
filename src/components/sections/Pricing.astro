@@ -70,11 +70,11 @@ const plans = [
       </p>
     </div>
 
-    <!-- CONFIGURADOR EN DOS TARJETAS -->
-    <div class="grid lg:grid-cols-12 gap-8 items-stretch max-w-7xl mx-auto">
-      <!-- TARJETA IZQUIERDA: Especificaciones técnicas y Descripción del Plan (7/12 columnas) -->
+    <!-- CONFIGURADOR EN DOS TARJETAS IGUALES -->
+    <div class="grid lg:grid-cols-2 gap-8 items-stretch max-w-7xl mx-auto">
+      <!-- TARJETA IZQUIERDA: Especificaciones técnicas (1 Columna) -->
       <div
-        class="lg:col-span-7 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 p-6 md:p-8 rounded-2xl flex flex-col justify-between gap-6 shadow-xl"
+        class="bg-white/[0.02] backdrop-blur-[16px] border border-white/5 p-6 md:p-8 rounded-2xl flex flex-col gap-6 shadow-xl w-full"
       >
         <div>
           <h3
@@ -83,7 +83,7 @@ const plans = [
             <i class="fa-solid fa-microchip text-brand text-xs"></i> Datos Técnicos
           </h3>
 
-          <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+          <ul class="flex flex-col gap-y-5">
             <li class="flex items-center gap-5 text-gray-300">
               <div
                 class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0"
@@ -154,26 +154,24 @@ const plans = [
 
             <li class="flex items-center gap-5 text-gray-300">
               <div
-                class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 flex-shrink-0"
+                class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 flex-shrink-0"
               >
-                <i class="fa-solid fa-gears text-xl"></i>
+                <i class="fa-solid fa-globe text-xl"></i>
               </div>
               <div class="min-w-0">
                 <span
                   class="text-xs text-gray-400 uppercase font-bold tracking-wider block mb-1"
-                  >Panel de Control</span
+                  >Conexión</span
                 >
                 <span class="text-white font-medium text-base block"
-                  >Pterodactyl</span
+                  >Subdominios Gratuitos</span
                 >
               </div>
             </li>
-
-
           </ul>
         </div>
 
-        <!-- Ficha de descripción dinámica (Relocalizado debajo de Datos Técnicos en Tarjeta Izquierda) -->
+        <!-- Ficha de descripción dinámica (Ubicada debajo de Datos Técnicos) -->
         <div
           class="bg-white/[0.01] border border-white/5 p-5 md:p-6 rounded-xl space-y-3 mt-auto"
         >
@@ -192,9 +190,9 @@ const plans = [
         </div>
       </div>
 
-      <!-- TARJETA DERECHA: Selector interactivo de RAM (5/12 columnas) -->
+      <!-- TARJETA DERECHA: Selector interactivo de RAM (1 Columna) -->
       <div
-        class="lg:col-span-5 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 p-6 md:p-8 rounded-2xl flex flex-col justify-between gap-6 shadow-xl"
+        class="bg-white/[0.02] backdrop-blur-[16px] border border-white/5 p-6 md:p-8 rounded-2xl flex flex-col justify-between gap-6 shadow-xl w-full"
       >
         <div>
           <h3
@@ -203,11 +201,12 @@ const plans = [
             <i class="fa-solid fa-sliders text-brand text-xs"></i> Configura tu RAM
           </h3>
 
-          <!-- Botones del Selector de RAM (2 por línea, Personalizado ocupa los dos espacios, Sin Precios) -->
-          <div class="grid grid-cols-2 gap-3" id="ram-selector-container">
+          <!-- Botones del Selector de RAM (En 1 sola columna vertical) -->
+          <div class="flex flex-col gap-3" id="ram-selector-container">
             {
               plans.map((p) => {
                 const isCustom = p.id === "custom";
+                if (isCustom) return null;
                 return (
                   <button
                     type="button"
@@ -216,27 +215,35 @@ const plans = [
                     data-ram-desc={p.desc}
                     data-ram-link={p.link}
                     data-ram-name={p.name}
-                    class={`text-center py-4 px-3 rounded-xl border flex flex-col items-center justify-center cursor-pointer transition-all duration-300 outline-none focus:outline-none ${
-                      isCustom ? "col-span-2 py-4.5" : ""
-                    } ${
+                    class={`w-full text-left py-3 px-4 md:px-5 rounded-xl border flex items-center justify-between cursor-pointer transition-all duration-300 outline-none focus:outline-none ${
                       p.popular
                         ? "border-brand bg-brand/5 shadow-[0_0_15px_rgba(163,0,204,0.15)]"
                         : "border-white/10 bg-transparent hover:border-white/20"
                     }`}
                   >
-                    <div class="flex items-center gap-2">
-                      <span class="font-bold text-white text-base">
-                        {isCustom ? p.ram : `${p.ram} RAM`}
-                      </span>
-                      {p.popular && (
-                        <span class="bg-brand text-white text-[7px] font-bold uppercase tracking-wider py-0.5 px-2 rounded">
-                          Recomendado
+                    <div class="flex flex-col">
+                      <div class="flex items-center gap-2">
+                        <span class="font-bold text-white text-base">
+                          {isCustom ? p.ram : `${p.ram} RAM`}
                         </span>
-                      )}
+                        {p.popular && (
+                          <span class="bg-brand text-white text-[7px] font-bold uppercase tracking-wider py-0.5 px-2 rounded">
+                            Recomendado
+                          </span>
+                        )}
+                      </div>
+                      <div class="text-[10px] text-gray-500 mt-0.5 uppercase tracking-wider">
+                        Plan {p.name}
+                      </div>
                     </div>
-                    <div class="text-[9px] text-gray-500 mt-0.5 uppercase tracking-wider">
-                      Plan {p.name}
-                    </div>
+                    {!isCustom && (
+                      <div class="text-white font-bold">
+                        {p.price}
+                        <span class="text-xs text-gray-500 font-normal ml-0.5">
+                          /mes
+                        </span>
+                      </div>
+                    )}
                   </button>
                 );
               })
@@ -244,38 +251,24 @@ const plans = [
           </div>
         </div>
 
-        <!-- Bloque de Precio y Detalles Dinámico -->
-        <div class="space-y-4 border-t border-white/[0.05] pt-6">
-          <div
-            class="flex justify-between items-baseline border-b border-white/[0.05] pb-3"
-          >
-            <span class="text-xs text-gray-400">Total Mensual</span>
-            <div class="text-right">
-              <span
-                id="dynamic-price-label"
-                class="text-3xl font-extrabold text-white">$7</span
-              >
-              <span id="dynamic-period-label" class="text-xs text-gray-400"
-                >/mes</span
-              >
-            </div>
-          </div>
-
+        <!-- Compra (Derecha) -->
+        <div class="space-y-4 border-t border-white/[0.05] pt-6 mt-4">
           <!-- Botón Dinámico de Acción -->
-          <div>
+          <div class="flex flex-col">
             <a
               id="dynamic-cta-button"
               href="https://billing.arkaniahost.xyz/products/servidores-de-minecraft/plus/checkout"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full py-4 rounded-xl font-bold bg-brand hover:bg-[#aa00d4] text-white text-base text-center flex items-center justify-center gap-2 voxel-button shadow-lg shadow-brand/10 transition-all duration-300"
+              class="w-full py-4 rounded-xl font-bold bg-brand hover:bg-[#aa00d4] text-white text-base text-center flex items-center justify-center gap-2 voxel-button shadow-lg shadow-brand/10 transition-all duration-300 active:scale-95"
             >
-              <span>Contratar 6GB RAM</span>
-              <i class="fa-solid fa-cart-shopping text-xs"></i>
+              <span id="dynamic-btn-text">Contratar 6GB RAM</span>
+              <i class="fa-solid fa-cart-shopping text-xs" id="dynamic-btn-icon"
+              ></i>
             </a>
 
             <span
-              class="text-xs text-center text-gray-500 block mt-3 font-light"
+              class="text-[10px] md:text-xs text-center text-gray-500 block mt-3 font-light"
             >
               Activación inmediata • Cancela en cualquier momento
             </span>

@@ -35,22 +35,43 @@ const faqs = [
       </h2>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-4 items-start">
+    <div class="max-w-3xl mx-auto space-y-4 items-start">
       {
         faqs.map((faq, index) => (
-          <details class="group glass-card border border-white/5 rounded-lg [&_summary::-webkit-details-marker]:hidden">
-            <summary class="flex items-center justify-between p-6 cursor-pointer text-white font-medium">
+          <div class="faq-item group glass-card border border-white/5 rounded-lg overflow-hidden cursor-pointer transition-colors hover:border-white/10">
+            <div class="faq-header flex items-center justify-between p-6 text-white font-medium">
               {faq.q}
-              <span class="transition group-open:rotate-180 text-brand">
+              <span class="transition-transform duration-300 group-[.is-open]:rotate-180 text-brand">
                 <i class="fa-solid fa-chevron-down text-sm" />
               </span>
-            </summary>
-            <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
-              {faq.a}
             </div>
-          </details>
+            <div class="faq-content grid transition-all duration-300 grid-rows-[0fr] opacity-0 group-[.is-open]:grid-rows-[1fr] group-[.is-open]:opacity-100">
+              <div class="overflow-hidden">
+                <div class="px-6 pb-6 text-gray-400 text-sm leading-relaxed border-t border-white/5 pt-4">
+                  {faq.a}
+                </div>
+              </div>
+            </div>
+          </div>
         ))
       }
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.faq-item');
+    items.forEach(item => {
+      item.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        // Cerrar todos los demás
+        items.forEach(i => i.classList.remove('is-open'));
+        // Si no estaba abierto, lo abrimos
+        if (!isOpen) {
+          item.classList.add('is-open');
+        }
+      });
+    });
+  });
+</script>

@@ -3,32 +3,50 @@ const features = [
   {
     title: "Instalación con un clic",
     description: "Despliega modpacks, plugins y versiones de servidor al instante.",
-    icon: "fa-solid fa-wand-magic-sparkles"
+    icon: "fa-solid fa-wand-magic-sparkles",
+    color: "text-blue-400",
+    bg: "bg-blue-500/10",
+    border: "border-blue-500/20"
   },
   {
     title: "Escalado flexible",
     description: "Aumenta la memoria RAM de tu servidor en cualquier momento.",
-    icon: "fa-solid fa-arrow-up-right-dots"
+    icon: "fa-solid fa-arrow-up-right-dots",
+    color: "text-violet-400",
+    bg: "bg-violet-500/10",
+    border: "border-violet-500/20"
   },
   {
-    title: "Backups diarios",
-    description: "Tus mundos y configuraciones a salvo con copias de seguridad automáticas.",
-    icon: "fa-solid fa-clock-rotate-left"
+    title: "Usuarios Ilimitados",
+    description: "Invita a tantos amigos y jugadores como quieras sin restricciones de slots.",
+    icon: "fa-solid fa-users",
+    color: "text-emerald-400",
+    bg: "bg-emerald-500/10",
+    border: "border-emerald-500/20"
   },
   {
     title: "Migración gratuita",
     description: "Trae tu servidor desde otro host sin costo adicional.",
-    icon: "fa-solid fa-truck-fast"
+    icon: "fa-solid fa-truck-fast",
+    color: "text-orange-400",
+    bg: "bg-orange-500/10",
+    border: "border-orange-500/20"
   },
   {
-    title: "Panel Pterodactyl completo",
-    description: "La mejor interfaz de control de la industria, a tu disposición.",
-    icon: "fa-solid fa-gears"
+    title: "Soporte Incluido",
+    description: "Ayuda técnica rápida y especializada para resolver cualquier problema que tengas.",
+    icon: "fa-solid fa-headset",
+    color: "text-pink-400",
+    bg: "bg-pink-500/10",
+    border: "border-pink-500/20"
   },
   {
-    title: "Java y Bedrock",
-    description: "Juega en la edición que prefieras, o ambas al mismo tiempo.",
-    icon: "fa-solid fa-gamepad"
+    title: "Todas las versiones",
+    description: "Compatible con cualquier versión de Minecraft, Forge, Fabric, Paper y más.",
+    icon: "fa-solid fa-layer-group",
+    color: "text-amber-400",
+    bg: "bg-amber-500/10",
+    border: "border-amber-500/20"
   }
 ];
 ---
@@ -38,7 +56,7 @@ const features = [
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       {features.map(feature => (
         <div class="flex gap-4 items-start">
-          <div class="w-12 h-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-brand">
+          <div class={`w-12 h-12 rounded-lg ${feature.bg} border ${feature.border} flex items-center justify-center flex-shrink-0 ${feature.color}`}>
             <i class={`${feature.icon} text-xl`}></i>
           </div>
           <div>

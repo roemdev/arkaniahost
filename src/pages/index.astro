@@ -40,26 +40,27 @@ const schema = {
       "@type": "Product",
       "@id": "https://arkaniahost.xyz/#product",
       name: "Hosting Minecraft Premium",
-      description: "Servidores de Minecraft con procesadores Xeon, almacenamiento SSD, panel Pterodactyl y 99%+ de uptime.",
+      description:
+        "Servidores de Minecraft con procesadores Xeon, almacenamiento SSD, panel Pterodactyl y 99%+ de uptime.",
       brand: {
         "@type": "Brand",
-        name: "ArkaniaHost"
+        name: "ArkaniaHost",
       },
       offers: {
         "@type": "Offer",
         url: "https://arkaniahost.xyz/#planes",
         priceCurrency: "USD",
         price: "4.00",
-        availability: "https://schema.org/InStock"
-      }
-    }
+        availability: "https://schema.org/InStock",
+      },
+    },
   ],
 };
 ---
 
 <BaseLayout>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)}></script>
-  
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
   <Navbar />
 
   <main>

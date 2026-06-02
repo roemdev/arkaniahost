@@ -1,0 +1,356 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+
+// Requisitos del programa con colores personalizados y tarjetas planas (sin hover)
+const requirements = [
+  {
+    icon: "fa-solid fa-folder-open",
+    title: "Proyecto Activo",
+    desc: "El servidor debe tener un proyecto funcional, una comunidad existente o estar en una fase de desarrollo avanzada con configuraciones comprobables.",
+    iconClass: "text-blue-400",
+    bgClass: "bg-blue-500/10 border border-blue-500/20",
+  },
+  {
+    icon: "fa-solid fa-users",
+    title: "Comunidad Activa",
+    desc: "Contar con un grupo mínimo de jugadores activos (de 5 a 15 jugadores simultáneos) o una comunidad activa en Discord que respalde el proyecto.",
+    iconClass: "text-emerald-400",
+    bgClass: "bg-emerald-500/10 border border-emerald-500/20",
+  },
+  {
+    icon: "fa-solid fa-heart-pulse",
+    title: "Compromiso de Feedback",
+    desc: "Buscamos evaluar nuestras plataformas en entornos reales. Requerimos que nos reportes el estado de los TPS, lag y rendimiento del hardware.",
+    iconClass: "text-amber-400",
+    bgClass: "bg-amber-500/10 border border-amber-500/20",
+  },
+  {
+    icon: "fa-solid fa-handshake",
+    title: "Mención de Soporte",
+    desc: "Añadir a ArkaniaHost en los créditos de tu servidor o en un canal visible de Discord. Es opcional pero muy valorado para mantener este programa activo.",
+    iconClass: "text-pink-400",
+    bgClass: "bg-pink-500/10 border border-pink-500/20",
+  },
+];
+
+// Molde de la solicitud revisado enfocado en el monitoreo técnico del rendimiento
+const requestTemplate = `--- SOLICITUD DE HOSTING 100% GRATIS (PRUEBAS DE RENDIMIENTO) ---
+Nombre del Proyecto: [Nombre de tu servidor]
+Versión de Minecraft: [Ej. 1.21]
+Software Utilizado: [Ej. Paper, Purpur, Fabric]
+Jugadores Promedio y Récord Máximo: [Ej. 10 promedio / 25 récord]
+Enlace de la Comunidad (Discord/Web): [Enlace de invitación]
+Plan Solicitado: [Plan Plus (6GB) por defecto, o Pro/Elite si lo justificas abajo]
+Justificación de Plan Superior (si aplica): [Explica brevemente por qué tu proyecto requiere más de 6GB de RAM]
+Horarios/Días de Mayor Actividad: [Ej. Fines de semana por la tarde (UTC-5), para monitoreo de rendimiento]`;
+
+const discordUrl = "https://discord.arkaniahost.xyz";
+const ticketUrl = "https://billing.arkaniahost.xyz/tickets/create";
+---
+
+<BaseLayout title="Hosting 100% Gratis para Administradores | ArkaniaHost">
+  <div class="absolute w-full z-50 top-0 flex flex-col">
+    <Navbar />
+  </div>
+
+  <main class="pt-40 pb-20 relative z-10">
+    <!-- Hero de la página (Homólogo con about.astro) -->
+    <section
+      class="max-w-5xl mx-auto px-6 text-center relative z-10 pt-4 mb-12 animate-fade-in-up"
+    >
+      <!-- Resplandor trasero -->
+      <div
+        class="absolute inset-0 bg-brand/10 blur-[150px] opacity-40 pointer-events-none w-[600px] h-[600px] rounded-full m-auto z-[-1]"
+      >
+      </div>
+
+      <h1
+        class="text-4xl md:text-6xl font-display font-extrabold text-white leading-tight mb-6"
+      >
+        Hosting para <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-brand to-[#a300cc]"
+          >Administradores</span
+        >
+      </h1>
+      <p
+        class="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto"
+      >
+        Buscamos dueños de servidores que nos ayuden a evaluar la potencia de
+        nuestras plataformas bajo carga real diaria. Por defecto, ofrecemos
+        nuestro <strong>Plan Plus (6GB de RAM)</strong> de forma gratuita, pudiendo
+        evaluar planes superiores si tu proyecto lo justifica.
+      </p>
+    </section>
+
+    <!-- Sección de Requisitos (Tarjetas planas sin hover) -->
+    <section class="py-12 relative z-10">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 animate-fade-in-up">
+          <h2
+            class="text-3xl md:text-4xl font-display font-bold text-white mb-4"
+          >
+            Requisitos Mínimos
+          </h2>
+          <p class="text-gray-400 font-light max-w-xl mx-auto">
+            No buscamos métricas imposibles, solo proyectos serios e
+            interactivos para evaluar el hardware.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+          {
+            requirements.map((req) => (
+              <div class="flex gap-4 items-start p-6 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 rounded-xl">
+                <div
+                  class={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 ${req.bgClass} ${req.iconClass}`}
+                >
+                  <i class={`${req.icon} text-xl`} />
+                </div>
+                <div>
+                  <h3 class="text-lg font-bold text-white mb-2">{req.title}</h3>
+                  <p class="text-sm text-gray-400 leading-relaxed font-light">
+                    {req.desc}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de la Plantilla de Copiado (Caja de Texto Elegante y Minimalista, sin Consola) -->
+    <section
+      class="py-16 relative z-10 bg-[#060606] border-t border-white/[0.05]"
+    >
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12 animate-fade-in-up">
+          <h2
+            class="text-3xl md:text-4xl font-display font-bold text-white mb-4"
+          >
+            Plantilla de Solicitud
+          </h2>
+          <p class="text-gray-400 font-light max-w-xl mx-auto">
+            Copia esta plantilla haciendo clic en el botón de la derecha y
+            pégala directamente al abrir tu ticket.
+          </p>
+        </div>
+
+        <!-- Contenedor Premium Minimalista -->
+        <div
+          class="bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden shadow-2xl"
+        >
+          <!-- Encabezado Limpio -->
+          <div
+            class="flex items-center justify-between px-6 py-4 bg-white/[0.02] border-b border-white/10"
+          >
+            <span
+              class="text-sm font-semibold text-white flex items-center gap-2"
+            >
+              <i class="fa-solid fa-copy text-brand"></i> Formato de Solicitud
+            </span>
+
+            <button
+              id="copy-template-btn"
+              class="bg-brand hover:bg-[#aa00d4] text-white text-xs font-semibold px-4 py-2 rounded-md transition-colors voxel-button flex items-center gap-1.5 cursor-pointer active:scale-95"
+            >
+              <i class="fa-solid fa-clipboard"></i>
+              <span>Copiar Plantilla</span>
+            </button>
+          </div>
+
+          <!-- Contenido Monospace -->
+          <div class="p-6 bg-[#030303]">
+            <pre
+              id="template-text"
+              class="text-gray-300 font-mono text-xs md:text-sm leading-relaxed whitespace-pre select-all focus:outline-none">{requestTemplate}</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Pasos e Inicio de Ticket (Tarjetas planas sin hover) -->
+    <section
+      class="py-20 relative z-10 bg-[#060606] border-t border-white/[0.05]"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 animate-fade-in-up">
+          <h2
+            class="text-3xl md:text-4xl font-display font-bold text-white mb-4"
+          >
+            ¿Cómo enviar tu solicitud?
+          </h2>
+          <p class="text-gray-400 font-light max-w-xl mx-auto">
+            Sigue estos sencillos pasos para activar tu hosting de pruebas.
+          </p>
+        </div>
+
+        <!-- Timeline de pasos (Planos sin hover) -->
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
+          <div
+            class="p-6 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 rounded-xl flex gap-4 items-start"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center flex-shrink-0 text-brand font-bold text-sm"
+            >
+              1
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">
+                Copia la Plantilla
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed font-light">
+                Copia el formato de texto haciendo clic en el botón de la
+                plantilla superior.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="p-6 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 rounded-xl flex gap-4 items-start"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center flex-shrink-0 text-brand font-bold text-sm"
+            >
+              2
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Abre tu Ticket</h3>
+              <p class="text-sm text-gray-400 leading-relaxed font-light">
+                Accede a Discord o a tu Área de Clientes mediante los botones de
+                abajo.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="p-6 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 rounded-xl flex gap-4 items-start"
+          >
+            <div
+              class="w-10 h-10 rounded-lg bg-brand/10 border border-brand/20 flex items-center justify-center flex-shrink-0 text-brand font-bold text-sm"
+            >
+              3
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">Pega y Completa</h3>
+              <p class="text-sm text-gray-400 leading-relaxed font-light">
+                Pega la plantilla en tu ticket y rellena los datos de tu
+                servidor directamente.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de Acción directos -->
+        <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <!-- Discord -->
+          <a
+            href={discordUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="py-3.5 rounded-md font-semibold bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm text-center flex items-center justify-center gap-2 voxel-button shadow-md transition-colors"
+          >
+            <i class="fa-brands fa-discord text-base"></i>
+            <span>Abrir Ticket en Discord (Recomendado)</span>
+          </a>
+
+          <!-- Área de Clientes -->
+          <a
+            href={ticketUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="py-3.5 rounded-md font-semibold bg-brand hover:bg-[#aa00d4] text-white text-sm text-center flex items-center justify-center gap-2 voxel-button shadow-md transition-colors"
+          >
+            <i class="fa-solid fa-headset text-base"></i>
+            <span>Abrir Ticket en Área de Clientes</span>
+          </a>
+        </div>
+
+        <!-- Términos y Condiciones -->
+        <div
+          class="max-w-4xl mx-auto mt-20 pt-12 border-t border-white/[0.06] text-left"
+        >
+          <h4
+            class="text-xs uppercase tracking-widest text-gray-500 font-bold mb-4 flex items-center gap-2"
+          >
+            <i class="fa-solid fa-scale-balanced text-brand"></i> Términos y Condiciones
+            del Programa
+          </h4>
+          <ul
+            class="space-y-2.5 text-xs text-gray-500 leading-relaxed font-light list-disc pl-5"
+          >
+            <li>
+              Este programa es de carácter de pruebas de rendimiento y no
+              representa una oferta comercial permanente. Consiste en la
+              asignación de un código de descuento del 100% renovable
+              mensualmente.
+            </li>
+            <li>
+              El plan asignado por defecto para este programa es el <strong
+                >Plan Plus (6GB de RAM)</strong
+              >. En caso de requerir un plan superior (ej. Pro de 9GB o Elite de
+              12GB), se deberá justificar rigurosamente de acuerdo con el tamaño
+              e historial de la comunidad activa.
+            </li>
+            <li>
+              ArkaniaHost se reserva el derecho de suspender o retirar la
+              asignación gratuita del servidor si se detecta inactividad
+              prolongada (más de 7 días sin jugadores activos ni logs de
+              actividad) o si se realiza un uso inadecuado o abuso de los
+              recursos asignados.
+            </li>
+            <li>
+              Los administradores participantes se comprometen a colaborar
+              activamente brindando feedback sobre el rendimiento del hardware,
+              TPS y latencia cuando sea solicitado por nuestro equipo técnico.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<!-- Script para el botón interactivo de copiado -->
+<script>
+  const copyBtn = document.getElementById("copy-template-btn");
+  const templatePre = document.getElementById("template-text");
+
+  copyBtn?.addEventListener("click", () => {
+    if (templatePre) {
+      const textToCopy = templatePre.textContent || "";
+      navigator.clipboard
+        .writeText(textToCopy)
+        .then(() => {
+          // Retroalimentación visual
+          const originalHTML = copyBtn.innerHTML;
+          copyBtn.innerHTML = `<i class="fa-solid fa-check text-emerald-400"></i> <span class="text-emerald-400">¡Copiado!</span>`;
+          copyBtn.classList.remove("bg-brand", "hover:bg-[#aa00d4]");
+          copyBtn.classList.add(
+            "bg-emerald-500/10",
+            "border",
+            "border-emerald-500/30",
+            "text-emerald-400",
+          );
+
+          setTimeout(() => {
+            copyBtn.innerHTML = originalHTML;
+            copyBtn.classList.add("bg-brand", "hover:bg-[#aa00d4]");
+            copyBtn.classList.remove(
+              "bg-emerald-500/10",
+              "border",
+              "border-emerald-500/30",
+              "text-emerald-400",
+            );
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Error al copiar al portapapeles: ", err);
+        });
+    }
+  });
+</script>

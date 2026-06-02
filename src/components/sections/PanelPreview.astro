@@ -2,13 +2,14 @@
 import { Image } from "astro:assets";
 import panelImg from "../../assets/panel.png";
 
+// Se combinan los mejores beneficios de la imagen 1 y de la imagen 2 con iconos coloreados individualmente
 const panelFeatures = [
-  { label: "Archivos", icon: "fa-solid fa-folder-open" },
-  { label: "Consola", icon: "fa-solid fa-terminal" },
-  { label: "Uso de recursos", icon: "fa-solid fa-chart-line" },
-  { label: "Backups", icon: "fa-solid fa-box-archive" },
-  { label: "Instaladores", icon: "fa-solid fa-download" },
-  { label: "Administración", icon: "fa-solid fa-sliders" }
+  { label: "Gestor de archivos", icon: "fa-solid fa-folder-open", iconClass: "text-amber-400", bgClass: "bg-amber-500/10 border border-amber-500/20" },
+  { label: "Consola en vivo", icon: "fa-solid fa-terminal", iconClass: "text-emerald-400", bgClass: "bg-emerald-500/10 border border-emerald-500/20" },
+  { label: "Instalación en 1 clic", icon: "fa-solid fa-wand-magic-sparkles", iconClass: "text-blue-400", bgClass: "bg-blue-500/10 border border-blue-500/20" },
+  { label: "Backups diarios", icon: "fa-solid fa-box-archive", iconClass: "text-orange-400", bgClass: "bg-orange-500/10 border border-orange-500/20" },
+  { label: "Java y Bedrock", icon: "fa-solid fa-gamepad", iconClass: "text-violet-400", bgClass: "bg-violet-500/10 border border-violet-500/20" },
+  { label: "Migración gratuita", icon: "fa-solid fa-truck-fast", iconClass: "text-pink-400", bgClass: "bg-pink-500/10 border border-pink-500/20" }
 ];
 ---
 
@@ -27,7 +28,7 @@ const panelFeatures = [
       <div class="grid grid-cols-2 gap-4 pt-4">
         {panelFeatures.map(f => (
           <div class="flex items-center gap-3 text-white">
-            <div class="w-8 h-8 rounded-md bg-white/5 border border-white/10 flex items-center justify-center text-brand">
+            <div class={`w-8 h-8 rounded-md flex items-center justify-center flex-shrink-0 ${f.bgClass} ${f.iconClass}`}>
               <i class={`${f.icon} text-sm`}></i>
             </div>
             <span class="text-sm font-medium">{f.label}</span>

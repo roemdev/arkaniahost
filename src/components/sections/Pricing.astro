@@ -1,144 +1,395 @@
 ---
+// Se definen los planes y las URLs de checkout/ticket correspondientes
 const plans = [
   {
+    id: "3",
     name: "Starter",
     ram: "3GB",
     price: "$4",
-    features: [
-      "1 vCORE",
-      "30 GB SSD",
-      "Panel Pterodactyl",
-      "Backups diarios",
-      "Soporte Java & Bedrock",
-      "Subdominio gratis",
-    ],
+    desc: "Ideal para jugar con hasta 5 amigos en mundos Vanilla tradicionales sin mods. La opción perfecta para entrar, construir y explorar juntos de forma fluida y sin complicaciones.",
     link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/starter/checkout",
     popular: false,
   },
   {
+    id: "6",
     name: "Plus",
     ram: "6GB",
     price: "$7",
-    features: [
-      "3 vCORE",
-      "60 GB SSD",
-      "Panel Pterodactyl",
-      "Backups diarios",
-      "Soporte Java & Bedrock",
-      "Subdominio gratis",
-    ],
+    desc: "Nuestro plan recomendado. Soporta con total soltura casi cualquier modpack de la actualidad y servidores survival con plugins avanzados y un grupo de 10 a 15 jugadores activos.",
     link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/plus/checkout",
     popular: true,
   },
   {
+    id: "9",
     name: "Pro",
     ram: "9GB",
     price: "$10",
-    features: [
-      "3 vCORE",
-      "90 GB SSD",
-      "Panel Pterodactyl",
-      "Backups diarios",
-      "Soporte Java & Bedrock",
-      "Subdominio gratis",
-    ],
+    desc: "Diseñado para comunidades en crecimiento y servidores con mods pesados. Soporta dinámicas complejas, mapas personalizados y modpacks exigentes con gran fluidez y rendimiento estable.",
     link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/pro/checkout",
     popular: false,
   },
   {
+    id: "12",
     name: "Elite",
     ram: "12GB",
     price: "$13",
-    features: [
-      "3 vCORE",
-      "120 GB SSD",
-      "Panel Pterodactyl",
-      "Backups diarios",
-      "Soporte Java & Bedrock",
-      "Subdominio gratis",
-    ],
+    desc: "La opción definitiva para proyectos públicos y creadores exigentes. Soporta absolutamente cualquier modpack del mercado, una gran cantidad de plugins y decenas de jugadores simultáneos.",
     link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/elite/checkout",
+    popular: false,
+  },
+  {
+    id: "custom",
+    name: "Personalizado",
+    ram: "Personalizado",
+    price: "Consultar",
+    desc: "Para grandes comunidades, redes interconectadas de servidores o proyectos masivos. Cuéntanos tu idea en un ticket de soporte y configuramos a medida toda la potencia que necesitas.",
+    link: "https://billing.arkaniahost.xyz/admin/tickets/create",
     popular: false,
   },
 ];
 ---
 
 <section id="planes" class="py-24 relative z-10">
+  <!-- Resplandor de fondo sutil -->
+  <div
+    class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-brand/5 blur-[120px] rounded-full pointer-events-none z-[-1]"
+  >
+  </div>
+
   <div class="max-w-7xl mx-auto px-6">
-    <div class="text-center mb-16">
+    <!-- TÍTULO Y DESCRIPCIÓN DE LA SECCIÓN (Homólogo con las demás secciones) -->
+    <div class="text-center mb-16 animate-fade-in-up">
       <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-4">
         Planes simples, sin sorpresas
       </h2>
-      <p class="text-gray-400 max-w-xl mx-auto">
-        Elige el plan ideal para tu servidor y escálalo cuando tu comunidad
-        crezca.
+      <p
+        class="text-base md:text-lg text-gray-400 font-light max-w-2xl mx-auto"
+      >
+        Todos nuestros planes incluyen la misma infraestructura premium.
+        Selecciona la memoria RAM ideal para tu comunidad.
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {
-        plans.map((plan) => (
-          <div
-            class={`glass-card p-6 rounded-xl flex flex-col ${
-              plan.popular
-                ? "border-brand/50 bg-brand/5 scale-105"
-                : "border-white/10"
-            }`}
+    <!-- CONFIGURADOR EN DOS TARJETAS -->
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch max-w-7xl mx-auto">
+      <!-- TARJETA IZQUIERDA: Especificaciones técnicas y Descripción del Plan (7/12 columnas) -->
+      <div
+        class="lg:col-span-7 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 p-6 md:p-8 rounded-2xl flex flex-col justify-between gap-6 shadow-xl"
+      >
+        <div>
+          <h3
+            class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6 flex items-center gap-2"
           >
-            {plan.popular && (
-              <div class="bg-brand text-white text-xs font-bold uppercase tracking-wider py-1 px-3 rounded-full self-start mb-4">
-                Más popular
+            <i class="fa-solid fa-microchip text-brand text-xs"></i> Datos Técnicos
+          </h3>
+
+          <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-6">
+            <li class="flex items-center gap-5 text-gray-300">
+              <div
+                class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 flex-shrink-0"
+              >
+                <i class="fa-solid fa-microchip text-xl"></i>
               </div>
-            )}
-            <h3 class="text-xl font-bold text-white mb-2">{plan.name}</h3>
-            <div class="mb-6">
-              <span class="text-4xl font-extrabold text-white">
-                {plan.price}
-              </span>
-              <span class="text-gray-400 text-sm">/mes</span>
-            </div>
-            <div class="text-2xl font-bold text-brand mb-6">
-              {plan.ram}{" "}
-              <span class="text-sm font-medium text-gray-400">RAM</span>
-            </div>
+              <div class="min-w-0">
+                <span
+                  class="text-xs text-gray-400 uppercase font-bold tracking-wider block mb-1"
+                  >Procesador</span
+                >
+                <span class="text-white font-medium text-base block"
+                  >Intel i5-4770S (3.50 GHz)</span
+                >
+              </div>
+            </li>
 
-            <ul class="space-y-3 mb-8 flex-grow">
-              {plan.features.map((f) => (
-                <li class="flex items-center gap-3 text-sm text-gray-300">
-                  <i class="fa-solid fa-check text-green-500" /> {f}
-                </li>
-              ))}
-            </ul>
+            <li class="flex items-center gap-5 text-gray-300">
+              <div
+                class="w-12 h-12 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400 flex-shrink-0"
+              >
+                <i class="fa-solid fa-memory text-xl"></i>
+              </div>
+              <div class="min-w-0">
+                <span
+                  class="text-xs text-gray-400 uppercase font-bold tracking-wider block mb-1"
+                  >Memoria RAM</span
+                >
+                <span class="text-white font-medium text-base block"
+                  >DDR3 2400MHz</span
+                >
+              </div>
+            </li>
 
+            <li class="flex items-center gap-5 text-gray-300">
+              <div
+                class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 flex-shrink-0"
+              >
+                <i class="fa-solid fa-database text-xl"></i>
+              </div>
+              <div class="min-w-0">
+                <span
+                  class="text-xs text-gray-400 uppercase font-bold tracking-wider block mb-1"
+                  >Disco</span
+                >
+                <span class="text-white font-medium text-base block"
+                  >SSD Ilimitado</span
+                >
+              </div>
+            </li>
+
+            <li class="flex items-center gap-5 text-gray-300">
+              <div
+                class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 flex-shrink-0"
+              >
+                <i class="fa-solid fa-map-marker-alt text-xl"></i>
+              </div>
+              <div class="min-w-0">
+                <span
+                  class="text-xs text-gray-400 uppercase font-bold tracking-wider block mb-1"
+                  >Ubicación</span
+                >
+                <span class="text-white font-medium text-base block"
+                  >Pennsylvania, USA</span
+                >
+              </div>
+            </li>
+
+            <li class="flex items-center gap-5 text-gray-300">
+              <div
+                class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 flex-shrink-0"
+              >
+                <i class="fa-solid fa-gears text-xl"></i>
+              </div>
+              <div class="min-w-0">
+                <span
+                  class="text-xs text-gray-400 uppercase font-bold tracking-wider block mb-1"
+                  >Panel de Control</span
+                >
+                <span class="text-white font-medium text-base block"
+                  >Pterodactyl</span
+                >
+              </div>
+            </li>
+
+
+          </ul>
+        </div>
+
+        <!-- Ficha de descripción dinámica (Relocalizado debajo de Datos Técnicos en Tarjeta Izquierda) -->
+        <div
+          class="bg-white/[0.01] border border-white/5 p-5 md:p-6 rounded-xl space-y-3 mt-auto"
+        >
+          <div class="text-sm font-semibold text-white flex items-center gap-2">
+            <i class="fa-solid fa-circle-info text-brand text-sm"></i>
+            <span>Servidor <span id="dynamic-ram-name-label">Plus</span></span>
+          </div>
+          <p
+            id="dynamic-desc-label"
+            class="text-xs md:text-sm text-gray-300 font-light leading-relaxed"
+          >
+            Nuestro plan recomendado. Soporta con total soltura casi cualquier
+            modpack de la actualidad y servidores survival con plugins avanzados
+            y un grupo de 10 a 15 jugadores activos.
+          </p>
+        </div>
+      </div>
+
+      <!-- TARJETA DERECHA: Selector interactivo de RAM (5/12 columnas) -->
+      <div
+        class="lg:col-span-5 bg-white/[0.02] backdrop-blur-[16px] border border-white/5 p-6 md:p-8 rounded-2xl flex flex-col justify-between gap-6 shadow-xl"
+      >
+        <div>
+          <h3
+            class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-6 flex items-center gap-2"
+          >
+            <i class="fa-solid fa-sliders text-brand text-xs"></i> Configura tu RAM
+          </h3>
+
+          <!-- Botones del Selector de RAM (2 por línea, Personalizado ocupa los dos espacios, Sin Precios) -->
+          <div class="grid grid-cols-2 gap-3" id="ram-selector-container">
+            {
+              plans.map((p) => {
+                const isCustom = p.id === "custom";
+                return (
+                  <button
+                    type="button"
+                    data-ram-id={p.id}
+                    data-ram-price={p.price}
+                    data-ram-desc={p.desc}
+                    data-ram-link={p.link}
+                    data-ram-name={p.name}
+                    class={`text-center py-4 px-3 rounded-xl border flex flex-col items-center justify-center cursor-pointer transition-all duration-300 outline-none focus:outline-none ${
+                      isCustom ? "col-span-2 py-4.5" : ""
+                    } ${
+                      p.popular
+                        ? "border-brand bg-brand/5 shadow-[0_0_15px_rgba(163,0,204,0.15)]"
+                        : "border-white/10 bg-transparent hover:border-white/20"
+                    }`}
+                  >
+                    <div class="flex items-center gap-2">
+                      <span class="font-bold text-white text-base">
+                        {isCustom ? p.ram : `${p.ram} RAM`}
+                      </span>
+                      {p.popular && (
+                        <span class="bg-brand text-white text-[7px] font-bold uppercase tracking-wider py-0.5 px-2 rounded">
+                          Recomendado
+                        </span>
+                      )}
+                    </div>
+                    <div class="text-[9px] text-gray-500 mt-0.5 uppercase tracking-wider">
+                      Plan {p.name}
+                    </div>
+                  </button>
+                );
+              })
+            }
+          </div>
+        </div>
+
+        <!-- Bloque de Precio y Detalles Dinámico -->
+        <div class="space-y-4 border-t border-white/[0.05] pt-6">
+          <div
+            class="flex justify-between items-baseline border-b border-white/[0.05] pb-3"
+          >
+            <span class="text-xs text-gray-400">Total Mensual</span>
+            <div class="text-right">
+              <span
+                id="dynamic-price-label"
+                class="text-3xl font-extrabold text-white">$7</span
+              >
+              <span id="dynamic-period-label" class="text-xs text-gray-400"
+                >/mes</span
+              >
+            </div>
+          </div>
+
+          <!-- Botón Dinámico de Acción -->
+          <div>
             <a
-              href={plan.link}
+              id="dynamic-cta-button"
+              href="https://billing.arkaniahost.xyz/products/servidores-de-minecraft/plus/checkout"
               target="_blank"
               rel="noopener noreferrer"
-              class={`w-full text-center py-3 rounded-md font-semibold transition-colors voxel-button flex items-center justify-center gap-2 ${
-                plan.popular
-                  ? "bg-brand hover:bg-[#aa00d4] text-white"
-                  : "bg-white/10 hover:bg-white/20 text-white"
-              }`}
+              class="w-full py-4 rounded-xl font-bold bg-brand hover:bg-[#aa00d4] text-white text-base text-center flex items-center justify-center gap-2 voxel-button shadow-lg shadow-brand/10 transition-all duration-300"
             >
-              Seleccionar Plan{" "}
-              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-60" />
+              <span>Contratar 6GB RAM</span>
+              <i class="fa-solid fa-cart-shopping text-xs"></i>
             </a>
-          </div>
-        ))
-      }
-    </div>
 
-    <!-- Contacto para planes mayores -->
-    <p class="mt-12 text-center text-gray-400 text-sm">
-      ¿Buscas un plan superior o hardware dedicado?
-      <a
-        href="https://billing.arkaniahost.xyz/admin/tickets/create"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-brand hover:text-white transition-colors underline decoration-brand/30 underline-offset-4 hover:decoration-white"
-      >
-        Contáctanos para una solución a medida
-      </a>.
-    </p>
+            <span
+              class="text-xs text-center text-gray-500 block mt-3 font-light"
+            >
+              Activación inmediata • Cancela en cualquier momento
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- Script de interactividad del selector de RAM -->
+<script>
+  function setupRamSelector() {
+    const container = document.getElementById("ram-selector-container");
+    if (!container) return;
+
+    const buttons = container.querySelectorAll("button[data-ram-id]");
+    const priceLabel = document.getElementById("dynamic-price-label");
+    const periodLabel = document.getElementById("dynamic-period-label");
+    const ramNameLabel = document.getElementById("dynamic-ram-name-label");
+    const descLabel = document.getElementById("dynamic-desc-label");
+    const ctaBtn = document.getElementById("dynamic-cta-button");
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Remover clases activas de todos
+        buttons.forEach((b) => {
+          b.classList.remove(
+            "border-brand",
+            "bg-brand/5",
+            "shadow-[0_0_15px_rgba(163,0,204,0.15)]",
+          );
+          b.classList.add(
+            "border-white/10",
+            "bg-transparent",
+            "hover:border-white/20",
+          );
+        });
+
+        // Añadir clases activas al seleccionado
+        btn.classList.remove(
+          "border-white/10",
+          "bg-transparent",
+          "hover:border-white/20",
+        );
+        btn.classList.add(
+          "border-brand",
+          "bg-brand/5",
+          "shadow-[0_0_15px_rgba(163,0,204,0.15)]",
+        );
+
+        // Leer atributos de datos
+        const ramId = btn.getAttribute("data-ram-id") || "";
+        const price = btn.getAttribute("data-ram-price") || "";
+        const desc = btn.getAttribute("data-ram-desc") || "";
+        const link = btn.getAttribute("data-ram-link") || "";
+        const name = btn.getAttribute("data-ram-name") || "";
+
+        // Actualizar interfaz
+        if (priceLabel) priceLabel.textContent = price;
+
+        if (periodLabel) {
+          if (price === "Consultar") {
+            periodLabel.textContent = "";
+          } else {
+            periodLabel.textContent = " /mes";
+          }
+        }
+
+        if (ramNameLabel) ramNameLabel.textContent = name;
+        if (descLabel) descLabel.textContent = desc;
+
+        // Actualizar botón dinámico (invento)
+        if (ctaBtn) {
+          ctaBtn.setAttribute("href", link);
+
+          if (ramId === "custom") {
+            ctaBtn.innerHTML = `
+              <span>Crear Ticket de Soporte</span>
+              <i class="fa-solid fa-headset text-xs"></i>
+            `;
+            // Cambiar a color más personalizado
+            ctaBtn.classList.remove(
+              "bg-brand",
+              "hover:bg-[#aa00d4]",
+              "shadow-brand/10",
+            );
+            ctaBtn.classList.add(
+              "bg-violet-700",
+              "hover:bg-violet-800",
+              "shadow-violet-700/10",
+            );
+          } else {
+            ctaBtn.innerHTML = `
+              <span>Contratar ${ramId}GB RAM</span>
+              <i class="fa-solid fa-cart-shopping text-xs"></i>
+            `;
+            ctaBtn.classList.remove(
+              "bg-violet-700",
+              "hover:bg-violet-800",
+              "shadow-violet-700/10",
+            );
+            ctaBtn.classList.add(
+              "bg-brand",
+              "hover:bg-[#aa00d4]",
+              "shadow-brand/10",
+            );
+          }
+        }
+      });
+    });
+  }
+
+  // Inicializar al cargar y ante cambios de página (para transiciones suaves en Astro)
+  setupRamSelector();
+  document.addEventListener("astro:after-swap", setupRamSelector);
+</script>

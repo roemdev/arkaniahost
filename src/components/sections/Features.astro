@@ -2,11 +2,12 @@
 const features = [
   {
     title: "Instalación con un clic",
-    description: "Despliega modpacks, plugins y versiones de servidor al instante.",
+    description:
+      "Despliega modpacks, plugins y versiones de servidor al instante.",
     icon: "fa-solid fa-wand-magic-sparkles",
     color: "text-blue-400",
     bg: "bg-blue-500/10",
-    border: "border-blue-500/20"
+    border: "border-blue-500/20",
   },
   {
     title: "Escalado flexible",
@@ -14,15 +15,16 @@ const features = [
     icon: "fa-solid fa-arrow-up-right-dots",
     color: "text-violet-400",
     bg: "bg-violet-500/10",
-    border: "border-violet-500/20"
+    border: "border-violet-500/20",
   },
   {
     title: "Usuarios Ilimitados",
-    description: "Invita a tantos amigos y jugadores como quieras sin restricciones de slots.",
+    description:
+      "Invita a tantos amigos y jugadores como quieras sin restricciones de slots.",
     icon: "fa-solid fa-users",
     color: "text-emerald-400",
     bg: "bg-emerald-500/10",
-    border: "border-emerald-500/20"
+    border: "border-emerald-500/20",
   },
   {
     title: "Migración gratuita",
@@ -30,41 +32,48 @@ const features = [
     icon: "fa-solid fa-truck-fast",
     color: "text-orange-400",
     bg: "bg-orange-500/10",
-    border: "border-orange-500/20"
+    border: "border-orange-500/20",
   },
   {
     title: "Soporte Incluido",
-    description: "Ayuda técnica rápida y especializada para resolver cualquier problema que tengas.",
+    description:
+      "Ayuda técnica rápida y especializada para resolver cualquier problema que tengas.",
     icon: "fa-solid fa-headset",
     color: "text-pink-400",
     bg: "bg-pink-500/10",
-    border: "border-pink-500/20"
+    border: "border-pink-500/20",
   },
   {
-    title: "Todas las versiones",
-    description: "Compatible con cualquier versión de Minecraft, Forge, Fabric, Paper y más.",
-    icon: "fa-solid fa-layer-group",
-    color: "text-amber-400",
-    bg: "bg-amber-500/10",
-    border: "border-amber-500/20"
-  }
+    title: "Subdominios gratuitos",
+    description: "Obtén un subdominio gratuito para tu servidor.",
+    icon: "fa-solid fa-globe",
+    color: "text-orange-400",
+    bg: "bg-orange-500/10",
+    border: "border-orange-500/20",
+  },
 ];
 ---
 
 <section class="py-24 relative z-10">
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {features.map(feature => (
-        <div class="flex gap-4 items-start">
-          <div class={`w-12 h-12 rounded-lg ${feature.bg} border ${feature.border} flex items-center justify-center flex-shrink-0 ${feature.color}`}>
-            <i class={`${feature.icon} text-xl`}></i>
+      {
+        features.map((feature) => (
+          <div class="flex gap-4 items-start">
+            <div
+              class={`w-12 h-12 rounded-lg ${feature.bg} border ${feature.border} flex items-center justify-center flex-shrink-0 ${feature.color}`}
+            >
+              <i class={`${feature.icon} text-xl`} />
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white mb-2">{feature.title}</h3>
+              <p class="text-sm text-gray-400 leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
           </div>
-          <div>
-            <h3 class="text-lg font-bold text-white mb-2">{feature.title}</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
 </section>

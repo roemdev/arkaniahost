@@ -7,7 +7,7 @@ const plans = [
     ram: "3GB",
     price: "$4",
     desc: "Ideal para jugar Vanilla con hasta 5 amigos sin complicaciones.",
-    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/starter/checkout",
+    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=58&options[64]=65&options[68]=69&options[72]=73",
     popular: false,
   },
   {
@@ -16,7 +16,7 @@ const plans = [
     ram: "6GB",
     price: "$7",
     desc: "Perfecto para modpacks modernos y survival con plugins avanzados.",
-    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/plus/checkout",
+    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=60&options[64]=65&options[68]=69&options[72]=73",
     popular: true,
   },
   {
@@ -25,7 +25,7 @@ const plans = [
     ram: "9GB",
     price: "$10",
     desc: "Máximo rendimiento para comunidades grandes y mapas con mods pesados.",
-    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/pro/checkout",
+    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=78&options[64]=65&options[68]=69&options[72]=73",
     popular: false,
   },
   // {
@@ -57,7 +57,6 @@ const plans = [
   </div>
 
   <div class="max-w-7xl mx-auto px-6">
-
     <!-- CUADRÍCULA DE PLANES -->
     <div
       class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
@@ -77,13 +76,9 @@ const plans = [
                 <div class="text-[10px] text-gray-500 uppercase tracking-widest mb-3 font-bold">
                   Plan {p.name}
                 </div>
-                
+
                 <div class="flex items-center gap-2 mb-3">
                   <span class="font-black text-3xl flex items-center gap-2">
-                    {(p.id === "3" || p.id === "4" || p.ram.includes("3") || p.ram.includes("4")) && <span class="text-2xl drop-shadow-sm">🪵</span>}
-                    {p.id === "6" && <span class="text-2xl drop-shadow-sm">🪨</span>}
-                    {(p.id === "8" || p.id === "9" || p.ram.includes("8") || p.ram.includes("9")) && <span class="text-2xl drop-shadow-sm">⛏️</span>}
-                    {p.id === "custom" && <span class="text-2xl drop-shadow-sm">🛠️</span>}
                     <span class="text-brand">{p.ram}</span>
                     {!isCustom && <span class="text-white">RAM</span>}
                   </span>
@@ -95,9 +90,7 @@ const plans = [
                   >
                     {p.price}
                   </span>
-                  {!isCustom && (
-                    <span class="text-xs font-normal">/ mes</span>
-                  )}
+                  {!isCustom && <span class="text-xs font-normal">/ mes</span>}
                 </div>
               </div>
 
@@ -132,47 +125,96 @@ const plans = [
     </div>
 
     <!-- BARRA TÉCNICA HORIZONTAL -->
-    <div class="w-full mt-8 relative z-10 border border-white/5 bg-white/[0.02] backdrop-blur-[16px] rounded-2xl shadow-xl">
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/10">
+    <div
+      class="w-full mt-8 relative z-10 border border-white/5 bg-white/[0.02] backdrop-blur-[16px] rounded-2xl shadow-xl"
+    >
+      <div
+        class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-white/10"
+      >
         <!-- Procesador -->
-        <div class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5">
-          <div class="w-7 h-7 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center">
+        <div
+          class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5"
+        >
+          <div
+            class="w-7 h-7 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center"
+          >
             <i class="fa-solid fa-microchip text-[15px]"></i>
           </div>
-          <span class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5">Procesador</span>
-          <span class="text-white text-[10px] md:text-[11px] font-medium">Intel i5-4770S</span>
+          <span
+            class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5"
+            >Procesador</span
+          >
+          <span class="text-white text-[10px] md:text-[11px] font-medium"
+            >Intel i5-4770S</span
+          >
         </div>
         <!-- Memoria -->
-        <div class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5">
-          <div class="w-7 h-7 rounded bg-violet-500/10 border border-violet-500/20 text-violet-400 flex items-center justify-center">
+        <div
+          class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5"
+        >
+          <div
+            class="w-7 h-7 rounded bg-violet-500/10 border border-violet-500/20 text-violet-400 flex items-center justify-center"
+          >
             <i class="fa-solid fa-memory text-[15px]"></i>
           </div>
-          <span class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5">Memoria RAM</span>
-          <span class="text-white text-[10px] md:text-[11px] font-medium">DDR3 2400MHz</span>
+          <span
+            class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5"
+            >Memoria RAM</span
+          >
+          <span class="text-white text-[10px] md:text-[11px] font-medium"
+            >DDR3 2400MHz</span
+          >
         </div>
         <!-- Disco -->
-        <div class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5">
-          <div class="w-7 h-7 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+        <div
+          class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5"
+        >
+          <div
+            class="w-7 h-7 rounded bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center"
+          >
             <i class="fa-solid fa-database text-[15px]"></i>
           </div>
-          <span class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5">Almacenamiento</span>
-          <span class="text-white text-[10px] md:text-[11px] font-medium">SSD Ilimitado</span>
+          <span
+            class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5"
+            >Almacenamiento</span
+          >
+          <span class="text-white text-[10px] md:text-[11px] font-medium"
+            >SSD Ilimitado</span
+          >
         </div>
         <!-- Ubicación -->
-        <div class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5">
-          <div class="w-7 h-7 rounded bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-center">
+        <div
+          class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5"
+        >
+          <div
+            class="w-7 h-7 rounded bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-center"
+          >
             <i class="fa-solid fa-map-marker-alt text-[15px]"></i>
           </div>
-          <span class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5">Ubicación</span>
-          <span class="text-white text-[10px] md:text-[11px] font-medium">Pennsylvania, USA</span>
+          <span
+            class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5"
+            >Ubicación</span
+          >
+          <span class="text-white text-[10px] md:text-[11px] font-medium"
+            >Pennsylvania, USA</span
+          >
         </div>
         <!-- Versiones -->
-        <div class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5 col-span-2 md:col-span-1 lg:col-span-1">
-          <div class="w-7 h-7 rounded bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 flex items-center justify-center">
+        <div
+          class="p-2.5 md:p-4 flex flex-col items-center text-center gap-1.5 col-span-2 md:col-span-1 lg:col-span-1"
+        >
+          <div
+            class="w-7 h-7 rounded bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 flex items-center justify-center"
+          >
             <i class="fa-solid fa-layer-group text-[15px]"></i>
           </div>
-          <span class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5">Versiones</span>
-          <span class="text-white text-[10px] md:text-[11px] font-medium">Soporte total</span>
+          <span
+            class="text-[8px] md:text-[9px] text-gray-500 uppercase tracking-widest font-bold mt-0.5"
+            >Versiones</span
+          >
+          <span class="text-white text-[10px] md:text-[11px] font-medium"
+            >Soporte total</span
+          >
         </div>
       </div>
     </div>

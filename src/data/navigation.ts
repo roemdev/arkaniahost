@@ -22,7 +22,7 @@ export const ROTATING_WORDS = [
 
 // Features del marquee
 export const MARQUEE_FEATURES = [
-  { icon: "fa-solid fa-infinity", label: "Almacenamiento Ilimitado" },
+  { icon: "fa-solid fa-database", label: "Almacenamiento SSD" },
   { icon: "fa-solid fa-truck-fast", label: "Migración Gratuita" },
   { icon: "fa-solid fa-wand-magic-sparkles", label: "Instalación de Mods" },
   { icon: "fa-solid fa-bolt", label: "Activación Inmediata" },

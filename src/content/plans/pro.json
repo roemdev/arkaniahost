@@ -8,10 +8,10 @@
   "order": 3,
   "features": [
     "Soporta todos los modpacks",
-    "Añade plugins a gran escala",
-    "9 GB de RAM",
-    "Hasta 40 jugadores recomendados",
+    "8 GB de RAM DDR4",
+    "3 vCores CPU",
+    "100 GB NVMe",
     "Mayor margen para picos de carga"
   ],
-  "paymenterUrl": "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=78&options[64]=65&options[68]=69&options[72]=73"
+  "paymenterUrl": "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/pro/checkout"
 }

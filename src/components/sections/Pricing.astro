@@ -2,13 +2,19 @@
 // Se definen los planes y las URLs de checkout/ticket correspondientes
 const plans = [
   {
-    id: "3",
+    id: "4",
     name: "Starter",
-    ram: "3GB",
+    ram: "4GB",
     price: "$4",
     desc: "Ideal para jugar Vanilla con hasta 5 amigos sin complicaciones.",
-    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=58&options[64]=65&options[68]=69&options[72]=73",
+    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/starter/checkout",
     popular: false,
+    specs: [
+      "4GB DDR3 de RAM",
+      "3 vCores CPU",
+      "100GB Almacenamiento SSD",
+      "Ubicación: Pennsylvania, USA",
+    ],
   },
   {
     id: "6",
@@ -16,17 +22,29 @@ const plans = [
     ram: "6GB",
     price: "$7",
     desc: "Perfecto para modpacks modernos y survival con plugins avanzados.",
-    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=60&options[64]=65&options[68]=69&options[72]=73",
+    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/plus/checkout",
     popular: true,
+    specs: [
+      "6GB DDR3 de RAM",
+      "3 vCores CPU",
+      "100GB Almacenamiento SSD",
+      "Ubicación: Pennsylvania, USA",
+    ],
   },
   {
-    id: "9",
+    id: "8",
     name: "Pro",
-    ram: "9GB",
+    ram: "8GB",
     price: "$10",
     desc: "Máximo rendimiento para comunidades grandes y mapas con mods pesados.",
-    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=78&options[64]=65&options[68]=69&options[72]=73",
+    link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/pro/checkout",
     popular: false,
+    specs: [
+      "8GB DDR4 de RAM",
+      "3 vCores CPU",
+      "100GB Almacenamiento NVMe",
+      "Ubicación: Pennsylvania, USA",
+    ],
   },
   // {
   //   id: "12",
@@ -36,6 +54,12 @@ const plans = [
   //   desc: "La opción definitiva para proyectos públicos y creadores exigentes. Soporta absolutamente cualquier modpack del mercado, una gran cantidad de plugins y decenas de jugadores simultáneos.",
   //   link: "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/elite/checkout",
   //   popular: false,
+  //   specs: [
+  //     "12GB DDR4 de RAM",
+  //     "3 vCores CPU",
+  //     "100GB Almacenamiento NVMe",
+  //     "Ubicación: Pennsylvania, USA",
+  //   ],
   // },
   {
     id: "custom",
@@ -45,6 +69,12 @@ const plans = [
     desc: "Infraestructura a medida para redes interconectadas y proyectos masivos.",
     link: "https://billing.arkaniahost.xyz/admin/tickets/create",
     popular: false,
+    specs: [
+      "RAM adaptable",
+      "vCores adaptables",
+      "Almacenamiento escalable",
+      "Soporte Prioritario 24/7",
+    ],
   },
 ];
 ---
@@ -94,9 +124,20 @@ const plans = [
                 </div>
               </div>
 
-              <p class="text-sm text-gray-400 font-light leading-relaxed mb-16 flex-grow">
+              <p class="text-sm text-gray-400 font-light leading-relaxed mb-4">
                 {p.desc}
               </p>
+
+              <div class="flex-grow mb-8">
+                <ul class="space-y-2.5 text-xs text-gray-400 font-light">
+                  {p.specs?.map((spec) => (
+                    <li class="flex items-center gap-2">
+                      <i class="fa-solid fa-check text-brand text-[10px]" />
+                      <span>{spec}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <div class="mt-auto pt-2">
                 <a
@@ -162,7 +203,7 @@ const plans = [
             >Memoria RAM</span
           >
           <span class="text-white text-[10px] md:text-[11px] font-medium"
-            >DDR3 2400MHz</span
+            >DDR3 / DDR4</span
           >
         </div>
         <!-- Disco -->
@@ -179,7 +220,7 @@ const plans = [
             >Almacenamiento</span
           >
           <span class="text-white text-[10px] md:text-[11px] font-medium"
-            >SSD</span
+            >SSD / NVMe</span
           >
         </div>
         <!-- Ubicación -->

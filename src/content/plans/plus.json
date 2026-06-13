@@ -7,10 +7,10 @@
   "order": 2,
   "features": [
     "Rendimiento estable para Survival",
-    "Hasta 10 jugadores recomendados",
-    "6 GB de RAM",
-    "Bueno para modpacks básicos",
+    "6 GB de RAM DDR3",
+    "3 vCores CPU",
+    "100 GB SSD",
     "Excelente con plugins"
   ],
-  "paymenterUrl": "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=60&options[64]=65&options[68]=69&options[72]=73"
+  "paymenterUrl": "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/plus/checkout"
 }

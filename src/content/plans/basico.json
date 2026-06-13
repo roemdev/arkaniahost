@@ -7,9 +7,9 @@
   "order": 1,
   "features": [
     "Excelente en Vanilla o Paper",
-    "Hasta 4 jugadores recomendados",
-    "3 GB de RAM",
-    "Soporta algunos plugins ligeros"
+    "4 GB de RAM DDR3",
+    "3 vCores CPU",
+    "100 GB SSD"
   ],
-  "paymenterUrl": "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/minecraft-java/checkout?plan=78&options[57]=58&options[64]=65&options[68]=69&options[72]=73"
+  "paymenterUrl": "https://billing.arkaniahost.xyz/products/servidores-de-minecraft/starter/checkout"
 }
